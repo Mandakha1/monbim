@@ -1,3 +1,18 @@
+MonBIM
+Copyright (c) 2026 the MonBIM contributors.
+MonBIM is a modified version of BIMCraft (https://github.com/IPedrax/BIMCraft), forked on
+2026-11-16 from upstream commit a0c57b73. MonBIM's own changes (the MonBIM name and year, its own
+settings folders, the Mongolian interface language, the news and account crates
+(crates/mon-news, crates/mon-account), the Windows installer in packaging/monbim/ and the
+documentation in docs/monbim/) are licensed like BIMCraft, under the MIT License or the Apache
+License, Version 2.0, at your option (LICENSE-MIT, LICENSE-APACHE). As with BIMCraft, a build that
+includes the Revit file reader (the default) is distributed under Apache-2.0: see below.
+MonBIM is not affiliated with, sponsored by or endorsed by BIMCraft's authors.
+
+The BIMCraft notice follows unchanged.
+
+------------------------------------------------------------------------
+
 BIMCraft's Revit file reader (bimcraft-rvt)
 Copyright (c) 2026 IPedrax and the BIMCraft contributors
 
