@@ -623,6 +623,7 @@ dependencies = [
  "serde_json",
  "sys-locale",
  "tempfile",
+ "ttf-parser",
 ]
 
 [[package]]

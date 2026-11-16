@@ -1382,7 +1382,7 @@ msgstr "Mẫu nền"
 msgid "Background of the 3D view"
 msgstr "Nền của khung nhìn 3D"
 
-#: crates/ui-egui/src/lang.rs:25
+#: crates/ui-egui/src/lang.rs:29
 msgid "Backups kept"
 msgstr "Số bản sao lưu được giữ"
 
@@ -2770,7 +2770,7 @@ msgstr "Nhấp nơi đường chia bắt đầu: một điểm, một góc hoặ
 msgid "Click where the stair starts: the middle of its first riser."
 msgstr "Nhấp chỗ cầu thang bắt đầu: điểm giữa bậc đứng đầu tiên."
 
-#: crates/ui-egui/src/lang.rs:28
+#: crates/ui-egui/src/lang.rs:32
 msgid "Click which way it climbs: its risers take it up to the level above. Esc cancels."
 msgstr "Nhấp hướng thang đi lên: các bậc đứng đưa nó lên tầng phía trên. Esc để hủy."
 
@@ -4018,7 +4018,7 @@ msgstr ""
 
 #: crates/ui-egui/src/dimtypes.rs:94
 #: crates/ui-egui/src/editor/document.rs:485
-#: crates/ui-egui/src/lang.rs:31
+#: crates/ui-egui/src/lang.rs:35
 #: crates/ui-egui/src/lib.rs:5130
 msgid "Dimension"
 msgstr "Kích thước"
@@ -4061,7 +4061,7 @@ msgid "Dimension {}"
 msgstr ""
 
 #: crates/core/src/family.rs:351
-#: crates/ui-egui/src/lang.rs:32
+#: crates/ui-egui/src/lang.rs:36
 #: crates/ui-egui/src/properties.rs:541
 msgid "Dimensions"
 msgstr "Kích thước"
@@ -8244,7 +8244,7 @@ msgstr "Chưa có bộ lọc nào: Mới sẽ tạo một bộ lọc."
 msgid "No folders yet: Add Folder makes one to put print sets in."
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:172
+#: crates/ui-egui/src/lang.rs:185
 msgid "No font with Chinese characters was found on this system: install one (such as Noto Sans CJK) and choose Chinese again."
 msgstr "Không tìm thấy phông chữ có ký tự tiếng Trung trên hệ thống này: hãy cài một phông (chẳng hạn Noto Sans CJK) rồi chọn lại tiếng Trung."
 
@@ -8704,7 +8704,7 @@ msgstr "Mở khung nhìn"
 msgid "Open a plan to pick the pattern's lines in: detail lines are drawn in plans."
 msgstr "Hãy mở một mặt bằng để chọn các đường của mẫu: đường chi tiết được vẽ trong mặt bằng."
 
-#: crates/ui-egui/src/lang.rs:29
+#: crates/ui-egui/src/lang.rs:33
 msgid "Open a schedule"
 msgstr "Mở một bảng thống kê"
 
@@ -12299,7 +12299,7 @@ msgstr "Cầu thang"
 msgid "Stair: click where it starts, then where its run ends; a landing turns it"
 msgstr "Cầu thang: nhấp chỗ bắt đầu, rồi chỗ vế thang kết thúc; một chiếu nghỉ sẽ đổi hướng nó"
 
-#: crates/ui-egui/src/lang.rs:30
+#: crates/ui-egui/src/lang.rs:34
 msgid "Stair: click where it starts, then which way it climbs"
 msgstr "Cầu thang: nhấp chỗ bắt đầu, rồi hướng nó đi lên"
 
@@ -12696,7 +12696,7 @@ msgstr "Gộp thẻ với {}"
 msgid "Table"
 msgstr "Bàn"
 
-#: crates/ui-egui/src/lang.rs:33
+#: crates/ui-egui/src/lang.rs:37
 msgid "Tag"
 msgstr "Nhãn"
 
@@ -14640,7 +14640,7 @@ msgid "Window Schedule"
 msgstr "Bảng thống kê cửa sổ"
 
 #: crates/ui-egui/src/editor/document.rs:592
-#: crates/ui-egui/src/lang.rs:34
+#: crates/ui-egui/src/lang.rs:38
 msgid "Windows"
 msgstr "Cửa sổ"
 
@@ -15132,7 +15132,7 @@ msgstr "đông"
 msgid "ellipse"
 msgstr "elip"
 
-#: crates/ui-egui/src/lang.rs:27
+#: crates/ui-egui/src/lang.rs:31
 msgid "end"
 msgstr "điểm cuối"
 
@@ -15395,7 +15395,7 @@ msgstr "khe hở tiêu chuẩn"
 msgid "standard overshoot"
 msgstr "phần vượt tiêu chuẩn"
 
-#: crates/ui-egui/src/lang.rs:26
+#: crates/ui-egui/src/lang.rs:30
 msgid "start"
 msgstr "điểm đầu"
 
@@ -16101,692 +16101,692 @@ msgctxt "cad"
 msgid "Layers"
 msgstr "Lớp"
 
-#: crates/ui-egui/src/lang.rs:313
+#: crates/ui-egui/src/lang.rs:328
 msgctxt "category"
 msgid "3D View"
 msgstr "Khung nhìn 3D"
 
-#: crates/ui-egui/src/lang.rs:275
+#: crates/ui-egui/src/lang.rs:290
 msgctxt "category"
 msgid "Air Terminal"
 msgstr "Kim thu sét"
 
-#: crates/ui-egui/src/lang.rs:296
+#: crates/ui-egui/src/lang.rs:311
 msgctxt "category"
 msgid "Beam"
 msgstr "Dầm"
 
-#: crates/ui-egui/src/lang.rs:316
+#: crates/ui-egui/src/lang.rs:331
 msgctxt "category"
 msgid "CAD Import"
 msgstr "Tệp CAD nhập"
 
-#: crates/ui-egui/src/lang.rs:305
+#: crates/ui-egui/src/lang.rs:320
 msgctxt "category"
 msgid "Cable"
 msgstr "Cáp"
 
-#: crates/ui-egui/src/lang.rs:303
+#: crates/ui-egui/src/lang.rs:318
 msgctxt "category"
 msgid "Cable Tray"
 msgstr "Máng cáp"
 
-#: crates/ui-egui/src/lang.rs:267
+#: crates/ui-egui/src/lang.rs:282
 msgctxt "category"
 msgid "Casework"
 msgstr "Tủ kệ"
 
-#: crates/ui-egui/src/lang.rs:287
+#: crates/ui-egui/src/lang.rs:302
 msgctxt "category"
 msgid "Ceiling"
 msgstr "Trần"
 
-#: crates/ui-egui/src/lang.rs:318
+#: crates/ui-egui/src/lang.rs:333
 msgctxt "category"
 msgid "Circuit"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:264
+#: crates/ui-egui/src/lang.rs:279
 msgctxt "category"
 msgid "Column"
 msgstr "Cột"
 
-#: crates/ui-egui/src/lang.rs:265
+#: crates/ui-egui/src/lang.rs:280
 msgctxt "category"
 msgid "Component"
 msgstr "Thành phần"
 
-#: crates/ui-egui/src/lang.rs:302
+#: crates/ui-egui/src/lang.rs:317
 msgctxt "category"
 msgid "Conduit"
 msgstr "Ống luồn dây"
 
-#: crates/ui-egui/src/lang.rs:280
+#: crates/ui-egui/src/lang.rs:295
 msgctxt "category"
 msgid "Data Outlet"
 msgstr "Ổ cắm dữ liệu"
 
-#: crates/ui-egui/src/lang.rs:309
+#: crates/ui-egui/src/lang.rs:324
 msgctxt "category"
 msgid "Detail Line"
 msgstr "Đường chi tiết"
 
-#: crates/ui-egui/src/lang.rs:258
+#: crates/ui-egui/src/lang.rs:273
 msgctxt "category"
 msgid "Dimension"
 msgstr "Kích thước"
 
-#: crates/ui-egui/src/lang.rs:252
+#: crates/ui-egui/src/lang.rs:267
 msgctxt "category"
 msgid "Door"
 msgstr "Cửa đi"
 
-#: crates/ui-egui/src/lang.rs:306
+#: crates/ui-egui/src/lang.rs:321
 msgctxt "category"
 msgid "Down Conductor"
 msgstr "Dây dẫn sét xuống"
 
-#: crates/ui-egui/src/lang.rs:269
+#: crates/ui-egui/src/lang.rs:284
 msgctxt "category"
 msgid "Drain"
 msgstr "Phễu thu"
 
-#: crates/ui-egui/src/lang.rs:301
+#: crates/ui-egui/src/lang.rs:316
 msgctxt "category"
 msgid "Duct"
 msgstr "Ống gió"
 
-#: crates/ui-egui/src/lang.rs:307
+#: crates/ui-egui/src/lang.rs:322
 msgctxt "category"
 msgid "Earthing Conductor"
 msgstr "Dây nối đất"
 
-#: crates/ui-egui/src/lang.rs:276
+#: crates/ui-egui/src/lang.rs:291
 msgctxt "category"
 msgid "Earthing Electrode"
 msgstr "Cọc nối đất"
 
-#: crates/ui-egui/src/lang.rs:272
+#: crates/ui-egui/src/lang.rs:287
 msgctxt "category"
 msgid "Electrical Equipment"
 msgstr "Thiết bị điện"
 
-#: crates/ui-egui/src/lang.rs:261
+#: crates/ui-egui/src/lang.rs:276
 msgctxt "category"
 msgid "Elevation"
 msgstr "Mặt đứng"
 
-#: crates/ui-egui/src/lang.rs:290
+#: crates/ui-egui/src/lang.rs:305
 msgctxt "category"
 msgid "Filled Region"
 msgstr "Vùng tô"
 
-#: crates/ui-egui/src/lang.rs:254
+#: crates/ui-egui/src/lang.rs:269
 msgctxt "category"
 msgid "Floor"
 msgstr "Sàn"
 
-#: crates/ui-egui/src/lang.rs:298
+#: crates/ui-egui/src/lang.rs:313
 msgctxt "category"
 msgid "Footing"
 msgstr "Móng"
 
-#: crates/ui-egui/src/lang.rs:266
+#: crates/ui-egui/src/lang.rs:281
 msgctxt "category"
 msgid "Furniture"
 msgstr "Nội thất"
 
-#: crates/ui-egui/src/lang.rs:279
+#: crates/ui-egui/src/lang.rs:294
 msgctxt "category"
 msgid "Generic Component"
 msgstr "Thành phần tổng quát"
 
-#: crates/ui-egui/src/lang.rs:257
+#: crates/ui-egui/src/lang.rs:272
 msgctxt "category"
 msgid "Grid"
 msgstr "Lưới trục"
 
-#: crates/ui-egui/src/lang.rs:277
+#: crates/ui-egui/src/lang.rs:292
 msgctxt "category"
 msgid "Inspection Box"
 msgstr "Hộp kiểm tra"
 
-#: crates/ui-egui/src/lang.rs:256
+#: crates/ui-egui/src/lang.rs:271
 msgctxt "category"
 msgid "Level"
 msgstr "Tầng"
 
-#: crates/ui-egui/src/lang.rs:278
+#: crates/ui-egui/src/lang.rs:293
 msgctxt "category"
 msgid "Lighting Fixture"
 msgstr "Thiết bị chiếu sáng"
 
-#: crates/ui-egui/src/lang.rs:314
+#: crates/ui-egui/src/lang.rs:329
 msgctxt "category"
 msgid "Linked Model"
 msgstr "Mô hình liên kết"
 
-#: crates/ui-egui/src/lang.rs:289
+#: crates/ui-egui/src/lang.rs:304
 msgctxt "category"
 msgid "Mass"
 msgstr "Khối"
 
-#: crates/ui-egui/src/lang.rs:291
+#: crates/ui-egui/src/lang.rs:306
 msgctxt "category"
 msgid "Mass Floor"
 msgstr "Sàn khối"
 
-#: crates/ui-egui/src/lang.rs:317
+#: crates/ui-egui/src/lang.rs:332
 msgctxt "category"
 msgid "Multi-Category"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:273
+#: crates/ui-egui/src/lang.rs:288
 msgctxt "category"
 msgid "Outlet"
 msgstr "Ổ cắm"
 
-#: crates/ui-egui/src/lang.rs:282
+#: crates/ui-egui/src/lang.rs:297
 msgctxt "category"
 msgid "Patch Panel"
 msgstr "Patch panel"
 
-#: crates/ui-egui/src/lang.rs:300
+#: crates/ui-egui/src/lang.rs:315
 msgctxt "category"
 msgid "Pipe"
 msgstr "Ống"
 
-#: crates/ui-egui/src/lang.rs:271
+#: crates/ui-egui/src/lang.rs:286
 msgctxt "category"
 msgid "Pipe Accessory"
 msgstr "Phụ kiện đường ống"
 
-#: crates/ui-egui/src/lang.rs:270
+#: crates/ui-egui/src/lang.rs:285
 msgctxt "category"
 msgid "Pipe Fitting"
 msgstr "Phụ tùng nối ống"
 
-#: crates/ui-egui/src/lang.rs:268
+#: crates/ui-egui/src/lang.rs:283
 msgctxt "category"
 msgid "Plumbing Fixture"
 msgstr "Thiết bị vệ sinh"
 
-#: crates/ui-egui/src/lang.rs:315
+#: crates/ui-egui/src/lang.rs:330
 msgctxt "category"
 msgid "Point Cloud"
 msgstr "Đám mây điểm"
 
-#: crates/ui-egui/src/lang.rs:319
+#: crates/ui-egui/src/lang.rs:334
 msgctxt "category"
 msgid "Project Information"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:294
+#: crates/ui-egui/src/lang.rs:309
 msgctxt "category"
 msgid "Property Line"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:283
+#: crates/ui-egui/src/lang.rs:298
 msgctxt "category"
 msgid "Rack"
 msgstr "Tủ rack"
 
-#: crates/ui-egui/src/lang.rs:293
+#: crates/ui-egui/src/lang.rs:308
 msgctxt "category"
 msgid "Railing"
 msgstr "Lan can"
 
-#: crates/ui-egui/src/lang.rs:292
+#: crates/ui-egui/src/lang.rs:307
 msgctxt "category"
 msgid "Ramp"
 msgstr "Đường dốc"
 
-#: crates/ui-egui/src/lang.rs:286
+#: crates/ui-egui/src/lang.rs:301
 msgctxt "category"
 msgid "Roof"
 msgstr "Mái"
 
-#: crates/ui-egui/src/lang.rs:255
+#: crates/ui-egui/src/lang.rs:270
 msgctxt "category"
 msgid "Room"
 msgstr "Phòng"
 
-#: crates/ui-egui/src/lang.rs:295
+#: crates/ui-egui/src/lang.rs:310
 msgctxt "category"
 msgid "Room Separator"
 msgstr "Đường phân chia phòng"
 
-#: crates/ui-egui/src/lang.rs:312
+#: crates/ui-egui/src/lang.rs:327
 msgctxt "category"
 msgid "Schedule"
 msgstr "Bảng thống kê"
 
-#: crates/ui-egui/src/lang.rs:260
+#: crates/ui-egui/src/lang.rs:275
 msgctxt "category"
 msgid "Section"
 msgstr "Mặt cắt"
 
-#: crates/ui-egui/src/lang.rs:288
+#: crates/ui-egui/src/lang.rs:303
 msgctxt "category"
 msgid "Shaft Opening"
 msgstr "Lỗ mở thông tầng"
 
-#: crates/ui-egui/src/lang.rs:262
+#: crates/ui-egui/src/lang.rs:277
 msgctxt "category"
 msgid "Sheet"
 msgstr "Bản vẽ"
 
-#: crates/ui-egui/src/lang.rs:284
+#: crates/ui-egui/src/lang.rs:299
 msgctxt "category"
 msgid "Site"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:311
+#: crates/ui-egui/src/lang.rs:326
 msgctxt "category"
 msgid "Spot Coordinate"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:310
+#: crates/ui-egui/src/lang.rs:325
 msgctxt "category"
 msgid "Spot Elevation"
 msgstr "Cao độ điểm"
 
-#: crates/ui-egui/src/lang.rs:285
+#: crates/ui-egui/src/lang.rs:300
 msgctxt "category"
 msgid "Stair"
 msgstr "Cầu thang"
 
-#: crates/ui-egui/src/lang.rs:299
+#: crates/ui-egui/src/lang.rs:314
 msgctxt "category"
 msgid "Strip Footing"
 msgstr "Móng băng"
 
-#: crates/ui-egui/src/lang.rs:297
+#: crates/ui-egui/src/lang.rs:312
 msgctxt "category"
 msgid "Structural Column"
 msgstr "Cột kết cấu"
 
-#: crates/ui-egui/src/lang.rs:274
+#: crates/ui-egui/src/lang.rs:289
 msgctxt "category"
 msgid "Switch"
 msgstr "Công tắc"
 
-#: crates/ui-egui/src/lang.rs:259
+#: crates/ui-egui/src/lang.rs:274
 msgctxt "category"
 msgid "Tag"
 msgstr "Nhãn"
 
-#: crates/ui-egui/src/lang.rs:308
+#: crates/ui-egui/src/lang.rs:323
 msgctxt "category"
 msgid "Text Note"
 msgstr "Ghi chú văn bản"
 
-#: crates/ui-egui/src/lang.rs:263
+#: crates/ui-egui/src/lang.rs:278
 msgctxt "category"
 msgid "Viewport"
 msgstr "Ô khung nhìn"
 
-#: crates/ui-egui/src/lang.rs:281
+#: crates/ui-egui/src/lang.rs:296
 msgctxt "category"
 msgid "Voice Outlet"
 msgstr "Ổ cắm thoại"
 
-#: crates/ui-egui/src/lang.rs:251
+#: crates/ui-egui/src/lang.rs:266
 msgctxt "category"
 msgid "Wall"
 msgstr "Tường"
 
-#: crates/ui-egui/src/lang.rs:253
+#: crates/ui-egui/src/lang.rs:268
 msgctxt "category"
 msgid "Window"
 msgstr "Cửa sổ"
 
-#: crates/ui-egui/src/lang.rs:304
+#: crates/ui-egui/src/lang.rs:319
 msgctxt "category"
 msgid "Wire"
 msgstr "Dây dẫn"
 
-#: crates/ui-egui/src/lang.rs:313
+#: crates/ui-egui/src/lang.rs:328
 msgctxt "category-plural"
 msgid "3D Views"
 msgstr "Khung nhìn 3D"
 
-#: crates/ui-egui/src/lang.rs:275
+#: crates/ui-egui/src/lang.rs:290
 msgctxt "category-plural"
 msgid "Air Terminals"
 msgstr "Kim thu sét"
 
-#: crates/ui-egui/src/lang.rs:296
+#: crates/ui-egui/src/lang.rs:311
 msgctxt "category-plural"
 msgid "Beams"
 msgstr "Dầm"
 
-#: crates/ui-egui/src/lang.rs:316
+#: crates/ui-egui/src/lang.rs:331
 msgctxt "category-plural"
 msgid "CAD Imports"
 msgstr "Tệp CAD nhập"
 
-#: crates/ui-egui/src/lang.rs:303
+#: crates/ui-egui/src/lang.rs:318
 msgctxt "category-plural"
 msgid "Cable Trays"
 msgstr "Máng cáp"
 
-#: crates/ui-egui/src/lang.rs:305
+#: crates/ui-egui/src/lang.rs:320
 msgctxt "category-plural"
 msgid "Cables"
 msgstr "Cáp"
 
-#: crates/ui-egui/src/lang.rs:267
+#: crates/ui-egui/src/lang.rs:282
 msgctxt "category-plural"
 msgid "Casework"
 msgstr "Tủ kệ"
 
-#: crates/ui-egui/src/lang.rs:287
+#: crates/ui-egui/src/lang.rs:302
 msgctxt "category-plural"
 msgid "Ceilings"
 msgstr "Trần"
 
-#: crates/ui-egui/src/lang.rs:318
+#: crates/ui-egui/src/lang.rs:333
 msgctxt "category-plural"
 msgid "Circuits"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:264
+#: crates/ui-egui/src/lang.rs:279
 msgctxt "category-plural"
 msgid "Columns"
 msgstr "Cột"
 
-#: crates/ui-egui/src/lang.rs:265
+#: crates/ui-egui/src/lang.rs:280
 msgctxt "category-plural"
 msgid "Components"
 msgstr "Thành phần"
 
-#: crates/ui-egui/src/lang.rs:302
+#: crates/ui-egui/src/lang.rs:317
 msgctxt "category-plural"
 msgid "Conduits"
 msgstr "Ống luồn dây"
 
-#: crates/ui-egui/src/lang.rs:280
+#: crates/ui-egui/src/lang.rs:295
 msgctxt "category-plural"
 msgid "Data Outlets"
 msgstr "Ổ cắm dữ liệu"
 
-#: crates/ui-egui/src/lang.rs:258
+#: crates/ui-egui/src/lang.rs:273
 msgctxt "category-plural"
 msgid "Dimensions"
 msgstr "Kích thước"
 
-#: crates/ui-egui/src/lang.rs:252
+#: crates/ui-egui/src/lang.rs:267
 msgctxt "category-plural"
 msgid "Doors"
 msgstr "Cửa đi"
 
-#: crates/ui-egui/src/lang.rs:306
+#: crates/ui-egui/src/lang.rs:321
 msgctxt "category-plural"
 msgid "Down Conductors"
 msgstr "Dây dẫn sét xuống"
 
-#: crates/ui-egui/src/lang.rs:269
+#: crates/ui-egui/src/lang.rs:284
 msgctxt "category-plural"
 msgid "Drains"
 msgstr "Phễu thu"
 
-#: crates/ui-egui/src/lang.rs:301
+#: crates/ui-egui/src/lang.rs:316
 msgctxt "category-plural"
 msgid "Ducts"
 msgstr "Ống gió"
 
-#: crates/ui-egui/src/lang.rs:307
+#: crates/ui-egui/src/lang.rs:322
 msgctxt "category-plural"
 msgid "Earthing Conductors"
 msgstr "Dây nối đất"
 
-#: crates/ui-egui/src/lang.rs:276
+#: crates/ui-egui/src/lang.rs:291
 msgctxt "category-plural"
 msgid "Earthing Electrodes"
 msgstr "Cọc nối đất"
 
-#: crates/ui-egui/src/lang.rs:272
+#: crates/ui-egui/src/lang.rs:287
 msgctxt "category-plural"
 msgid "Electrical Equipment"
 msgstr "Thiết bị điện"
 
-#: crates/ui-egui/src/lang.rs:261
+#: crates/ui-egui/src/lang.rs:276
 msgctxt "category-plural"
 msgid "Elevations"
 msgstr "Mặt đứng"
 
-#: crates/ui-egui/src/lang.rs:290
+#: crates/ui-egui/src/lang.rs:305
 msgctxt "category-plural"
 msgid "Filled Regions"
 msgstr "Vùng tô"
 
-#: crates/ui-egui/src/lang.rs:254
+#: crates/ui-egui/src/lang.rs:269
 msgctxt "category-plural"
 msgid "Floors"
 msgstr "Sàn"
 
-#: crates/ui-egui/src/lang.rs:298
+#: crates/ui-egui/src/lang.rs:313
 msgctxt "category-plural"
 msgid "Footings"
 msgstr "Móng"
 
-#: crates/ui-egui/src/lang.rs:266
+#: crates/ui-egui/src/lang.rs:281
 msgctxt "category-plural"
 msgid "Furniture"
 msgstr "Nội thất"
 
-#: crates/ui-egui/src/lang.rs:279
+#: crates/ui-egui/src/lang.rs:294
 msgctxt "category-plural"
 msgid "Generic Components"
 msgstr "Thành phần tổng quát"
 
-#: crates/ui-egui/src/lang.rs:257
+#: crates/ui-egui/src/lang.rs:272
 msgctxt "category-plural"
 msgid "Grids"
 msgstr "Lưới trục"
 
-#: crates/ui-egui/src/lang.rs:277
+#: crates/ui-egui/src/lang.rs:292
 msgctxt "category-plural"
 msgid "Inspection Boxes"
 msgstr "Hộp kiểm tra"
 
-#: crates/ui-egui/src/lang.rs:256
+#: crates/ui-egui/src/lang.rs:271
 msgctxt "category-plural"
 msgid "Levels"
 msgstr "Tầng"
 
-#: crates/ui-egui/src/lang.rs:278
+#: crates/ui-egui/src/lang.rs:293
 msgctxt "category-plural"
 msgid "Lighting Fixtures"
 msgstr "Thiết bị chiếu sáng"
 
-#: crates/ui-egui/src/lang.rs:309
+#: crates/ui-egui/src/lang.rs:324
 msgctxt "category-plural"
 msgid "Lines"
 msgstr "Đường"
 
-#: crates/ui-egui/src/lang.rs:314
+#: crates/ui-egui/src/lang.rs:329
 msgctxt "category-plural"
 msgid "Linked Models"
 msgstr "Mô hình liên kết"
 
-#: crates/ui-egui/src/lang.rs:291
+#: crates/ui-egui/src/lang.rs:306
 msgctxt "category-plural"
 msgid "Mass Floors"
 msgstr "Sàn khối"
 
-#: crates/ui-egui/src/lang.rs:289
+#: crates/ui-egui/src/lang.rs:304
 msgctxt "category-plural"
 msgid "Masses"
 msgstr "Khối"
 
-#: crates/ui-egui/src/lang.rs:317
+#: crates/ui-egui/src/lang.rs:332
 msgctxt "category-plural"
 msgid "Multi-Category"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:273
+#: crates/ui-egui/src/lang.rs:288
 msgctxt "category-plural"
 msgid "Outlets"
 msgstr "Ổ cắm"
 
-#: crates/ui-egui/src/lang.rs:282
+#: crates/ui-egui/src/lang.rs:297
 msgctxt "category-plural"
 msgid "Patch Panels"
 msgstr "Patch panel"
 
-#: crates/ui-egui/src/lang.rs:271
+#: crates/ui-egui/src/lang.rs:286
 msgctxt "category-plural"
 msgid "Pipe Accessories"
 msgstr "Phụ kiện đường ống"
 
-#: crates/ui-egui/src/lang.rs:270
+#: crates/ui-egui/src/lang.rs:285
 msgctxt "category-plural"
 msgid "Pipe Fittings"
 msgstr "Phụ tùng nối ống"
 
-#: crates/ui-egui/src/lang.rs:300
+#: crates/ui-egui/src/lang.rs:315
 msgctxt "category-plural"
 msgid "Pipes"
 msgstr "Ống"
 
-#: crates/ui-egui/src/lang.rs:268
+#: crates/ui-egui/src/lang.rs:283
 msgctxt "category-plural"
 msgid "Plumbing Fixtures"
 msgstr "Thiết bị vệ sinh"
 
-#: crates/ui-egui/src/lang.rs:315
+#: crates/ui-egui/src/lang.rs:330
 msgctxt "category-plural"
 msgid "Point Clouds"
 msgstr "Đám mây điểm"
 
-#: crates/ui-egui/src/lang.rs:319
+#: crates/ui-egui/src/lang.rs:334
 msgctxt "category-plural"
 msgid "Project Information"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:294
+#: crates/ui-egui/src/lang.rs:309
 msgctxt "category-plural"
 msgid "Property Lines"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:283
+#: crates/ui-egui/src/lang.rs:298
 msgctxt "category-plural"
 msgid "Racks"
 msgstr "Tủ rack"
 
-#: crates/ui-egui/src/lang.rs:293
+#: crates/ui-egui/src/lang.rs:308
 msgctxt "category-plural"
 msgid "Railings"
 msgstr "Lan can"
 
-#: crates/ui-egui/src/lang.rs:292
+#: crates/ui-egui/src/lang.rs:307
 msgctxt "category-plural"
 msgid "Ramps"
 msgstr "Đường dốc"
 
-#: crates/ui-egui/src/lang.rs:286
+#: crates/ui-egui/src/lang.rs:301
 msgctxt "category-plural"
 msgid "Roofs"
 msgstr "Mái"
 
-#: crates/ui-egui/src/lang.rs:295
+#: crates/ui-egui/src/lang.rs:310
 msgctxt "category-plural"
 msgid "Room Separators"
 msgstr "Đường phân chia phòng"
 
-#: crates/ui-egui/src/lang.rs:255
+#: crates/ui-egui/src/lang.rs:270
 msgctxt "category-plural"
 msgid "Rooms"
 msgstr "Phòng"
 
-#: crates/ui-egui/src/lang.rs:312
+#: crates/ui-egui/src/lang.rs:327
 msgctxt "category-plural"
 msgid "Schedules"
 msgstr "Bảng thống kê"
 
-#: crates/ui-egui/src/lang.rs:260
+#: crates/ui-egui/src/lang.rs:275
 msgctxt "category-plural"
 msgid "Sections"
 msgstr "Mặt cắt"
 
-#: crates/ui-egui/src/lang.rs:288
+#: crates/ui-egui/src/lang.rs:303
 msgctxt "category-plural"
 msgid "Shaft Openings"
 msgstr "Lỗ mở thông tầng"
 
-#: crates/ui-egui/src/lang.rs:262
+#: crates/ui-egui/src/lang.rs:277
 msgctxt "category-plural"
 msgid "Sheets"
 msgstr "Bản vẽ"
 
-#: crates/ui-egui/src/lang.rs:284
+#: crates/ui-egui/src/lang.rs:299
 msgctxt "category-plural"
 msgid "Site"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:311
+#: crates/ui-egui/src/lang.rs:326
 msgctxt "category-plural"
 msgid "Spot Coordinates"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:310
+#: crates/ui-egui/src/lang.rs:325
 msgctxt "category-plural"
 msgid "Spot Elevations"
 msgstr "Cao độ điểm"
 
-#: crates/ui-egui/src/lang.rs:285
+#: crates/ui-egui/src/lang.rs:300
 msgctxt "category-plural"
 msgid "Stairs"
 msgstr "Cầu thang"
 
-#: crates/ui-egui/src/lang.rs:299
+#: crates/ui-egui/src/lang.rs:314
 msgctxt "category-plural"
 msgid "Strip Footings"
 msgstr "Móng băng"
 
-#: crates/ui-egui/src/lang.rs:297
+#: crates/ui-egui/src/lang.rs:312
 msgctxt "category-plural"
 msgid "Structural Columns"
 msgstr "Cột kết cấu"
 
-#: crates/ui-egui/src/lang.rs:274
+#: crates/ui-egui/src/lang.rs:289
 msgctxt "category-plural"
 msgid "Switches"
 msgstr "Công tắc"
 
-#: crates/ui-egui/src/lang.rs:259
+#: crates/ui-egui/src/lang.rs:274
 msgctxt "category-plural"
 msgid "Tags"
 msgstr "Nhãn"
 
-#: crates/ui-egui/src/lang.rs:308
+#: crates/ui-egui/src/lang.rs:323
 msgctxt "category-plural"
 msgid "Text Notes"
 msgstr "Ghi chú văn bản"
 
-#: crates/ui-egui/src/lang.rs:263
+#: crates/ui-egui/src/lang.rs:278
 msgctxt "category-plural"
 msgid "Viewports"
 msgstr "Ô khung nhìn"
 
-#: crates/ui-egui/src/lang.rs:281
+#: crates/ui-egui/src/lang.rs:296
 msgctxt "category-plural"
 msgid "Voice Outlets"
 msgstr "Ổ cắm thoại"
 
-#: crates/ui-egui/src/lang.rs:251
+#: crates/ui-egui/src/lang.rs:266
 msgctxt "category-plural"
 msgid "Walls"
 msgstr "Tường"
 
-#: crates/ui-egui/src/lang.rs:253
+#: crates/ui-egui/src/lang.rs:268
 msgctxt "category-plural"
 msgid "Windows"
 msgstr "Cửa sổ"
 
-#: crates/ui-egui/src/lang.rs:304
+#: crates/ui-egui/src/lang.rs:319
 msgctxt "category-plural"
 msgid "Wires"
 msgstr "Dây dẫn"

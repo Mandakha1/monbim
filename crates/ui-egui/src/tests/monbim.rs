@@ -68,3 +68,33 @@ fn an_updater_that_does_not_look_by_itself_asks_only_when_told_and_says_when_it_
     let status = h.state().status.clone();
     assert!(status.error && status.text.starts_with("Couldn't check for updates:"), "{status:?}");
 }
+
+#[test]
+fn the_window_speaks_mongolian_keeps_to_it_and_starts_projects_in_english() {
+    use crate::lang::{Lang, translated_in};
+    use crate::settings::language_in;
+    let dir = tempfile::tempdir().unwrap();
+    let file = dir.path().join("settings.json");
+    let mut h = app(BOX);
+    h.state_mut().use_settings(file.clone());
+    let ctx = h.ctx.clone();
+    h.state_mut().set_lang(&ctx, Lang::Mongolian);
+    h.run();
+    assert_eq!(h.state().lang, Lang::Mongolian, "no font to look for: the window's own have Cyrillic");
+    assert_eq!(language_in(&file), Some(Lang::Mongolian), "kept in the settings file as `mn`");
+    let again = {
+        let mut h = app(BOX);
+        h.state_mut().use_settings(file.clone());
+        h.run();
+        h.state().lang
+    };
+    assert_eq!(again, Lang::Mongolian, "a window started later is in it too");
+    // The words go through mn.po, English where it has none yet; a new project is named in English.
+    let word = |english: &'static str| translated_in(Lang::Mongolian, english).unwrap_or(english);
+    let n = cmd_n(&h);
+    press(&mut h, word("File"));
+    press(&mut h, &format!("{} ⏵", word("New")));
+    press(&mut h, &format!("{} {n}", word("Project")));
+    let levels: Vec<String> = h.state().session.model.levels().iter().map(|(_, l)| l.name.clone()).collect();
+    assert_eq!(levels, ["Level 1", "Level 2"]);
+}

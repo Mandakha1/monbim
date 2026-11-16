@@ -633,6 +633,25 @@ fn visuals(ctx: &Context, look: Look) {
 mod tests {
     use super::*;
 
+    /// MonBIM's interface is in Mongolian: the window's own fonts, IBM Plex Sans and Mono, draw its Cyrillic, Ө ө Ү ү among it,
+    /// by themselves (read from their character maps: egui's own faces behind them have Cyrillic too, and egui can't say which
+    /// face drew a letter).
+    #[test]
+    fn the_windows_own_fonts_draw_mongolian() {
+        for (name, bytes) in [("IBM Plex Sans", PLEX_SANS), ("IBM Plex Mono", PLEX_MONO)] {
+            let face = ttf_parser::Face::parse(bytes, 0).unwrap();
+            let missing = |text: &str| text.chars().filter(|c| !c.is_whitespace() && face.glyph_index(*c).is_none()).collect::<String>();
+            assert_eq!(missing("Ө ө Ү ү"), "", "{name}");
+            assert_eq!(missing("Барилгын мэдээллийн загварчлал ЁёЭэЮюЯя №"), "", "{name}");
+            assert_eq!(missing("中"), "中", "{name}: the check can fail");
+        }
+        // And the window's own set has Plex first in every family.
+        let fonts = fonts();
+        for family in families() {
+            assert!(fonts.families.get(&family).and_then(|f| f.first()).is_some_and(|f| f.starts_with("plex")), "{family:?}");
+        }
+    }
+
     #[test]
     fn contrast_is_wcags_ratio() {
         assert!((contrast(Color32::BLACK, Color32::WHITE) - 21.0).abs() < 0.01);

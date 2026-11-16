@@ -1381,7 +1381,7 @@ msgstr "Vzor pozadí"
 msgid "Background of the 3D view"
 msgstr "Pozadí 3D pohledu"
 
-#: crates/ui-egui/src/lang.rs:25
+#: crates/ui-egui/src/lang.rs:29
 msgid "Backups kept"
 msgstr "Počet zachovaných záloh"
 
@@ -2769,7 +2769,7 @@ msgstr "Klikněte do místa, kde začíná dělicí čára: bod, roh nebo hrana 
 msgid "Click where the stair starts: the middle of its first riser."
 msgstr "Klikněte do místa nástupu schodiště: střed první podstupnice."
 
-#: crates/ui-egui/src/lang.rs:28
+#: crates/ui-egui/src/lang.rs:32
 msgid "Click which way it climbs: its risers take it up to the level above. Esc cancels."
 msgstr "Klikněte pro směr stoupání: podstupnice vyvedou rameno do podlaží výše. Klávesa Esc operaci zruší."
 
@@ -4017,7 +4017,7 @@ msgstr ""
 
 #: crates/ui-egui/src/dimtypes.rs:94
 #: crates/ui-egui/src/editor/document.rs:485
-#: crates/ui-egui/src/lang.rs:31
+#: crates/ui-egui/src/lang.rs:35
 #: crates/ui-egui/src/lib.rs:5130
 msgid "Dimension"
 msgstr "Kóta"
@@ -4060,7 +4060,7 @@ msgid "Dimension {}"
 msgstr "Kóta {}"
 
 #: crates/core/src/family.rs:351
-#: crates/ui-egui/src/lang.rs:32
+#: crates/ui-egui/src/lang.rs:36
 #: crates/ui-egui/src/properties.rs:541
 msgid "Dimensions"
 msgstr "Kóty"
@@ -8243,7 +8243,7 @@ msgstr "Dosud žádné filtry: tlačítkem Nový vytvoříte nový."
 msgid "No folders yet: Add Folder makes one to put print sets in."
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:172
+#: crates/ui-egui/src/lang.rs:185
 msgid "No font with Chinese characters was found on this system: install one (such as Noto Sans CJK) and choose Chinese again."
 msgstr "V tomto systému nebylo nalezeno žádné písmo se znaky čínštiny: nainstalujte písmo (například Noto Sans CJK) a zvolte čínštinu znovu."
 
@@ -8703,7 +8703,7 @@ msgstr "Otevřít pohled"
 msgid "Open a plan to pick the pattern's lines in: detail lines are drawn in plans."
 msgstr "Otevřete půdorys, ve kterém vyberete čáry vzoru: čáry detailu se kreslí v půdorysech."
 
-#: crates/ui-egui/src/lang.rs:29
+#: crates/ui-egui/src/lang.rs:33
 msgid "Open a schedule"
 msgstr "Otevřít výkaz"
 
@@ -12298,7 +12298,7 @@ msgstr "Schodiště"
 msgid "Stair: click where it starts, then where its run ends; a landing turns it"
 msgstr "Schodiště: klikněte na místo začátku a poté na konec ramene; podesta jej zalomí"
 
-#: crates/ui-egui/src/lang.rs:30
+#: crates/ui-egui/src/lang.rs:34
 msgid "Stair: click where it starts, then which way it climbs"
 msgstr "Schodiště: klikněte na místo začátku a poté na směr stoupání"
 
@@ -12695,7 +12695,7 @@ msgstr "Karta s {}"
 msgid "Table"
 msgstr "Stůl"
 
-#: crates/ui-egui/src/lang.rs:33
+#: crates/ui-egui/src/lang.rs:37
 msgid "Tag"
 msgstr "Popiska"
 
@@ -14639,7 +14639,7 @@ msgid "Window Schedule"
 msgstr "Výkaz oken"
 
 #: crates/ui-egui/src/editor/document.rs:592
-#: crates/ui-egui/src/lang.rs:34
+#: crates/ui-egui/src/lang.rs:38
 msgid "Windows"
 msgstr "Okna"
 
@@ -15131,7 +15131,7 @@ msgstr "východ"
 msgid "ellipse"
 msgstr "elipsa"
 
-#: crates/ui-egui/src/lang.rs:27
+#: crates/ui-egui/src/lang.rs:31
 msgid "end"
 msgstr "konec"
 
@@ -15394,7 +15394,7 @@ msgstr "normová mezera"
 msgid "standard overshoot"
 msgstr "normový přesah"
 
-#: crates/ui-egui/src/lang.rs:26
+#: crates/ui-egui/src/lang.rs:30
 msgid "start"
 msgstr "začátek"
 
@@ -16100,692 +16100,692 @@ msgctxt "cad"
 msgid "Layers"
 msgstr "Vrstvy"
 
-#: crates/ui-egui/src/lang.rs:313
+#: crates/ui-egui/src/lang.rs:328
 msgctxt "category"
 msgid "3D View"
 msgstr "3D pohled"
 
-#: crates/ui-egui/src/lang.rs:275
+#: crates/ui-egui/src/lang.rs:290
 msgctxt "category"
 msgid "Air Terminal"
 msgstr "Jímač"
 
-#: crates/ui-egui/src/lang.rs:296
+#: crates/ui-egui/src/lang.rs:311
 msgctxt "category"
 msgid "Beam"
 msgstr "Průvlak"
 
-#: crates/ui-egui/src/lang.rs:316
+#: crates/ui-egui/src/lang.rs:331
 msgctxt "category"
 msgid "CAD Import"
 msgstr "Import CAD"
 
-#: crates/ui-egui/src/lang.rs:305
+#: crates/ui-egui/src/lang.rs:320
 msgctxt "category"
 msgid "Cable"
 msgstr "Kabel"
 
-#: crates/ui-egui/src/lang.rs:303
+#: crates/ui-egui/src/lang.rs:318
 msgctxt "category"
 msgid "Cable Tray"
 msgstr "Kabelový žlab"
 
-#: crates/ui-egui/src/lang.rs:267
+#: crates/ui-egui/src/lang.rs:282
 msgctxt "category"
 msgid "Casework"
 msgstr "Vestavěný nábytek"
 
-#: crates/ui-egui/src/lang.rs:287
+#: crates/ui-egui/src/lang.rs:302
 msgctxt "category"
 msgid "Ceiling"
 msgstr "Podhled"
 
-#: crates/ui-egui/src/lang.rs:318
+#: crates/ui-egui/src/lang.rs:333
 msgctxt "category"
 msgid "Circuit"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:264
+#: crates/ui-egui/src/lang.rs:279
 msgctxt "category"
 msgid "Column"
 msgstr "Sloup"
 
-#: crates/ui-egui/src/lang.rs:265
+#: crates/ui-egui/src/lang.rs:280
 msgctxt "category"
 msgid "Component"
 msgstr "Komponenta"
 
-#: crates/ui-egui/src/lang.rs:302
+#: crates/ui-egui/src/lang.rs:317
 msgctxt "category"
 msgid "Conduit"
 msgstr "Trubka elektroinstalace"
 
-#: crates/ui-egui/src/lang.rs:280
+#: crates/ui-egui/src/lang.rs:295
 msgctxt "category"
 msgid "Data Outlet"
 msgstr "Datová zásuvka"
 
-#: crates/ui-egui/src/lang.rs:309
+#: crates/ui-egui/src/lang.rs:324
 msgctxt "category"
 msgid "Detail Line"
 msgstr "Čára detailu"
 
-#: crates/ui-egui/src/lang.rs:258
+#: crates/ui-egui/src/lang.rs:273
 msgctxt "category"
 msgid "Dimension"
 msgstr "Kóta"
 
-#: crates/ui-egui/src/lang.rs:252
+#: crates/ui-egui/src/lang.rs:267
 msgctxt "category"
 msgid "Door"
 msgstr "Dveře"
 
-#: crates/ui-egui/src/lang.rs:306
+#: crates/ui-egui/src/lang.rs:321
 msgctxt "category"
 msgid "Down Conductor"
 msgstr "Svod hromosvodu"
 
-#: crates/ui-egui/src/lang.rs:269
+#: crates/ui-egui/src/lang.rs:284
 msgctxt "category"
 msgid "Drain"
 msgstr "Vpusť"
 
-#: crates/ui-egui/src/lang.rs:301
+#: crates/ui-egui/src/lang.rs:316
 msgctxt "category"
 msgid "Duct"
 msgstr "Vzduchovod"
 
-#: crates/ui-egui/src/lang.rs:307
+#: crates/ui-egui/src/lang.rs:322
 msgctxt "category"
 msgid "Earthing Conductor"
 msgstr "Zemnicí vodič"
 
-#: crates/ui-egui/src/lang.rs:276
+#: crates/ui-egui/src/lang.rs:291
 msgctxt "category"
 msgid "Earthing Electrode"
 msgstr "Zemnič"
 
-#: crates/ui-egui/src/lang.rs:272
+#: crates/ui-egui/src/lang.rs:287
 msgctxt "category"
 msgid "Electrical Equipment"
 msgstr "Elektrické zařízení"
 
-#: crates/ui-egui/src/lang.rs:261
+#: crates/ui-egui/src/lang.rs:276
 msgctxt "category"
 msgid "Elevation"
 msgstr "Pohled"
 
-#: crates/ui-egui/src/lang.rs:290
+#: crates/ui-egui/src/lang.rs:305
 msgctxt "category"
 msgid "Filled Region"
 msgstr "Vyplněná oblast"
 
-#: crates/ui-egui/src/lang.rs:254
+#: crates/ui-egui/src/lang.rs:269
 msgctxt "category"
 msgid "Floor"
 msgstr "Podlaha"
 
-#: crates/ui-egui/src/lang.rs:298
+#: crates/ui-egui/src/lang.rs:313
 msgctxt "category"
 msgid "Footing"
 msgstr "Základová patka"
 
-#: crates/ui-egui/src/lang.rs:266
+#: crates/ui-egui/src/lang.rs:281
 msgctxt "category"
 msgid "Furniture"
 msgstr "Nábytek"
 
-#: crates/ui-egui/src/lang.rs:279
+#: crates/ui-egui/src/lang.rs:294
 msgctxt "category"
 msgid "Generic Component"
 msgstr "Obecná komponenta"
 
-#: crates/ui-egui/src/lang.rs:257
+#: crates/ui-egui/src/lang.rs:272
 msgctxt "category"
 msgid "Grid"
 msgstr "Modulová osa"
 
-#: crates/ui-egui/src/lang.rs:277
+#: crates/ui-egui/src/lang.rs:292
 msgctxt "category"
 msgid "Inspection Box"
 msgstr "Revizní šachta"
 
-#: crates/ui-egui/src/lang.rs:256
+#: crates/ui-egui/src/lang.rs:271
 msgctxt "category"
 msgid "Level"
 msgstr "Podlaží"
 
-#: crates/ui-egui/src/lang.rs:278
+#: crates/ui-egui/src/lang.rs:293
 msgctxt "category"
 msgid "Lighting Fixture"
 msgstr "Osvětlovací těleso"
 
-#: crates/ui-egui/src/lang.rs:314
+#: crates/ui-egui/src/lang.rs:329
 msgctxt "category"
 msgid "Linked Model"
 msgstr "Připojený model"
 
-#: crates/ui-egui/src/lang.rs:289
+#: crates/ui-egui/src/lang.rs:304
 msgctxt "category"
 msgid "Mass"
 msgstr "Objem"
 
-#: crates/ui-egui/src/lang.rs:291
+#: crates/ui-egui/src/lang.rs:306
 msgctxt "category"
 msgid "Mass Floor"
 msgstr "Podlaží objemu"
 
-#: crates/ui-egui/src/lang.rs:317
+#: crates/ui-egui/src/lang.rs:332
 msgctxt "category"
 msgid "Multi-Category"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:273
+#: crates/ui-egui/src/lang.rs:288
 msgctxt "category"
 msgid "Outlet"
 msgstr "Zásuvka"
 
-#: crates/ui-egui/src/lang.rs:282
+#: crates/ui-egui/src/lang.rs:297
 msgctxt "category"
 msgid "Patch Panel"
 msgstr "Propojovací panel"
 
-#: crates/ui-egui/src/lang.rs:300
+#: crates/ui-egui/src/lang.rs:315
 msgctxt "category"
 msgid "Pipe"
 msgstr "Potrubí"
 
-#: crates/ui-egui/src/lang.rs:271
+#: crates/ui-egui/src/lang.rs:286
 msgctxt "category"
 msgid "Pipe Accessory"
 msgstr "Příslušenství potrubí"
 
-#: crates/ui-egui/src/lang.rs:270
+#: crates/ui-egui/src/lang.rs:285
 msgctxt "category"
 msgid "Pipe Fitting"
 msgstr "Tvarovka potrubí"
 
-#: crates/ui-egui/src/lang.rs:268
+#: crates/ui-egui/src/lang.rs:283
 msgctxt "category"
 msgid "Plumbing Fixture"
 msgstr "Zařizovací předmět"
 
-#: crates/ui-egui/src/lang.rs:315
+#: crates/ui-egui/src/lang.rs:330
 msgctxt "category"
 msgid "Point Cloud"
 msgstr "Mračno bodů"
 
-#: crates/ui-egui/src/lang.rs:319
+#: crates/ui-egui/src/lang.rs:334
 msgctxt "category"
 msgid "Project Information"
 msgstr "Informace o projektu"
 
-#: crates/ui-egui/src/lang.rs:294
+#: crates/ui-egui/src/lang.rs:309
 msgctxt "category"
 msgid "Property Line"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:283
+#: crates/ui-egui/src/lang.rs:298
 msgctxt "category"
 msgid "Rack"
 msgstr "Datový rozvaděč"
 
-#: crates/ui-egui/src/lang.rs:293
+#: crates/ui-egui/src/lang.rs:308
 msgctxt "category"
 msgid "Railing"
 msgstr "Zábradlí"
 
-#: crates/ui-egui/src/lang.rs:292
+#: crates/ui-egui/src/lang.rs:307
 msgctxt "category"
 msgid "Ramp"
 msgstr "Rampa"
 
-#: crates/ui-egui/src/lang.rs:286
+#: crates/ui-egui/src/lang.rs:301
 msgctxt "category"
 msgid "Roof"
 msgstr "Střecha"
 
-#: crates/ui-egui/src/lang.rs:255
+#: crates/ui-egui/src/lang.rs:270
 msgctxt "category"
 msgid "Room"
 msgstr "Místnost"
 
-#: crates/ui-egui/src/lang.rs:295
+#: crates/ui-egui/src/lang.rs:310
 msgctxt "category"
 msgid "Room Separator"
 msgstr "Oddělovač místností"
 
-#: crates/ui-egui/src/lang.rs:312
+#: crates/ui-egui/src/lang.rs:327
 msgctxt "category"
 msgid "Schedule"
 msgstr "Výkaz"
 
-#: crates/ui-egui/src/lang.rs:260
+#: crates/ui-egui/src/lang.rs:275
 msgctxt "category"
 msgid "Section"
 msgstr "Řez"
 
-#: crates/ui-egui/src/lang.rs:288
+#: crates/ui-egui/src/lang.rs:303
 msgctxt "category"
 msgid "Shaft Opening"
 msgstr "Šachtový otvor"
 
-#: crates/ui-egui/src/lang.rs:262
+#: crates/ui-egui/src/lang.rs:277
 msgctxt "category"
 msgid "Sheet"
 msgstr "Výkres"
 
-#: crates/ui-egui/src/lang.rs:284
+#: crates/ui-egui/src/lang.rs:299
 msgctxt "category"
 msgid "Site"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:311
+#: crates/ui-egui/src/lang.rs:326
 msgctxt "category"
 msgid "Spot Coordinate"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:310
+#: crates/ui-egui/src/lang.rs:325
 msgctxt "category"
 msgid "Spot Elevation"
 msgstr "Výšková kóta"
 
-#: crates/ui-egui/src/lang.rs:285
+#: crates/ui-egui/src/lang.rs:300
 msgctxt "category"
 msgid "Stair"
 msgstr "Schodiště"
 
-#: crates/ui-egui/src/lang.rs:299
+#: crates/ui-egui/src/lang.rs:314
 msgctxt "category"
 msgid "Strip Footing"
 msgstr "Základový pás"
 
-#: crates/ui-egui/src/lang.rs:297
+#: crates/ui-egui/src/lang.rs:312
 msgctxt "category"
 msgid "Structural Column"
 msgstr "Konstrukční sloup"
 
-#: crates/ui-egui/src/lang.rs:274
+#: crates/ui-egui/src/lang.rs:289
 msgctxt "category"
 msgid "Switch"
 msgstr "Vypínač"
 
-#: crates/ui-egui/src/lang.rs:259
+#: crates/ui-egui/src/lang.rs:274
 msgctxt "category"
 msgid "Tag"
 msgstr "Popiska"
 
-#: crates/ui-egui/src/lang.rs:308
+#: crates/ui-egui/src/lang.rs:323
 msgctxt "category"
 msgid "Text Note"
 msgstr "Textová poznámka"
 
-#: crates/ui-egui/src/lang.rs:263
+#: crates/ui-egui/src/lang.rs:278
 msgctxt "category"
 msgid "Viewport"
 msgstr "Výřez pohledu"
 
-#: crates/ui-egui/src/lang.rs:281
+#: crates/ui-egui/src/lang.rs:296
 msgctxt "category"
 msgid "Voice Outlet"
 msgstr "Telefonní zásuvka"
 
-#: crates/ui-egui/src/lang.rs:251
+#: crates/ui-egui/src/lang.rs:266
 msgctxt "category"
 msgid "Wall"
 msgstr "Stěna"
 
-#: crates/ui-egui/src/lang.rs:253
+#: crates/ui-egui/src/lang.rs:268
 msgctxt "category"
 msgid "Window"
 msgstr "Okno"
 
-#: crates/ui-egui/src/lang.rs:304
+#: crates/ui-egui/src/lang.rs:319
 msgctxt "category"
 msgid "Wire"
 msgstr "Vodič"
 
-#: crates/ui-egui/src/lang.rs:313
+#: crates/ui-egui/src/lang.rs:328
 msgctxt "category-plural"
 msgid "3D Views"
 msgstr "3D pohledy"
 
-#: crates/ui-egui/src/lang.rs:275
+#: crates/ui-egui/src/lang.rs:290
 msgctxt "category-plural"
 msgid "Air Terminals"
 msgstr "Jímače"
 
-#: crates/ui-egui/src/lang.rs:296
+#: crates/ui-egui/src/lang.rs:311
 msgctxt "category-plural"
 msgid "Beams"
 msgstr "Průvlaky"
 
-#: crates/ui-egui/src/lang.rs:316
+#: crates/ui-egui/src/lang.rs:331
 msgctxt "category-plural"
 msgid "CAD Imports"
 msgstr "Importy CAD"
 
-#: crates/ui-egui/src/lang.rs:303
+#: crates/ui-egui/src/lang.rs:318
 msgctxt "category-plural"
 msgid "Cable Trays"
 msgstr "Kabelové žlaby"
 
-#: crates/ui-egui/src/lang.rs:305
+#: crates/ui-egui/src/lang.rs:320
 msgctxt "category-plural"
 msgid "Cables"
 msgstr "Kabely"
 
-#: crates/ui-egui/src/lang.rs:267
+#: crates/ui-egui/src/lang.rs:282
 msgctxt "category-plural"
 msgid "Casework"
 msgstr "Vestavěný nábytek"
 
-#: crates/ui-egui/src/lang.rs:287
+#: crates/ui-egui/src/lang.rs:302
 msgctxt "category-plural"
 msgid "Ceilings"
 msgstr "Podhledy"
 
-#: crates/ui-egui/src/lang.rs:318
+#: crates/ui-egui/src/lang.rs:333
 msgctxt "category-plural"
 msgid "Circuits"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:264
+#: crates/ui-egui/src/lang.rs:279
 msgctxt "category-plural"
 msgid "Columns"
 msgstr "Sloupy"
 
-#: crates/ui-egui/src/lang.rs:265
+#: crates/ui-egui/src/lang.rs:280
 msgctxt "category-plural"
 msgid "Components"
 msgstr "Komponenty"
 
-#: crates/ui-egui/src/lang.rs:302
+#: crates/ui-egui/src/lang.rs:317
 msgctxt "category-plural"
 msgid "Conduits"
 msgstr "Trubky elektroinstalace"
 
-#: crates/ui-egui/src/lang.rs:280
+#: crates/ui-egui/src/lang.rs:295
 msgctxt "category-plural"
 msgid "Data Outlets"
 msgstr "Datové zásuvky"
 
-#: crates/ui-egui/src/lang.rs:258
+#: crates/ui-egui/src/lang.rs:273
 msgctxt "category-plural"
 msgid "Dimensions"
 msgstr "Kóty"
 
-#: crates/ui-egui/src/lang.rs:252
+#: crates/ui-egui/src/lang.rs:267
 msgctxt "category-plural"
 msgid "Doors"
 msgstr "Dveře"
 
-#: crates/ui-egui/src/lang.rs:306
+#: crates/ui-egui/src/lang.rs:321
 msgctxt "category-plural"
 msgid "Down Conductors"
 msgstr "Svody hromosvodu"
 
-#: crates/ui-egui/src/lang.rs:269
+#: crates/ui-egui/src/lang.rs:284
 msgctxt "category-plural"
 msgid "Drains"
 msgstr "Vpusti"
 
-#: crates/ui-egui/src/lang.rs:301
+#: crates/ui-egui/src/lang.rs:316
 msgctxt "category-plural"
 msgid "Ducts"
 msgstr "Vzduchovody"
 
-#: crates/ui-egui/src/lang.rs:307
+#: crates/ui-egui/src/lang.rs:322
 msgctxt "category-plural"
 msgid "Earthing Conductors"
 msgstr "Zemnicí vodiče"
 
-#: crates/ui-egui/src/lang.rs:276
+#: crates/ui-egui/src/lang.rs:291
 msgctxt "category-plural"
 msgid "Earthing Electrodes"
 msgstr "Zemniče"
 
-#: crates/ui-egui/src/lang.rs:272
+#: crates/ui-egui/src/lang.rs:287
 msgctxt "category-plural"
 msgid "Electrical Equipment"
 msgstr "Elektrická zařízení"
 
-#: crates/ui-egui/src/lang.rs:261
+#: crates/ui-egui/src/lang.rs:276
 msgctxt "category-plural"
 msgid "Elevations"
 msgstr "Pohledy"
 
-#: crates/ui-egui/src/lang.rs:290
+#: crates/ui-egui/src/lang.rs:305
 msgctxt "category-plural"
 msgid "Filled Regions"
 msgstr "Vyplněné oblasti"
 
-#: crates/ui-egui/src/lang.rs:254
+#: crates/ui-egui/src/lang.rs:269
 msgctxt "category-plural"
 msgid "Floors"
 msgstr "Podlahy"
 
-#: crates/ui-egui/src/lang.rs:298
+#: crates/ui-egui/src/lang.rs:313
 msgctxt "category-plural"
 msgid "Footings"
 msgstr "Základové patky"
 
-#: crates/ui-egui/src/lang.rs:266
+#: crates/ui-egui/src/lang.rs:281
 msgctxt "category-plural"
 msgid "Furniture"
 msgstr "Nábytek"
 
-#: crates/ui-egui/src/lang.rs:279
+#: crates/ui-egui/src/lang.rs:294
 msgctxt "category-plural"
 msgid "Generic Components"
 msgstr "Obecné komponenty"
 
-#: crates/ui-egui/src/lang.rs:257
+#: crates/ui-egui/src/lang.rs:272
 msgctxt "category-plural"
 msgid "Grids"
 msgstr "Modulové osy"
 
-#: crates/ui-egui/src/lang.rs:277
+#: crates/ui-egui/src/lang.rs:292
 msgctxt "category-plural"
 msgid "Inspection Boxes"
 msgstr "Revizní šachty"
 
-#: crates/ui-egui/src/lang.rs:256
+#: crates/ui-egui/src/lang.rs:271
 msgctxt "category-plural"
 msgid "Levels"
 msgstr "Podlaží"
 
-#: crates/ui-egui/src/lang.rs:278
+#: crates/ui-egui/src/lang.rs:293
 msgctxt "category-plural"
 msgid "Lighting Fixtures"
 msgstr "Osvětlovací tělesa"
 
-#: crates/ui-egui/src/lang.rs:309
+#: crates/ui-egui/src/lang.rs:324
 msgctxt "category-plural"
 msgid "Lines"
 msgstr "Čáry detailu"
 
-#: crates/ui-egui/src/lang.rs:314
+#: crates/ui-egui/src/lang.rs:329
 msgctxt "category-plural"
 msgid "Linked Models"
 msgstr "Připojené modely"
 
-#: crates/ui-egui/src/lang.rs:291
+#: crates/ui-egui/src/lang.rs:306
 msgctxt "category-plural"
 msgid "Mass Floors"
 msgstr "Podlaží objemu"
 
-#: crates/ui-egui/src/lang.rs:289
+#: crates/ui-egui/src/lang.rs:304
 msgctxt "category-plural"
 msgid "Masses"
 msgstr "Objemy"
 
-#: crates/ui-egui/src/lang.rs:317
+#: crates/ui-egui/src/lang.rs:332
 msgctxt "category-plural"
 msgid "Multi-Category"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:273
+#: crates/ui-egui/src/lang.rs:288
 msgctxt "category-plural"
 msgid "Outlets"
 msgstr "Zásuvky"
 
-#: crates/ui-egui/src/lang.rs:282
+#: crates/ui-egui/src/lang.rs:297
 msgctxt "category-plural"
 msgid "Patch Panels"
 msgstr "Propojovací panely"
 
-#: crates/ui-egui/src/lang.rs:271
+#: crates/ui-egui/src/lang.rs:286
 msgctxt "category-plural"
 msgid "Pipe Accessories"
 msgstr "Příslušenství potrubí"
 
-#: crates/ui-egui/src/lang.rs:270
+#: crates/ui-egui/src/lang.rs:285
 msgctxt "category-plural"
 msgid "Pipe Fittings"
 msgstr "Tvarovky potrubí"
 
-#: crates/ui-egui/src/lang.rs:300
+#: crates/ui-egui/src/lang.rs:315
 msgctxt "category-plural"
 msgid "Pipes"
 msgstr "Potrubí"
 
-#: crates/ui-egui/src/lang.rs:268
+#: crates/ui-egui/src/lang.rs:283
 msgctxt "category-plural"
 msgid "Plumbing Fixtures"
 msgstr "Zařizovací předměty"
 
-#: crates/ui-egui/src/lang.rs:315
+#: crates/ui-egui/src/lang.rs:330
 msgctxt "category-plural"
 msgid "Point Clouds"
 msgstr "Mračna bodů"
 
-#: crates/ui-egui/src/lang.rs:319
+#: crates/ui-egui/src/lang.rs:334
 msgctxt "category-plural"
 msgid "Project Information"
 msgstr "Informace o projektu"
 
-#: crates/ui-egui/src/lang.rs:294
+#: crates/ui-egui/src/lang.rs:309
 msgctxt "category-plural"
 msgid "Property Lines"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:283
+#: crates/ui-egui/src/lang.rs:298
 msgctxt "category-plural"
 msgid "Racks"
 msgstr "Datové rozvaděče"
 
-#: crates/ui-egui/src/lang.rs:293
+#: crates/ui-egui/src/lang.rs:308
 msgctxt "category-plural"
 msgid "Railings"
 msgstr "Zábradlí"
 
-#: crates/ui-egui/src/lang.rs:292
+#: crates/ui-egui/src/lang.rs:307
 msgctxt "category-plural"
 msgid "Ramps"
 msgstr "Rampy"
 
-#: crates/ui-egui/src/lang.rs:286
+#: crates/ui-egui/src/lang.rs:301
 msgctxt "category-plural"
 msgid "Roofs"
 msgstr "Střechy"
 
-#: crates/ui-egui/src/lang.rs:295
+#: crates/ui-egui/src/lang.rs:310
 msgctxt "category-plural"
 msgid "Room Separators"
 msgstr "Oddělovače místností"
 
-#: crates/ui-egui/src/lang.rs:255
+#: crates/ui-egui/src/lang.rs:270
 msgctxt "category-plural"
 msgid "Rooms"
 msgstr "Místnosti"
 
-#: crates/ui-egui/src/lang.rs:312
+#: crates/ui-egui/src/lang.rs:327
 msgctxt "category-plural"
 msgid "Schedules"
 msgstr "Výkazy"
 
-#: crates/ui-egui/src/lang.rs:260
+#: crates/ui-egui/src/lang.rs:275
 msgctxt "category-plural"
 msgid "Sections"
 msgstr "Řezy"
 
-#: crates/ui-egui/src/lang.rs:288
+#: crates/ui-egui/src/lang.rs:303
 msgctxt "category-plural"
 msgid "Shaft Openings"
 msgstr "Šachtové otvory"
 
-#: crates/ui-egui/src/lang.rs:262
+#: crates/ui-egui/src/lang.rs:277
 msgctxt "category-plural"
 msgid "Sheets"
 msgstr "Výkresy"
 
-#: crates/ui-egui/src/lang.rs:284
+#: crates/ui-egui/src/lang.rs:299
 msgctxt "category-plural"
 msgid "Site"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:311
+#: crates/ui-egui/src/lang.rs:326
 msgctxt "category-plural"
 msgid "Spot Coordinates"
 msgstr ""
 
-#: crates/ui-egui/src/lang.rs:310
+#: crates/ui-egui/src/lang.rs:325
 msgctxt "category-plural"
 msgid "Spot Elevations"
 msgstr "Výškové kóty"
 
-#: crates/ui-egui/src/lang.rs:285
+#: crates/ui-egui/src/lang.rs:300
 msgctxt "category-plural"
 msgid "Stairs"
 msgstr "Schodiště"
 
-#: crates/ui-egui/src/lang.rs:299
+#: crates/ui-egui/src/lang.rs:314
 msgctxt "category-plural"
 msgid "Strip Footings"
 msgstr "Základové pásy"
 
-#: crates/ui-egui/src/lang.rs:297
+#: crates/ui-egui/src/lang.rs:312
 msgctxt "category-plural"
 msgid "Structural Columns"
 msgstr "Konstrukční sloupy"
 
-#: crates/ui-egui/src/lang.rs:274
+#: crates/ui-egui/src/lang.rs:289
 msgctxt "category-plural"
 msgid "Switches"
 msgstr "Vypínače"
 
-#: crates/ui-egui/src/lang.rs:259
+#: crates/ui-egui/src/lang.rs:274
 msgctxt "category-plural"
 msgid "Tags"
 msgstr "Popisky"
 
-#: crates/ui-egui/src/lang.rs:308
+#: crates/ui-egui/src/lang.rs:323
 msgctxt "category-plural"
 msgid "Text Notes"
 msgstr "Textové poznámky"
 
-#: crates/ui-egui/src/lang.rs:263
+#: crates/ui-egui/src/lang.rs:278
 msgctxt "category-plural"
 msgid "Viewports"
 msgstr "Výřezy pohledů"
 
-#: crates/ui-egui/src/lang.rs:281
+#: crates/ui-egui/src/lang.rs:296
 msgctxt "category-plural"
 msgid "Voice Outlets"
 msgstr "Telefonní zásuvky"
 
-#: crates/ui-egui/src/lang.rs:251
+#: crates/ui-egui/src/lang.rs:266
 msgctxt "category-plural"
 msgid "Walls"
 msgstr "Stěny"
 
-#: crates/ui-egui/src/lang.rs:253
+#: crates/ui-egui/src/lang.rs:268
 msgctxt "category-plural"
 msgid "Windows"
 msgstr "Okna"
 
-#: crates/ui-egui/src/lang.rs:304
+#: crates/ui-egui/src/lang.rs:319
 msgctxt "category-plural"
 msgid "Wires"
 msgstr "Vodiče"

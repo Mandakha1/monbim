@@ -1,5 +1,5 @@
 //! The interface's language: English, as the code writes it, Brazilian Portuguese, Spanish, Polish, Czech, French, German, Dutch,
-//! Italian, Vietnamese or Simplified Chinese. What
+//! Italian, Vietnamese, Simplified or Traditional Chinese, or Mongolian (MonBIM's). What
 //! the window shows goes through [`t`], English being its own key; the widget helpers translate
 //! their labels and tips, so most call sites pass English and read it back translated. What a
 //! project holds (names, what its drawings say) follows the project's language instead, and the
@@ -11,6 +11,10 @@
 //!
 //! Vietnamese is a project's language too: the window's catalog is `translations/ui/vi.po`, the drawings'
 //! `translations/project/vi.po`, and the window's own fonts and a drawing's lettering both have its letters.
+//!
+//! Mongolian (MonBIM's) is the window's alone, as Chinese is: its catalog is `translations/ui/mn.po`, and what it lacks shows in
+//! English. A drawing's lettering is drawn in code and has no Cyrillic, so a project started in Mongolian is in English. The
+//! window's own fonts (IBM Plex Sans and Mono) have Mongolian's letters, Ө ө Ү ү among them.
 
 use bimcraft_i18n::msg;
 
@@ -56,10 +60,12 @@ pub enum Lang {
     Vietnamese,
     Chinese,
     TraditionalChinese,
+    /// Mongolian, in Cyrillic: MonBIM's interface language.
+    Mongolian,
 }
 
 impl Lang {
-    pub const ALL: [Lang; 12] = [
+    pub const ALL: [Lang; 13] = [
         Lang::English,
         Lang::Portuguese,
         Lang::Spanish,
@@ -72,6 +78,7 @@ impl Lang {
         Lang::Vietnamese,
         Lang::Chinese,
         Lang::TraditionalChinese,
+        Lang::Mongolian,
     ];
 
     /// Whether it is drawn in hanzi, which the window's own fonts have none of.
@@ -79,10 +86,11 @@ impl Lang {
         matches!(self, Lang::Chinese | Lang::TraditionalChinese)
     }
 
-    /// The project language that goes with it, which new projects are named in: Chinese, either kind, has none, so English.
+    /// The project language that goes with it, which new projects are named in: Chinese, either kind, and Mongolian have none (a
+    /// drawing's lettering can't draw them), so English.
     pub fn project(self) -> Language {
         match self {
-            Lang::English | Lang::Chinese | Lang::TraditionalChinese => Language::English,
+            Lang::English | Lang::Chinese | Lang::TraditionalChinese | Lang::Mongolian => Language::English,
             Lang::Portuguese => Language::Portuguese,
             Lang::Spanish => Language::Spanish,
             Lang::Polish => Language::Polish,
@@ -95,11 +103,12 @@ impl Lang {
         }
     }
 
-    /// Its code in the settings file: en, pt, es, pl, vi, zh, zh_TW (also the name of its catalog).
+    /// Its code in the settings file: en, pt, es, pl, vi, zh, zh_TW, mn (also the name of its catalog).
     pub fn code(self) -> &'static str {
         match self {
             Lang::Chinese => "zh",
             Lang::TraditionalChinese => "zh_TW",
+            Lang::Mongolian => "mn",
             other => other.project().code(),
         }
     }
@@ -111,15 +120,19 @@ impl Lang {
             Lang::Chinese => "Chinese (Simplified)",
             Lang::TraditionalChinese if get() == Lang::TraditionalChinese => "繁體中文",
             Lang::TraditionalChinese => "Chinese (Traditional)",
+            Lang::Mongolian => "Монгол",
             other => other.project().label(),
         }
     }
 
-    /// A language by its code or name, or from a locale as systems give one: pt-BR, es_419.UTF-8, vi-VN, zh-CN, zh-TW. The
+    /// A language by its code or name, or from a locale as systems give one: pt-BR, es_419.UTF-8, vi-VN, zh-CN, zh-TW, mn-MN. The
     /// Traditional locales (zh-TW, zh-HK, zh-MO, zh-Hant) are Traditional Chinese, the others Simplified.
     pub fn from_code(code: &str) -> Option<Lang> {
         let lower = code.trim().to_lowercase();
         let parts: Vec<&str> = lower.split(['-', '_', '.', '@']).collect();
+        if matches!(parts[0], "mn" | "mongolian" | "монгол") {
+            return Some(Lang::Mongolian);
+        }
         if matches!(parts[0], "vi" | "vietnamese") || lower == "tiếng việt" {
             return Some(Lang::Vietnamese);
         }
@@ -222,7 +235,9 @@ pub fn t(english: &str) -> &str {
 /// `english` in `lang`, when a non-English interface catalog has a finished translation.
 pub fn translated_in(lang: Lang, english: &str) -> Option<&'static str> {
     match lang {
-        Lang::Vietnamese | Lang::Chinese | Lang::TraditionalChinese => bimcraft_i18n::translated(CATALOGS, lang.code(), "", english),
+        Lang::Vietnamese | Lang::Chinese | Lang::TraditionalChinese | Lang::Mongolian => {
+            bimcraft_i18n::translated(CATALOGS, lang.code(), "", english)
+        }
         other => translated(other.project(), english),
     }
 }
@@ -398,6 +413,34 @@ mod tests {
         for code in ["vi", "vi-VN", "vi_VN.UTF-8", "VI", "vietnamese", "Tiếng Việt"] {
             assert_eq!(Lang::from_code(code), Some(Lang::Vietnamese), "{code}");
         }
+    }
+
+    #[test]
+    fn mongolian_is_the_windows_alone_and_reads_its_own_catalog() {
+        assert_eq!(
+            (Lang::Mongolian.code(), Lang::Mongolian.label(), Lang::Mongolian.project()),
+            ("mn", "Монгол", Language::English),
+            "a project is never in Mongolian: a drawing's lettering has no Cyrillic"
+        );
+        assert_eq!(Lang::from_code(Lang::Mongolian.code()), Some(Lang::Mongolian), "its code comes back as itself");
+        for code in ["mn", "MN", "mn-MN", "mn_MN", "mn_MN.UTF-8", "mn-Cyrl-MN", "mongolian", "Mongolian", "монгол", "Монгол", " mn "]
+        {
+            assert_eq!(Lang::from_code(code), Some(Lang::Mongolian), "{code}");
+        }
+        for code in ["mni", "mon", "my", "Монголия", "m"] {
+            assert_ne!(Lang::from_code(code), Some(Lang::Mongolian), "{code}");
+        }
+        assert!(Lang::ALL.contains(&Lang::Mongolian) && !Lang::Mongolian.is_chinese());
+        // Its catalog, translations/ui/mn.po, is compiled in, and its lookups go to it (not to a project language's):
+        // what it lacks is English.
+        assert!(CATALOGS.iter().any(|(code, _)| *code == "mn"), "mn.po is compiled in");
+        for english in ["File", "Wall Schedule", "Save changes to {}?", "A new untranslated label"] {
+            assert_eq!(translated_in(Lang::Mongolian, english), bimcraft_i18n::translated(CATALOGS, "mn", "", english), "{english}");
+        }
+        set(Lang::Mongolian);
+        assert_eq!(t("A new untranslated label"), "A new untranslated label");
+        assert_eq!(tc("category", "Wall"), bimcraft_i18n::translated(CATALOGS, "mn", "category", "Wall").unwrap_or("Wall"));
+        set(Lang::English);
     }
 
     #[test]

@@ -38,6 +38,8 @@ egui_kittest = { workspace = true, features = ["wgpu"] }
 image = { version = "0.25", default-features = false }
 bimcraft-update = { workspace = true, features = ["testing"] }
 bimcraft-assistant = { workspace = true, features = ["testing"] }
+# Reads the window's fonts' character maps in a test (Mongolian's letters): already in the workspace through the core.
+ttf-parser = { workspace = true }
 
 [build-dependencies]
 bimcraft-i18n = { workspace = true, features = ["catalog"] }
