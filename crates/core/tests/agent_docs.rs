@@ -23,7 +23,10 @@ fn guides() -> Result<Vec<PathBuf>, String> {
         let entries = fs::read_dir(repo.join(dir)).map_err(|e| format!("{dir}: {e}"))?;
         for entry in entries.flatten() {
             let path = entry.path();
-            if path.is_dir() {
+            // MonBIM: the news and account crates (`crates/mon-*`) are copies of MonCad's, shared by MonHydro's three programs, and
+            // carry no CLAUDE.md of their own; docs/monbim/FORK.md says what they are.
+            let shared = dir == "crates" && path.file_name().is_some_and(|n| n.to_string_lossy().starts_with("mon-"));
+            if path.is_dir() && !shared {
                 found.push(path.join("CLAUDE.md"));
             } else if path.extension().is_some_and(|e| e == "md") {
                 found.push(path);

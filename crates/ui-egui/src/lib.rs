@@ -980,6 +980,13 @@ pub struct BimApp {
     pub updates: Option<bimcraft_update::Updater>,
     /// MonBIM's About window (File > Help > About MonBIM, the start page's footer) is open.
     about: bool,
+    /// News, courses and offers (`mon_news`), started by `news_tick` once the desktop has attached `http_get`.
+    pub news: Option<mon_news::News>,
+    /// Gmail sign-in and install registration at monhydro.com (`mon_account`), started with the news.
+    pub account: Option<mon_account::Account>,
+    /// The HTTP GET the news and the account fetch with, which the desktop app attaches (`bimcraft_update::net::mon_get`): a
+    /// window starts without one, so a test never reaches the network.
+    pub http_get: Option<mon_news::Fetch>,
     /// The Assistant palette's: the user's provider, model and key, and the chat, which the desktop app gives a network (`assistant::State::attach`): a window starts without one.
     pub assistant: assistant::State,
     /// The 3D mouse's reader, which the desktop app attaches: a window starts without one, so a test never opens a device.
@@ -1708,6 +1715,9 @@ impl BimApp {
             styled: false,
             updates: None,
             about: false,
+            news: None,
+            account: None,
+            http_get: None,
             assistant: assistant::State::default(),
             space_mouse: None,
             revit: None,
@@ -1998,6 +2008,7 @@ impl BimApp {
             self.status = updates::failed(t(lang::NO_CHINESE_FONT).to_string());
         }
         lang::set(self.lang);
+        news_tick(self, &ctx);
         self.pump(&ctx);
         self.tidy();
         self.poll_updates(&ctx);
@@ -2321,6 +2332,8 @@ impl BimApp {
             || self.selection_filter.is_some()
             || self.settings_page.is_some()
             || self.about
+            // The sign-in window covers the app until the install is signed in (or the server can't be reached).
+            || self.account.as_ref().is_some_and(mon_account::Account::blocks)
             || self.plugins_dialog
             || self.find.is_some()
             || self.new_schedule.is_some()
@@ -6462,5 +6475,39 @@ impl eframe::App for BimApp {
             self.tab_cycle |= raw.events.iter().any(|e| matches!(e, Event::Key { key: Key::Tab, pressed: true, .. }));
             raw.events.retain(|e| !matches!(e, Event::Key { key: Key::Tab, .. }));
         }
+    }
+}
+
+/// MonBIM's news, courses and offers (`mon_news`): MonHydro's feed, read when the app starts and every few hours, shown as a card
+/// and (Windows) a notification; and the Gmail sign-in (`mon_account`), asked for once on the first start and offline after.
+/// Both need the HTTP GET the desktop attaches, so tests never start them; `MON_NEWS=0` and `MON_ACCOUNT=0` turn them off.
+fn news_tick(app: &mut BimApp, ctx: &Context) {
+    let store_dir = || bimcraft_core::favorites::default_path().and_then(|p| p.parent().map(std::path::Path::to_path_buf));
+    if app.news.is_none() {
+        let Some(get) = app.http_get.clone() else { return };
+        app.news = Some(mon_news::News::new(mon_news::Config {
+            product: "monbim",
+            app_name: brand::FULL_NAME,
+            aumid: brand::AUMID,
+            url: mon_news::FEED_URL.into(),
+            store_dir: store_dir(),
+            fetch: Some(get),
+        }));
+    }
+    if let Some(news) = &mut app.news {
+        news.show(ctx, app.lang.code());
+    }
+    if app.account.is_none() {
+        let Some(get) = app.http_get.clone() else { return };
+        app.account = Some(mon_account::Account::new(mon_account::Config {
+            product: "monbim",
+            app_name: brand::FULL_NAME,
+            version: env!("CARGO_PKG_VERSION"),
+            store_dir: store_dir(),
+            fetch: Some(get),
+        }));
+    }
+    if let Some(account) = &mut app.account {
+        account.show(ctx, app.lang.code());
     }
 }

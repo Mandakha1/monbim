@@ -16,6 +16,10 @@ bimcraft-plugin = { workspace = true }
 bimcraft-update = { workspace = true }
 bimcraft-assistant = { workspace = true }
 bimcraft-cowork = { workspace = true }
+# MonBIM: MonHydro's news and courses feed, and the Gmail sign-in at monhydro.com. Copies of MonCad's crates (one change for
+# egui 0.36, docs/monbim/FORK.md); they fetch through the HTTP GET the desktop attaches (`BimApp::http_get`, `bimcraft_update::net::mon_get`), never on their own.
+mon-news = { path = "../mon-news" }
+mon-account = { path = "../mon-account" }
 serde_json = { workspace = true }
 serde = { workspace = true }
 quick-xml = { version = "0.41", features = ["serialize"] }

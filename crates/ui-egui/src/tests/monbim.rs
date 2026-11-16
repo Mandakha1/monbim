@@ -98,3 +98,62 @@ fn the_window_speaks_mongolian_keeps_to_it_and_starts_projects_in_english() {
     let levels: Vec<String> = h.state().session.model.levels().iter().map(|(_, l)| l.name.clone()).collect();
     assert_eq!(levels, ["Level 1", "Level 2"]);
 }
+
+/// The news and the account as the desktop starts them, but with no network: drawn, never fetching.
+fn mon_parts(h: &mut Harness<'static, BimApp>) {
+    h.state_mut().news = Some(mon_news::News::new(mon_news::Config {
+        product: "monbim",
+        app_name: brand::FULL_NAME,
+        aumid: brand::AUMID,
+        url: mon_news::FEED_URL.into(),
+        store_dir: None,
+        fetch: None,
+    }));
+    h.state_mut().account = Some(mon_account::Account::new(mon_account::Config {
+        product: "monbim",
+        app_name: brand::FULL_NAME,
+        version: env!("CARGO_PKG_VERSION"),
+        store_dir: None,
+        fetch: None,
+    }));
+}
+
+#[test]
+fn file_help_opens_the_news_and_the_account_in_english_and_in_mongolian() {
+    let mut h = app(BOX);
+    // A window the desktop hasn't attached a network to has neither, and so no rows for them.
+    assert!(h.state().http_get.is_none() && h.state().news.is_none() && h.state().account.is_none());
+    press(&mut h, "File");
+    press(&mut h, "Help ⏵");
+    assert!(h.query_by_label("News and courses…").is_none() && h.query_by_label("Account…").is_none());
+    key(&mut h, Key::Escape);
+    key(&mut h, Key::Escape);
+    mon_parts(&mut h);
+    file_menu(&mut h, "Help", "News and courses…");
+    assert!(h.state().news.as_ref().is_some_and(|n| n.list_open));
+    file_menu(&mut h, "Help", "Account…");
+    assert!(h.state().account.as_ref().is_some_and(|a| a.panel_open));
+    // In Mongolian the rows are the news' and the account's own words.
+    let mut h = app(BOX);
+    mon_parts(&mut h);
+    h.state_mut().lang = crate::lang::Lang::Mongolian;
+    h.run();
+    let help = format!("{} ⏵", crate::lang::translated_in(crate::lang::Lang::Mongolian, "Help").unwrap_or("Help"));
+    let file = crate::lang::translated_in(crate::lang::Lang::Mongolian, "File").unwrap_or("File").to_string();
+    press(&mut h, &file);
+    press(&mut h, &help);
+    press(&mut h, "Мэдээ, сургалт…");
+    assert!(h.state().news.as_ref().is_some_and(|n| n.list_open));
+    press(&mut h, &file);
+    press(&mut h, &help);
+    press(&mut h, "Бүртгэл…");
+    assert!(h.state().account.as_ref().is_some_and(|a| a.panel_open));
+}
+
+#[test]
+fn the_news_and_the_account_are_given_only_monhydros_addresses() {
+    use bimcraft_update::net::mon_allowed;
+    assert!(mon_allowed(mon_news::FEED_URL, None), "the feed");
+    assert!(mon_allowed(&format!("{}/api/apps/ping?i=MB-1&p=monbim", mon_account::API), None), "the account's ping");
+    assert!(mon_allowed(&format!("{}/apps/login?port=1&state=x", mon_account::API), None), "its sign-in page");
+}

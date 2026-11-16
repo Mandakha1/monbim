@@ -1,4 +1,4 @@
-//! MonBIM's own: File > Help (About, and the news and the account once they are attached) and the About window, which says
+//! MonBIM's own: File > Help (the news and the account once they are started, and About) and the About window, which says
 //! what MonBIM is, which version, and what it is based on: BIMCraft, credited in plain text with links to both repositories.
 
 use egui::{Context, Id, RichText, Ui};
@@ -10,9 +10,21 @@ use crate::popup::Modal;
 use crate::style::pal;
 
 impl BimApp {
-    /// File > Help: About MonBIM, the one item a window always has.
+    /// File > Help: the news and the account once the desktop has started them (Mongolian or English, as their own windows
+    /// are), and About MonBIM, which a window always has.
     pub(crate) fn help_menu(&mut self, ui: &mut Ui) {
+        let mn = crate::lang::get() == crate::lang::Lang::Mongolian;
         egui::containers::menu::SubMenuButton::new(t("Help")).ui(ui, |ui| {
+            if let Some(news) = self.news.as_mut()
+                && ui.button(if mn { "Мэдээ, сургалт…" } else { "News and courses…" }).clicked()
+            {
+                news.open_list();
+            }
+            if let Some(account) = self.account.as_mut()
+                && ui.button(if mn { "Бүртгэл…" } else { "Account…" }).clicked()
+            {
+                account.panel_open = true;
+            }
             if ui.button(tf("About {}…", &[brand::NAME])).clicked() {
                 self.about = true;
             }

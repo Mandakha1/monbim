@@ -273,6 +273,11 @@ fn main() -> ExitCode {
         {
             updates.check_at_startup();
         }
+        // MonBIM's news and account fetch through the updater's crate, from MonHydro's two addresses only
+        // (`bimcraft_update::net::mon_get`); a benchmark asks nothing of the network.
+        if !benching {
+            app.http_get = Some(std::sync::Arc::new(bimcraft_update::net::mon_get));
+        }
         // The assistant reaches the network only when the user gives it a key and sends a message (`bimcraft-assistant`).
         app.assistant.attach(std::sync::Arc::new(bimcraft_assistant::net::Ureq::new()));
         // The 3D mouse is read on a thread of its own too, which wakes the window as its cap moves.

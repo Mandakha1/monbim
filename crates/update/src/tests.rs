@@ -589,6 +589,75 @@ fn redirects_are_followed_by_hand_and_only_to_where_they_may_go() {
     assert!(net::Ureq::new().get(&format!("{base}/exact"), 100, &mut Vec::new()).is_err());
 }
 
+// ---------- MonBIM's news and account ----------
+
+#[test]
+fn the_news_and_the_account_reach_only_monhydros_two_addresses() {
+    for url in [
+        "https://raw.githubusercontent.com/Mandakha1/moncad/main/news/feed.json",
+        "https://raw.githubusercontent.com/mandakha1/monbim/main/news/feed.json",
+        "https://monhydro.com/api/apps/ping?i=MB-0000-0000-0000&p=monbim&v=0.12.0&os=Windows%2011",
+        "https://MONHYDRO.com/apps/login",
+    ] {
+        assert!(net::mon_allowed(url, None), "{url}");
+    }
+    for url in [
+        "",
+        "http://monhydro.com/api/apps/ping",
+        "http://raw.githubusercontent.com/Mandakha1/moncad/main/news/feed.json",
+        "https://raw.githubusercontent.com/evil/repo/main/feed.json",
+        "https://raw.githubusercontent.com/Mandakha1/../evil/feed.json",
+        "https://raw.githubusercontent.com/Mandakha1/x/%2e%2e/feed.json",
+        "https://monhydro.com.evil.example/api",
+        "https://evil.example/https://monhydro.com/",
+        "https://user@monhydro.com/api",
+        "https://monhydro.com:8443/api",
+        "https://www.monhydro.com/api",
+        "https://github.com/Mandakha1/monbim/releases/latest",
+        "https://api.github.com/repos/Mandakha1/monbim/releases/latest",
+        "ftp://monhydro.com/x",
+        "monhydro.com/api",
+    ] {
+        assert!(!net::mon_allowed(url, None), "{url:?}");
+    }
+    // MON_ACCOUNT_API's test server goes, and only under it.
+    let local = Some("http://127.0.0.1:8099/");
+    assert!(net::mon_allowed("http://127.0.0.1:8099/api/apps/ping?i=x", local));
+    for url in ["http://127.0.0.1:8098/api", "http://127.0.0.1:80990/api", "http://127.0.0.1:8099/../x"] {
+        assert!(!net::mon_allowed(url, local), "{url}");
+    }
+    assert!(!net::mon_allowed("http://127.0.0.1:8099/api", Some("")), "an empty MON_ACCOUNT_API is none");
+}
+
+#[test]
+fn the_news_and_account_get_reads_a_capped_body_and_follows_redirects_only_where_it_may() {
+    let hits = Arc::new(std::sync::atomic::AtomicUsize::new(0));
+    let counted = Arc::clone(&hits);
+    let elsewhere = serve(move |_, _| {
+        counted.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        http("200 OK", &[], b"not for you")
+    });
+    let away = format!("Location: {elsewhere}/x");
+    let huge = vec![b' '; net::MAX_MON as usize + 1];
+    let base = serve(move |path, own| match path {
+        "/feed.json" => http("200 OK", &[], br#"{"version": 1, "items": []}"#),
+        "/moved" => http("302 Found", &[format!("Location: {own}/feed.json")], b""),
+        "/away" => http("302 Found", std::slice::from_ref(&away), b""),
+        "/huge" => http("200 OK", &[], &huge),
+        _ => http("404 Not Found", &[], b""),
+    });
+    let agent: ureq::Agent = ureq::Agent::config_builder().max_redirects(0).build().into();
+    let local = Some(base.as_str());
+    assert_eq!(net::get_mon(&agent, &format!("{base}/feed.json"), local).unwrap(), br#"{"version": 1, "items": []}"#);
+    assert_eq!(net::get_mon(&agent, &format!("{base}/moved"), local).unwrap(), br#"{"version": 1, "items": []}"#);
+    assert!(net::get_mon(&agent, &format!("{base}/away"), local).unwrap_err().contains("won't fetch"));
+    assert!(net::get_mon(&agent, &format!("{base}/huge"), local).is_err(), "a byte over the cap");
+    assert!(net::get_mon(&agent, &format!("{base}/missing"), local).unwrap_err().contains("404"));
+    assert_eq!(hits.load(std::sync::atomic::Ordering::Relaxed), 0, "a redirect to another address is never followed");
+    // Without MON_ACCOUNT_API, this machine's server is no address of MonHydro's: refused before anything is sent.
+    assert!(net::get_mon(&agent, &format!("{base}/feed.json"), None).unwrap_err().contains("won't fetch"));
+}
+
 // ---------- installing ----------
 
 use crate::install::{self, Finish};

@@ -615,6 +615,8 @@ dependencies = [
  "egui_kittest",
  "hidapi",
  "image",
+ "mon-account",
+ "mon-news",
  "pollster 1.0.1",
  "quick-xml",
  "rayon",
@@ -2432,6 +2434,26 @@ checksum = "b63fbc4a50860e98e7b2aa7804ded1db5cbc3aff9193adaff57a6931bf7c4b4c"
 dependencies = [
  "adler2",
  "simd-adler32",
+]
+
+[[package]]
+name = "mon-account"
+version = "0.1.0"
+dependencies = [
+ "egui",
+ "serde",
+ "serde_json",
+ "winreg",
+]
+
+[[package]]
+name = "mon-news"
+version = "0.1.0"
+dependencies = [
+ "egui",
+ "serde",
+ "serde_json",
+ "windows",
 ]
 
 [[package]]
@@ -5184,6 +5206,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "23b97319f7b8343df12cc98938e5c3eb436064524c8d2b4e30a1d3a36eecdf81"
 dependencies = [
  "memchr",
+]
+
+[[package]]
+name = "winreg"
+version = "0.56.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7d6f32a0ff4a9f6f01231eb2059cc85479330739333e0e58cadf03b6af2cca10"
+dependencies = [
+ "cfg-if",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

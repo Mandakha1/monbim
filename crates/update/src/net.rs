@@ -79,6 +79,66 @@ pub fn hop_allowed(url: &str) -> bool {
         }
 }
 
+// ---------- MonBIM's own two addresses: the news feed and the accounts server ----------
+
+/// The most of a reply from [`mon_allowed`]'s addresses that is read: mon-news holds its feed to 256 KB, and an account's reply
+/// is a few hundred bytes.
+pub const MAX_MON: u64 = 1 << 20;
+
+/// Whether a request to `url` is one MonBIM's news and account make (`mon-news`, `mon-account`): HTTPS, to a host as named (no
+/// port, no credentials in front of it), no `..` or escapes in the path, and either a file in MonHydro's repositories on GitHub
+/// (`raw.githubusercontent.com/Mandakha1/…`, where the news feed is) or the accounts server, `monhydro.com`. `local` is where
+/// `MON_ACCOUNT_API` points the account at instead (a test server, which may be plain HTTP on this machine): under it goes too.
+pub fn mon_allowed(url: &str, local: Option<&str>) -> bool {
+    if let Some(origin) = local.map(|o| o.trim_end_matches('/')).filter(|o| o.starts_with("http"))
+        && url.strip_prefix(origin).is_some_and(|rest| rest.starts_with('/') && !rest.contains(".."))
+    {
+        return true;
+    }
+    let Ok(uri) = url.parse::<Uri>() else { return false };
+    let (Some(host), path) = (uri.authority(), uri.path().to_ascii_lowercase()) else { return false };
+    let clean = !path.contains("..") && !path.contains('%');
+    uri.scheme_str() == Some("https")
+        && clean
+        && match host.as_str().to_ascii_lowercase().as_str() {
+            "raw.githubusercontent.com" => path.starts_with("/mandakha1/"),
+            "monhydro.com" => true,
+            _ => false,
+        }
+}
+
+/// What the desktop hands mon-news and mon-account as their HTTP GET (`BimApp::http_get`): the body of `url`, at most
+/// [`MAX_MON`] bytes, from [`mon_allowed`]'s addresses only, a redirect followed by hand under the same rule.
+pub fn mon_get(url: &str) -> Result<Vec<u8>, String> {
+    static AGENT: std::sync::OnceLock<Agent> = std::sync::OnceLock::new();
+    let local = std::env::var("MON_ACCOUNT_API").ok();
+    // Plain HTTP only for MON_ACCOUNT_API's test server: `mon_allowed` holds every other address to HTTPS.
+    get_mon(AGENT.get_or_init(|| agent(false)), url, local.as_deref())
+}
+
+/// [`mon_get`] on `agent`, with `local` for `MON_ACCOUNT_API`.
+pub(crate) fn get_mon(agent: &Agent, url: &str, local: Option<&str>) -> Result<Vec<u8>, String> {
+    let mut url = url.to_string();
+    for _ in 0..=REDIRECTS {
+        if !mon_allowed(&url, local) {
+            return Err(format!("won't fetch from {}", host_of(&url)));
+        }
+        let host = host_of(&url);
+        let response = agent.get(&url).config().timeout_global(Some(QUICK)).build().call().map_err(|e| format!("{host}: {e}"))?;
+        if response.status().is_redirection() {
+            let to =
+                response.headers().get("location").and_then(|l| l.to_str().ok()).ok_or_else(|| format!("{host}: a redirect to nowhere"))?;
+            url = to.to_string();
+            continue;
+        }
+        let mut body = response.into_body().into_with_config().limit(MAX_MON).reader();
+        let mut out = Vec::new();
+        io::copy(&mut body, &mut out).map_err(|e| format!("{host}: {e}"))?;
+        return Ok(out);
+    }
+    Err("too many redirects".into())
+}
+
 /// `url` for a message: its host, not the signed query a CDN adds.
 fn host_of(url: &str) -> String {
     url.parse::<Uri>().ok().and_then(|u| u.host().map(str::to_string)).unwrap_or_else(|| "the address".into())
