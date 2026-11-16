@@ -48,3 +48,23 @@ fn the_profiles_name_is_monbim_and_its_saved_code_is_upstreams() {
     assert_eq!(Profile::BimCraft.name(), "MonBIM");
     assert_eq!(Profile::from_code("bimcraft"), Some(Profile::BimCraft), "settings an upstream build wrote still read");
 }
+
+#[test]
+fn an_updater_that_does_not_look_by_itself_asks_only_when_told_and_says_when_it_could_not() {
+    use bimcraft_update::testing::Fake;
+    use bimcraft_update::{LATEST_URL, Updater, Version};
+    let net = Arc::new(Fake::default().fail(LATEST_URL, "404 Not Found"));
+    let mut h = app(BOX);
+    h.state_mut().updates = Some(Updater::new(net.clone(), Version::new(0, 4, 0), None, || {}).inline().automatic(false));
+    if let Some(updates) = h.state_mut().updates.as_mut() {
+        updates.check_at_startup();
+    }
+    h.run();
+    assert!(net.asked().is_empty(), "no request at startup");
+    press(&mut h, "File");
+    assert!(h.query_by_label("Check for updates at startup").is_none(), "no switch for a check that never comes");
+    press(&mut h, "Check for Updates Now");
+    assert_eq!(net.asked().len(), 1);
+    let status = h.state().status.clone();
+    assert!(status.error && status.text.starts_with("Couldn't check for updates:"), "{status:?}");
+}

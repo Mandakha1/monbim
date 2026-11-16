@@ -1,4 +1,4 @@
-//! The updater: asks GitHub for the latest release of BIMCraft, compares its tag with the running version, and downloads the
+//! The updater: asks GitHub for the latest release of MonBIM, compares its tag with the running version, and downloads the
 //! file a newer release carries for this kind of install (a [`Target`]), checking it against the SHA-256 digest GitHub gives for
 //! it, and against the release's checksum file where there is one, before anything runs it. Only the desktop app uses it: the
 //! core, the CLI and the MCP server never phone home.
@@ -34,11 +34,17 @@ mod updater;
 pub use detect::Install;
 pub use updater::{Handover, Note, State, Updater};
 
-/// The repository releases are read from and downloaded of.
-const REPO: &str = "IPedrax/BIMCraft";
+/// The repository releases are read from and downloaded of: MonBIM's own, never upstream BIMCraft's, whose releases would
+/// replace MonBIM with BIMCraft.
+const REPO: &str = "Mandakha1/monbim";
 
 /// GitHub's latest published release: not a draft, not a pre-release.
-pub const LATEST_URL: &str = "https://api.github.com/repos/IPedrax/BIMCraft/releases/latest";
+pub const LATEST_URL: &str = "https://api.github.com/repos/Mandakha1/monbim/releases/latest";
+
+/// Whether the desktop looks for a newer MonBIM by itself when it starts ([`Updater::desktop`]). Off while MonBIM's repository
+/// is private, where GitHub answers a request without a key with 404: a check by hand (File > Check for Updates Now) still
+/// asks, and says it couldn't. Turn it on once the repository is public and has a published release (docs/monbim/FORK.md).
+pub const AUTOMATIC_CHECKS: bool = false;
 
 /// The most of a reply to [`LATEST_URL`] that is read: GitHub's is about 7 KB, release notes and all.
 pub const MAX_JSON: u64 = 1 << 20;
@@ -131,10 +137,10 @@ impl Target {
     }
 }
 
-/// What `bimcraft --version` prints for `version`. The updater runs the new build to see it, and the desktop prints it with this, so that
+/// What `monbim --version` prints for `version`. The updater runs the new build to see it, and the desktop prints it with this, so that
 /// rewording it can't make every installed copy refuse the next update.
 pub fn version_line(version: &str) -> String {
-    format!("bimcraft {version}")
+    format!("monbim {version}")
 }
 
 /// The version a release tag names: `v0.5.0` is 0.5.0. Anything else (no `v`, a pre-release, build metadata, leading zeros,

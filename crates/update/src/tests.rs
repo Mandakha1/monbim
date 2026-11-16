@@ -48,7 +48,7 @@ fn asset(name: &str, size: Value, digest: &str) -> Value {
 fn installer(bytes: &[u8]) -> Installer {
     Installer {
         name: NAME.into(),
-        url: format!("https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/{NAME}"),
+        url: format!("https://github.com/Mandakha1/monbim/releases/download/v0.5.0/{NAME}"),
         size: bytes.len() as u64,
         sha256: sha(bytes),
         checksums: None,
@@ -101,10 +101,10 @@ fn newer_is_semver_order_not_text_order() {
 fn the_real_v0_4_0_reply_parses() {
     let r = parse(V040.as_bytes()).unwrap();
     assert_eq!(r.version, v("0.4.0"));
-    assert_eq!(r.page, "https://github.com/IPedrax/BIMCraft/releases/tag/v0.4.0");
+    assert_eq!(r.page, "https://github.com/Mandakha1/monbim/releases/tag/v0.4.0");
     let i = r.installer.unwrap();
     assert_eq!(i.name, "bimcraft-0.4.0-windows-x64.msi");
-    assert_eq!(i.url, "https://github.com/IPedrax/BIMCraft/releases/download/v0.4.0/bimcraft-0.4.0-windows-x64.msi");
+    assert_eq!(i.url, "https://github.com/Mandakha1/monbim/releases/download/v0.4.0/bimcraft-0.4.0-windows-x64.msi");
     assert_eq!(i.size, 8_966_144);
     assert_eq!(hex(&i.sha256), "52ec6b0f58ed78fef0353e5f2e75ab230bf6e0e66ddc3d4cc3add4baffeacb68");
 }
@@ -198,8 +198,8 @@ fn the_download_address_is_built_here_not_read_from_the_reply() {
     j["html_url"] = json!("javascript:alert(1)");
     j["assets"][0]["url"] = json!("https://evil.example/api");
     let r = parse(j.to_string().as_bytes()).unwrap();
-    assert_eq!(r.page, "https://github.com/IPedrax/BIMCraft/releases/tag/v0.5.0");
-    assert_eq!(r.installer.unwrap().url, format!("https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/{NAME}"));
+    assert_eq!(r.page, "https://github.com/Mandakha1/monbim/releases/tag/v0.5.0");
+    assert_eq!(r.installer.unwrap().url, format!("https://github.com/Mandakha1/monbim/releases/download/v0.5.0/{NAME}"));
 }
 
 #[test]
@@ -405,7 +405,7 @@ use crate::prefs::{self, Prefs};
 #[test]
 fn preferences_check_by_default_and_keep_what_was_saved() {
     let dir = Scratch::new("prefs");
-    let path = dir.0.join("BIMCraft").join("update.json");
+    let path = dir.0.join("MonBIM").join("update.json");
     assert_eq!(Prefs::load(&path), Prefs::default());
     assert_eq!(Prefs::default(), Prefs { check: true, skip: None });
     let chosen = Prefs { check: false, skip: Some(v("0.5.0")) };
@@ -436,8 +436,8 @@ fn a_damaged_preferences_file_gives_the_defaults_a_field_at_a_time() {
 #[test]
 fn preferences_sit_beside_the_favorites_under_a_name_of_their_own() {
     let same = |favorites: &str, update: &str| assert_eq!(prefs::beside(Path::new(favorites)), PathBuf::from(update), "{favorites}");
-    same("/h/.config/bimcraft/favorites.json", "/h/.config/bimcraft/update.json");
-    same("/Users/x/Library/Application Support/BIMCraft/favorites.json", "/Users/x/Library/Application Support/BIMCraft/update.json");
+    same("/h/.config/monbim/favorites.json", "/h/.config/monbim/update.json");
+    same("/Users/x/Library/Application Support/MonBIM/favorites.json", "/Users/x/Library/Application Support/MonBIM/update.json");
     same("favorites.json", "update.json");
     // Wherever the user pointed the favorites (`BIMCRAFT_FAVORITES`), whatever the file is called.
     same("/data/mine.json", "/data/update.json");
@@ -448,12 +448,12 @@ fn preferences_sit_beside_the_favorites_under_a_name_of_their_own() {
 #[test]
 fn a_redirect_may_only_go_where_github_serves_releases() {
     let ok = [
-        "https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/x.msi",
-        "https://api.github.com/repos/IPedrax/BIMCraft/releases/latest",
+        "https://github.com/Mandakha1/monbim/releases/download/v0.5.0/x.msi",
+        "https://api.github.com/repos/Mandakha1/monbim/releases/latest",
         "https://release-assets.githubusercontent.com/github-production-release-asset/1/2?sp=r&sv=2018",
         "https://objects.githubusercontent.com/github-production-release-asset-2e65be/1/2",
         "https://RELEASE-ASSETS.githubusercontent.com/x",
-        "https://GitHub.com/ipedrax/bimcraft/releases/download/v0.5.0/x.msi",
+        "https://GitHub.com/mandakha1/MONBIM/releases/download/v0.5.0/x.msi",
     ];
     for url in ok {
         assert!(net::hop_allowed(url), "{url}");
@@ -482,19 +482,19 @@ fn a_redirect_may_only_go_where_github_serves_releases() {
         "https://user:pass@github.com/x",
         "/relative/path",
         // The right addresses, in the clear.
-        "http://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/x.msi",
-        "http://api.github.com/repos/IPedrax/BIMCraft/releases/latest",
+        "http://github.com/Mandakha1/monbim/releases/download/v0.5.0/x.msi",
+        "http://api.github.com/repos/Mandakha1/monbim/releases/latest",
         "http://release-assets.githubusercontent.com/github-production-release-asset/1/2",
         // GitHub's own hosts, but not this repository's releases.
         "https://github.com/",
         "https://github.com/evil/repo/releases/download/v1/x.msi",
-        "https://github.com/IPedrax/BIMCraft/archive/refs/heads/main.zip",
-        "https://github.com/IPedrax/BIMCraft2/releases/download/v1/x.msi",
-        "https://github.com/IPedrax/BIMCraft/releases/download/../../../evil/x",
-        "https://github.com/IPedrax/BIMCraft/releases/download/v%2e%2e/x",
+        "https://github.com/Mandakha1/monbim/archive/refs/heads/main.zip",
+        "https://github.com/Mandakha1/monbim2/releases/download/v1/x.msi",
+        "https://github.com/Mandakha1/monbim/releases/download/../../../evil/x",
+        "https://github.com/Mandakha1/monbim/releases/download/v%2e%2e/x",
         "https://api.github.com/user",
         "https://api.github.com/repos/evil/repo/releases/latest",
-        "https://api.github.com/repos/IPedrax/BIMCraft/releases/../../../../user",
+        "https://api.github.com/repos/Mandakha1/monbim/releases/../../../../user",
     ];
     for url in bad {
         assert!(!net::hop_allowed(url), "{url:?}");
@@ -928,7 +928,7 @@ fn updater(net: &Arc<Fake>, dir: &Scratch) -> Updater {
 
 fn latest(tag: &str, installer: Option<&[u8]>) -> Arc<Fake> {
     let installer_url =
-        format!("https://github.com/IPedrax/BIMCraft/releases/download/{tag}/{}", Target::Windows.asset_name(tag.trim_start_matches('v')));
+        format!("https://github.com/Mandakha1/monbim/releases/download/{tag}/{}", Target::Windows.asset_name(tag.trim_start_matches('v')));
     Arc::new(Fake::default().answer(LATEST_URL, release_json(tag, installer)).answer(&installer_url, installer.unwrap_or_default()))
 }
 
@@ -983,6 +983,35 @@ fn the_startup_check_can_be_switched_off_and_stays_off() {
     again.check_now();
     again.poll();
     assert_eq!(offered(&again), Some(v("0.5.0")), "a check by hand still works");
+}
+
+#[test]
+fn monbim_asks_its_own_repository_and_by_itself_only_once_the_build_lets_it() {
+    assert_eq!(LATEST_URL, "https://api.github.com/repos/Mandakha1/monbim/releases/latest");
+    assert!(net::hop_allowed(LATEST_URL));
+    for upstream in [
+        "https://api.github.com/repos/IPedrax/BIMCraft/releases/latest",
+        "https://github.com/IPedrax/BIMCraft/releases/download/v0.13.0/bimcraft-0.13.0-windows-x64.msi",
+    ] {
+        assert!(!net::hop_allowed(upstream), "never BIMCraft's releases, which would replace MonBIM: {upstream}");
+    }
+    let agent = net::user_agent();
+    assert!(agent.starts_with("MonBIM/") && agent.ends_with("(+https://github.com/Mandakha1/monbim)"), "{agent}");
+    // An updater that doesn't look by itself (MonBIM's while its repository is private) makes no request at startup, offers no
+    // switch for it, and a check by hand still asks: GitHub's 404 for a private repository is said as a failed check.
+    let (net, dir) = (Arc::new(Fake::default().fail(LATEST_URL, "404 Not Found")), Scratch::new("u-auto"));
+    let mut u = updater(&net, &dir).automatic(false);
+    assert!(!u.checks_automatically() && u.checks_at_startup(), "the user's own setting is kept for when it comes back");
+    u.check_at_startup();
+    assert!(u.poll().is_none() && net.asked().is_empty(), "no request at startup");
+    u.check_now();
+    assert!(matches!(u.poll(), Some(Note::CheckFailed(e)) if e.contains("404")));
+    assert_eq!(net.asked().len(), 1);
+    assert!(updater(&net, &dir).checks_automatically(), "`new` looks by itself, as upstream's does");
+    // The desktop's follows the switch (it is built here, never asked anything).
+    if let Some(desktop) = Updater::desktop(None, || {}) {
+        assert_eq!(desktop.checks_automatically(), AUTOMATIC_CHECKS);
+    }
 }
 
 #[test]
@@ -1191,7 +1220,7 @@ fn while_it_installs_nothing_else_changes_the_update_or_takes_its_folder() {
 #[test]
 fn a_download_that_fails_its_check_goes_back_to_the_offer_and_says_why() {
     let dir = Scratch::new("u8");
-    let url = "https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
+    let url = "https://github.com/Mandakha1/monbim/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
     let net =
         Arc::new(Fake::default().answer(LATEST_URL, release_json("v0.5.0", Some(INSTALLER))).answer(url, "pretend this is another one"));
     let mut u = updater(&net, &dir);
@@ -1290,7 +1319,7 @@ fn release_of(tag: &str, files: &[(String, Vec<u8>)], sums: Option<&str>) -> Vec
     reply(tag, json!(assets))
 }
 
-const SUMS_URL: &str = "https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/SHA256SUMS";
+const SUMS_URL: &str = "https://github.com/Mandakha1/monbim/releases/download/v0.5.0/SHA256SUMS";
 
 #[test]
 fn each_kind_of_install_has_its_own_file_in_a_release() {
@@ -1318,7 +1347,7 @@ fn a_release_with_a_file_for_every_platform_gives_each_install_its_own() {
         let i = parse_release(&json, Some(&target)).unwrap().installer.unwrap();
         let bytes = &all.iter().find(|(n, _)| n == name).unwrap().1;
         assert_eq!((i.name.as_str(), i.size, i.sha256), (name, bytes.len() as u64, sha(bytes)), "{target:?}");
-        assert_eq!(i.url, format!("https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/{name}"), "{target:?}");
+        assert_eq!(i.url, format!("https://github.com/Mandakha1/monbim/releases/download/v0.5.0/{name}"), "{target:?}");
         assert_eq!(i.checksums.as_deref(), Some(SUMS_URL), "{target:?}");
     }
     let bare = parse_release(&json, None).unwrap();
@@ -1493,7 +1522,7 @@ fn a_checksum_file_that_disagrees_stops_an_update_and_says_so() {
     other[0].1 = b"another file".to_vec();
     let sums = sums_of(&other);
     let all = files("0.5.0");
-    let installer_url = "https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
+    let installer_url = "https://github.com/Mandakha1/monbim/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
     let net = Arc::new(
         Fake::default()
             .answer(LATEST_URL, release_of("v0.5.0", &all, Some(&sums)))
@@ -1514,7 +1543,7 @@ fn a_checksum_file_that_disagrees_stops_an_update_and_says_so() {
 fn an_update_checks_the_checksum_file_before_the_installer_and_is_ready_when_they_agree() {
     let all = files("0.5.0");
     let sums = sums_of(&all);
-    let installer_url = "https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
+    let installer_url = "https://github.com/Mandakha1/monbim/releases/download/v0.5.0/bimcraft-0.5.0-windows-x64.msi";
     let net = Arc::new(
         Fake::default()
             .answer(LATEST_URL, release_of("v0.5.0", &all, Some(&sums)))
@@ -1541,7 +1570,7 @@ fn an_update_that_has_no_target_has_no_file_and_a_disk_image_downloads_like_any_
     bare.poll();
     assert!(matches!(bare.state(), State::Available(r) if r.installer.is_none()), "told of, with no file");
     let dmg = &all[all.len() - 2];
-    let dmg_url = format!("https://github.com/IPedrax/BIMCraft/releases/download/v0.5.0/{}", dmg.0);
+    let dmg_url = format!("https://github.com/Mandakha1/monbim/releases/download/v0.5.0/{}", dmg.0);
     let net = Arc::new(Fake::default().answer(LATEST_URL, release_of("v0.5.0", &all, None)).answer(&dmg_url, dmg.1.clone()));
     let mut mac = updater(&net, &dir).target(Some(Target::MacApp));
     mac.check_at_startup();
@@ -1555,9 +1584,9 @@ fn an_update_that_has_no_target_has_no_file_and_a_disk_image_downloads_like_any_
 
 #[test]
 fn a_new_build_has_to_say_its_name_and_exactly_the_version() {
-    assert_eq!(version_line("0.5.0"), "bimcraft 0.5.0", "what `bimcraft --version` prints: the desktop makes it with this");
-    assert!(crate::exec::says_version("bimcraft 0.5.0\n", "0.5.0").is_ok());
-    for said in ["", "bimcraft 0.4.9", "bimcraft 10.5.0", "bimcraft 0.5.01", "other 0.5.0", "bimcraft 0.5.0 and more", "0.5.0"] {
+    assert_eq!(version_line("0.5.0"), "monbim 0.5.0", "what `monbim --version` prints: the desktop makes it with this");
+    assert!(crate::exec::says_version("monbim 0.5.0\n", "0.5.0").is_ok());
+    for said in ["", "monbim 0.4.9", "monbim 10.5.0", "monbim 0.5.01", "other 0.5.0", "monbim 0.5.0 and more", "0.5.0", "bimcraft 0.5.0"] {
         let e = crate::exec::says_version(said, "0.5.0").unwrap_err();
         assert!(e.contains(said.trim()) && e.contains("0.5.0"), "{said:?}: {e}");
     }
@@ -1776,7 +1805,7 @@ mod appimage {
     #[test]
     fn a_new_appimage_that_runs_replaces_the_old_one_and_starts() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0);
+        let r = rig("monbim 0.5.0", 0);
         let new_bytes = std::fs::read(&r.new).unwrap();
         appimage::replace(&r.new, &r.target, "0.5.0", Some(Path::new("/w/house.bimcraft"))).unwrap();
         assert_eq!(std::fs::read(&r.target).unwrap(), new_bytes, "the target is the new file now");
@@ -1791,7 +1820,7 @@ mod appimage {
     #[test]
     fn a_new_appimage_that_cannot_mount_itself_is_tried_again_unpacking_itself() {
         let _one = serial();
-        let r = rig_with("bimcraft 0.5.0", 0, true);
+        let r = rig_with("monbim 0.5.0", 0, true);
         let new_bytes = std::fs::read(&r.new).unwrap();
         appimage::replace(&r.new, &r.target, "0.5.0", Some(Path::new("/w/house.bimcraft"))).unwrap();
         assert_eq!(std::fs::read(&r.target).unwrap(), new_bytes, "the second try shows it runs");
@@ -1801,7 +1830,7 @@ mod appimage {
             "and it is started that way too, or it would fail as it did the first time"
         );
         // And one that fails both ways is not installed.
-        let r = rig_with("bimcraft 0.4.9", 0, true);
+        let r = rig_with("monbim 0.4.9", 0, true);
         let old_bytes = std::fs::read(&r.target).unwrap();
         assert!(appimage::replace(&r.new, &r.target, "0.5.0", None).is_err());
         assert_eq!(std::fs::read(&r.target).unwrap(), old_bytes);
@@ -1810,9 +1839,9 @@ mod appimage {
     #[test]
     fn a_new_appimage_that_will_not_start_is_said_to_be_installed() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0);
+        let r = rig("monbim 0.5.0", 0);
         // It runs once, and takes its own right to run away as it does, as a file that can't be started later has lost it.
-        std::fs::write(&r.new, "#!/bin/sh\nif [ \"$1\" = \"--version\" ]; then echo bimcraft 0.5.0; chmod a-x \"$0\"; fi\n").unwrap();
+        std::fs::write(&r.new, "#!/bin/sh\nif [ \"$1\" = \"--version\" ]; then echo monbim 0.5.0; chmod a-x \"$0\"; fi\n").unwrap();
         let e = appimage::replace(&r.new, &r.target, "0.5.0", None).unwrap_err();
         assert!(e.contains("is installed") && e.contains("starting it failed"), "{e}");
         assert!(leftovers(&r).is_empty());
@@ -1821,7 +1850,7 @@ mod appimage {
     #[test]
     fn a_name_someone_else_planted_for_the_new_file_is_never_written_through() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0);
+        let r = rig("monbim 0.5.0", 0);
         let victim = r.dir.0.join("precious");
         std::fs::write(&victim, "keep me").unwrap();
         let planted = r.dir.0.join(format!(".BIMCraft.AppImage.update-{}", std::process::id()));
@@ -1836,7 +1865,7 @@ mod appimage {
     #[test]
     fn a_new_appimage_that_does_not_run_or_says_another_version_leaves_the_old_one_alone() {
         let _one = serial();
-        for (what, reply, exit) in [("another version", "bimcraft 0.4.9", 0), ("a failure", "bimcraft 0.5.0", 1), ("nothing", "", 0)] {
+        for (what, reply, exit) in [("another version", "monbim 0.4.9", 0), ("a failure", "monbim 0.5.0", 1), ("nothing", "", 0)] {
             let r = rig(reply, exit);
             let old_bytes = std::fs::read(&r.target).unwrap();
             let e = appimage::replace(&r.new, &r.target, "0.5.0", None).unwrap_err();
@@ -1851,7 +1880,7 @@ mod appimage {
     #[test]
     fn a_new_appimage_that_hangs_is_given_up_on() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0);
+        let r = rig("monbim 0.5.0", 0);
         std::fs::write(&r.new, "#!/bin/sh\nsleep 30\n").unwrap();
         let old_bytes = std::fs::read(&r.target).unwrap();
         let start = std::time::Instant::now();
@@ -1865,7 +1894,7 @@ mod appimage {
     #[test]
     fn an_appimage_that_cannot_be_written_beside_or_a_download_that_is_gone_is_an_error() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0);
+        let r = rig("monbim 0.5.0", 0);
         assert!(appimage::replace(&r.new, Path::new("/no/such/folder/BIMCraft.AppImage"), "0.5.0", None).is_err());
         assert!(appimage::replace(&r.dir.0.join("missing"), &r.target, "0.5.0", None).is_err());
         assert!(leftovers(&r).is_empty());
@@ -1999,7 +2028,7 @@ mod macos {
     #[test]
     fn a_new_app_that_verifies_and_runs_replaces_the_installed_one_and_starts() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         replace(&r, Some("/w/house.bimcraft")).unwrap();
         assert!(marker(&r, "new") && !marker(&r, "old"), "the installed app is the new one");
         assert!(leftovers(&r).is_empty(), "no copy, no old bundle left beside it: {:?}", leftovers(&r));
@@ -2021,7 +2050,7 @@ mod macos {
     #[test]
     fn it_starts_without_a_project_too() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         replace(&r, None).unwrap();
         assert_eq!(log(&r.log, 5)[4], format!("open -n {}", r.installed.display()));
     }
@@ -2031,10 +2060,10 @@ mod macos {
         let _one = serial();
         // (what, tool exit codes, what the new app prints, whether anything was mounted to detach)
         let cases = [
-            ("the image won't mount", (7, 0, 0), "bimcraft 0.5.0", false),
-            ("the copy fails", (0, 7, 0), "bimcraft 0.5.0", true),
-            ("the signature doesn't verify", (0, 0, 7), "bimcraft 0.5.0", true),
-            ("the app says another version", (0, 0, 0), "bimcraft 0.4.9", true),
+            ("the image won't mount", (7, 0, 0), "monbim 0.5.0", false),
+            ("the copy fails", (0, 7, 0), "monbim 0.5.0", true),
+            ("the signature doesn't verify", (0, 0, 7), "monbim 0.5.0", true),
+            ("the app says another version", (0, 0, 0), "monbim 0.4.9", true),
             ("the app says nothing", (0, 0, 0), "", true),
         ];
         for (what, (attach, ditto, codesign), says, mounted) in cases {
@@ -2052,7 +2081,7 @@ mod macos {
     #[test]
     fn an_image_with_no_app_in_it_is_an_error_and_is_let_go() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         std::fs::remove_dir_all(r.dir.0.join("image").join("BIMCraft.app")).unwrap();
         let e = replace(&r, None).unwrap_err();
         assert!(e.contains("the disk image holds no BIMCraft.app"), "{e}");
@@ -2063,7 +2092,7 @@ mod macos {
     #[test]
     fn a_tool_that_hangs_is_given_up_on_and_the_app_is_left_alone() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         script(r.tools.hdiutil.parent().unwrap(), "hdiutil", "sleep 30");
         let work = work(&r);
         let start = std::time::Instant::now();
@@ -2076,7 +2105,7 @@ mod macos {
     #[test]
     fn an_app_that_cannot_be_swapped_in_is_an_error_and_nothing_is_started() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         std::fs::remove_dir_all(&r.installed).unwrap();
         let e = replace(&r, Some("/w/house.bimcraft")).unwrap_err();
         assert!(e.contains("BIMCraft.app"), "{e}");
@@ -2087,7 +2116,7 @@ mod macos {
     #[test]
     fn a_folder_someone_else_planted_for_the_new_app_is_never_copied_into() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         let victim = r.dir.0.join("precious");
         std::fs::create_dir(&victim).unwrap();
         let planted = r.installed.parent().unwrap().join(format!(".BIMCraft-update-{}.app", std::process::id()));
@@ -2102,7 +2131,7 @@ mod macos {
     #[test]
     fn a_second_try_after_a_failed_one_goes_through() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 7);
+        let r = rig("monbim 0.5.0", 0, 0, 7);
         assert!(replace(&r, None).is_err());
         assert!(marker(&r, "old") && leftovers(&r).is_empty(), "nothing of the first try is left in the way");
         script(r.tools.codesign.parent().unwrap(), "codesign", "exit 0");
@@ -2114,7 +2143,7 @@ mod macos {
     fn a_program_name_that_is_a_path_is_refused_and_nothing_is_run() {
         let _one = serial();
         for name in ["../MacOS/BIMCraft", "/bin/sh", "..", "", "a/b"] {
-            let r = rig("bimcraft 0.5.0", 0, 0, 0);
+            let r = rig("monbim 0.5.0", 0, 0, 0);
             let plist = r.dir.0.join("image").join("BIMCraft.app").join("Contents").join("Info.plist");
             std::fs::write(&plist, PLIST.replace("<string>BIMCraft</string>", &format!("<string>{name}</string>"))).unwrap();
             let e = replace(&r, None).unwrap_err();
@@ -2126,7 +2155,7 @@ mod macos {
     #[test]
     fn an_app_that_is_in_but_will_not_start_is_said_to_be_installed() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         script(r.tools.open.parent().unwrap(), "open", "exit 7");
         let e = replace(&r, None).unwrap_err();
         assert!(e.contains("installed") && e.contains("starting it failed"), "{e}");
@@ -2136,7 +2165,7 @@ mod macos {
     #[test]
     fn the_swap_puts_the_old_app_back_when_the_new_one_cannot_go_in() {
         let _one = serial();
-        let r = rig("bimcraft 0.5.0", 0, 0, 0);
+        let r = rig("monbim 0.5.0", 0, 0, 0);
         let (staged, old) = (r.dir.0.join("Applications").join(".gone.app"), r.dir.0.join("Applications").join(".old.app"));
         assert!(macos::swap(&r.installed, &staged, &old).is_err(), "there is no new app to put in");
         assert!(marker(&r, "old"), "the installed app is back where it was");
@@ -2386,8 +2415,7 @@ mod installs {
         let dir = Scratch::new("inst6");
         let log_file = dir.0.join("log");
         let target = script(&dir.0, "BIMCraft.AppImage", "echo old");
-        let body =
-            format!("if [ \"$1\" = \"--version\" ]; then echo bimcraft 0.5.0; exit 0; fi\necho \"ran $@\" >> {}", log_file.display());
+        let body = format!("if [ \"$1\" = \"--version\" ]; then echo monbim 0.5.0; exit 0; fi\necho \"ran $@\" >> {}", log_file.display());
         let (folder, new) = download(&dir, "bimcraft-0.5.0-linux-x86_64.AppImage", &body);
         let new_bytes = std::fs::read(&new).unwrap();
         let install = Install { target: Target::AppImage(Arch::X86_64), place: target.clone() };
@@ -2403,7 +2431,7 @@ mod installs {
         let dir = Scratch::new("inst10");
         let target = script(&dir.0, "BIMCraft.AppImage", "echo old");
         let old_bytes = std::fs::read(&target).unwrap();
-        let (folder, new) = download(&dir, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo bimcraft 0.5.0");
+        let (folder, new) = download(&dir, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo monbim 0.5.0");
         let changed = Handover { sha256: sha(b"the file that was checked"), ..job(&new, None) };
         let appimage = Install { target: Target::AppImage(Arch::X86_64), place: target.clone() };
         let e = appimage.hand_over(&changed).unwrap_err();
@@ -2422,7 +2450,7 @@ mod installs {
         let target = script(&dir.0, "BIMCraft.AppImage", "echo old");
         let folder = dir.0.join("Downloads");
         std::fs::create_dir(&folder).unwrap();
-        let new = script(&folder, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo bimcraft 0.5.0");
+        let new = script(&folder, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo monbim 0.5.0");
         let install = Install { target: Target::AppImage(Arch::X86_64), place: target };
         install.hand_over(&job(&new, None)).unwrap();
         assert!(folder.exists() && new.exists(), "it is somebody's folder, whatever was in it");
@@ -2434,7 +2462,7 @@ mod installs {
         let dir = Scratch::new("inst7");
         let target = script(&dir.0, "BIMCraft.AppImage", "echo old");
         let old_bytes = std::fs::read(&target).unwrap();
-        let (folder, new) = download(&dir, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo bimcraft 0.4.9");
+        let (folder, new) = download(&dir, "bimcraft-0.5.0-linux-x86_64.AppImage", "echo monbim 0.4.9");
         let install = Install { target: Target::AppImage(Arch::X86_64), place: target.clone() };
         assert!(install.hand_over(&job(&new, None)).is_err());
         assert_eq!(std::fs::read(&target).unwrap(), old_bytes);

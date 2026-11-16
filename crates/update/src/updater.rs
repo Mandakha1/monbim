@@ -90,6 +90,8 @@ pub struct Updater {
     wake: Arc<dyn Fn() + Send + Sync>,
     spawn: fn(Job),
     hand_over: HandOver,
+    /// Whether [`check_at_startup`](Self::check_at_startup) looks at all: the desktop's follows [`crate::AUTOMATIC_CHECKS`].
+    automatic: bool,
 }
 
 /// `work`'s result, or an error if it panicked.
@@ -120,6 +122,7 @@ impl Updater {
                 std::thread::spawn(job);
             },
             hand_over: Arc::new(|_| Err("this copy can't be updated in place".into())),
+            automatic: true,
         };
         if let Some(install) = Install::detect() {
             updater = updater.found(install);
@@ -136,7 +139,20 @@ impl Updater {
             return None;
         }
         let current = Version::parse(env!("CARGO_PKG_VERSION")).ok()?;
-        Some(Updater::new(Arc::new(Ureq::new()), current, prefs_path, wake))
+        Some(Updater::new(Arc::new(Ureq::new()), current, prefs_path, wake).automatic(crate::AUTOMATIC_CHECKS))
+    }
+
+    /// Whether the check at startup looks at all (MonBIM: off while its repository is private, [`crate::AUTOMATIC_CHECKS`]); a
+    /// check by hand always does. `new` makes one that does.
+    pub fn automatic(mut self, on: bool) -> Updater {
+        self.automatic = on;
+        self
+    }
+
+    /// Whether this copy looks for a newer version by itself at startup, as far as the build goes: the user's switch
+    /// ([`checks_at_startup`](Self::checks_at_startup)) is only offered where it does.
+    pub fn checks_automatically(&self) -> bool {
+        self.automatic
     }
 
     /// For tests: does its work on the thread that asks, so a result is there to poll at once.
@@ -192,7 +208,7 @@ impl Updater {
         self.up_to_date
     }
 
-    /// Whether BIMCraft looks for a newer version when it starts.
+    /// Whether MonBIM looks for a newer version when it starts, as the user set it (and as the build allows: [`checks_automatically`](Self::checks_automatically)).
     pub fn checks_at_startup(&self) -> bool {
         self.prefs.check
     }
@@ -202,9 +218,9 @@ impl Updater {
         self.save()
     }
 
-    /// Looks for a newer version, unless the user switched that off, and without asking the window to wait.
+    /// Looks for a newer version, unless the user or the build switched that off, and without asking the window to wait.
     pub fn check_at_startup(&mut self) {
-        if self.prefs.check {
+        if self.automatic && self.prefs.check {
             self.start_check(false);
         }
     }
@@ -313,7 +329,7 @@ impl Updater {
         }));
     }
 
-    /// Hides the offer for this run: BIMCraft asks again the next time it starts.
+    /// Hides the offer for this run: MonBIM asks again the next time it starts.
     pub fn later(&mut self) {
         if matches!(self.state, State::Available(_) | State::Ready { .. }) {
             self.state = State::Idle;

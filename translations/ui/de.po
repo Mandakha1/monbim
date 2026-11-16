@@ -1994,7 +1994,7 @@ msgstr "Optionenleiste: Formatierung überschreiben aktivieren, um einen Teil fe
 msgid "Check family {}"
 msgstr ""
 
-#: crates/ui-egui/src/updates.rs:165
+#: crates/ui-egui/src/updates.rs:169
 msgid "Check for Updates Now"
 msgstr "Jetzt nach Aktualisierungen suchen"
 
@@ -2002,7 +2002,7 @@ msgstr "Jetzt nach Aktualisierungen suchen"
 msgid "Check for updates"
 msgstr "Nach Aktualisierungen suchen"
 
-#: crates/ui-egui/src/updates.rs:160
+#: crates/ui-egui/src/updates.rs:163
 msgid "Check for updates at startup"
 msgstr "Beim Start nach Aktualisierungen suchen"
 
@@ -3325,7 +3325,7 @@ msgstr ""
 #: crates/ui-egui/src/recent.rs:123
 #: crates/ui-egui/src/settings.rs:454
 #: crates/ui-egui/src/updates.rs:147
-#: crates/ui-egui/src/updates.rs:163
+#: crates/ui-egui/src/updates.rs:166
 msgid "Couldn't save the setting: {}"
 msgstr "Die Einstellung konnte nicht gespeichert werden: {}"
 
@@ -10085,7 +10085,7 @@ msgstr "Profil 2"
 msgid "Profile 2: sketch the profile at the path's end, square to it"
 msgstr "Profil 2: das Profil am Ende des Pfads skizzieren, rechtwinklig dazu"
 
-#: apps/bimcraft/src/main.rs:338
+#: apps/bimcraft/src/main.rs:339
 #: crates/ui-egui/src/lib.rs:4305
 #: crates/ui-egui/src/parameters.rs:850
 #: crates/ui-egui/src/parameters.rs:1189

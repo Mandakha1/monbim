@@ -156,11 +156,15 @@ impl BimApp {
     pub(crate) fn update_menu(&mut self, ui: &mut Ui) {
         let Some(updates) = self.updates.as_mut() else { return };
         ui.separator();
-        let mut on = updates.checks_at_startup();
-        if ui.checkbox(&mut on, t("Check for updates at startup")).changed()
-            && let Err(e) = updates.set_checks_at_startup(on)
-        {
-            self.status = failed(tf("Couldn't save the setting: {}", &[&e]));
+        // MonBIM: no switch where the build doesn't look by itself (`bimcraft_update::AUTOMATIC_CHECKS`, off while its
+        // repository is private): it would promise a check that never comes.
+        if updates.checks_automatically() {
+            let mut on = updates.checks_at_startup();
+            if ui.checkbox(&mut on, t("Check for updates at startup")).changed()
+                && let Err(e) = updates.set_checks_at_startup(on)
+            {
+                self.status = failed(tf("Couldn't save the setting: {}", &[&e]));
+            }
         }
         if ui.button(t("Check for Updates Now")).clicked() {
             updates.check_now();

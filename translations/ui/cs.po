@@ -1994,7 +1994,7 @@ msgstr "Chcete-li nastavit část jako tučnou, kurzívu nebo podtrženou, zašk
 msgid "Check family {}"
 msgstr ""
 
-#: crates/ui-egui/src/updates.rs:165
+#: crates/ui-egui/src/updates.rs:169
 msgid "Check for Updates Now"
 msgstr "Zkontrolovat aktualizace nyní"
 
@@ -2002,7 +2002,7 @@ msgstr "Zkontrolovat aktualizace nyní"
 msgid "Check for updates"
 msgstr "Zkontrolovat aktualizace"
 
-#: crates/ui-egui/src/updates.rs:160
+#: crates/ui-egui/src/updates.rs:163
 msgid "Check for updates at startup"
 msgstr "Zkontrolovat aktualizace při spuštění"
 
@@ -3325,7 +3325,7 @@ msgstr ""
 #: crates/ui-egui/src/recent.rs:123
 #: crates/ui-egui/src/settings.rs:454
 #: crates/ui-egui/src/updates.rs:147
-#: crates/ui-egui/src/updates.rs:163
+#: crates/ui-egui/src/updates.rs:166
 msgid "Couldn't save the setting: {}"
 msgstr "Nastavení se nepodařilo uložit: {}"
 
@@ -10085,7 +10085,7 @@ msgstr "Profil 2"
 msgid "Profile 2: sketch the profile at the path's end, square to it"
 msgstr "Profil 2: načrtněte profil na konci cesty, kolmo k ní"
 
-#: apps/bimcraft/src/main.rs:338
+#: apps/bimcraft/src/main.rs:339
 #: crates/ui-egui/src/lib.rs:4305
 #: crates/ui-egui/src/parameters.rs:850
 #: crates/ui-egui/src/parameters.rs:1189

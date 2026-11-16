@@ -1,4 +1,4 @@
-//! The desktop's network: HTTPS to this repository's releases on GitHub and the CDN they are served from, through ureq with
+//! The desktop's network: HTTPS to this repository's releases on GitHub (MonBIM's, `Mandakha1/monbim`) and the CDN they are served from, through ureq with
 //! rustls (Mozilla's root certificates built in), and nowhere else. A request goes only to an address [`hop_allowed`] says yes
 //! to, and a redirect is followed by hand, each hop under the same rule, so no reply can send the updater somewhere else.
 
@@ -36,9 +36,14 @@ fn agent(https_only: bool) -> Agent {
         .max_redirects(0)
         .timeout_connect(Some(Duration::from_secs(10)))
         .timeout_recv_response(Some(Duration::from_secs(15)))
-        .user_agent(format!("BIMCraft/{} (+https://github.com/IPedrax/BIMCraft)", env!("CARGO_PKG_VERSION")))
+        .user_agent(user_agent())
         .build()
         .into()
+}
+
+/// What every request says it comes from: MonBIM, its version and its repository.
+pub fn user_agent() -> String {
+    format!("MonBIM/{} (+https://github.com/Mandakha1/monbim)", env!("CARGO_PKG_VERSION"))
 }
 
 impl Ureq {
