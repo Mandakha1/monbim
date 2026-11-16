@@ -624,36 +624,42 @@ fn dashed(ui: &Ui, r: Rect) {
     }
 }
 
-/// BIMCraft's logo (`assets/app-icon/bimcraft.svg`), drawn into `r`.
+/// MonBIM's logo (`assets/app-icon/bimcraft.svg`, drawn by `packaging/monbim/make_icon.py`), drawn into `r`.
 fn logo(ui: &Ui, r: Rect) {
     let k = r.width() / 256.0;
     let at = |x: f32, y: f32| r.min + vec2(x, y) * k;
     let p = ui.painter();
     let tile = Rect::from_min_max(at(8.0, 8.0), at(248.0, 248.0));
-    p.rect_filled(tile, CornerRadius::same((52.0 * k).round() as u8), Color32::from_rgb(0x1F, 0x9D, 0x7F));
+    p.rect_filled(tile, CornerRadius::same((52.0 * k).round() as u8), Color32::from_rgb(0x0D, 0x3B, 0x6E));
     let lines = p.with_clip_rect(tile.shrink(6.0 * k));
-    let faint = Stroke::new((2.5 * k).max(0.6), Color32::from_white_alpha(80));
-    for i in 0..10 {
-        let v = 20.0 + 24.0 * i as f32;
+    let faint = Stroke::new((1.6 * k).max(0.5), Color32::from_rgba_unmultiplied(0x34, 0x68, 0xA0, 110));
+    for i in 1..12 {
+        let v = 8.0 + 20.0 * i as f32;
         lines.line_segment([at(v, 0.0), at(v, 256.0)], faint);
         lines.line_segment([at(0.0, v), at(256.0, v)], faint);
     }
-    let ink = Color32::from_rgb(0x17, 0x19, 0x1C);
-    let (orange, cream, teal) =
-        (Color32::from_rgb(0xF0, 0x7A, 0x3A), Color32::from_rgb(0xF4, 0xEC, 0xD8), Color32::from_rgb(0x1F, 0x9D, 0x7F));
-    let poly = |pts: &[(f32, f32)], fill: Color32, w: f32| {
+    let white = Color32::from_rgb(0xF8, 0xFA, 0xFC);
+    let (red, blue, gold) = (Color32::from_rgb(0xDA, 0x29, 0x1C), Color32::from_rgb(0x19, 0x76, 0xD2), Color32::from_rgb(0xFF, 0xC4, 0x2E));
+    let poly = |pts: &[(f32, f32)], fill: Color32, edged: bool| {
         let pts: Vec<Pos2> = pts.iter().map(|&(x, y)| at(x, y)).collect();
-        p.add(PathShape::convex_polygon(pts, fill, Stroke::new(w * k, ink)));
+        let edge = if edged { Stroke::new(5.5 * k, white) } else { Stroke::NONE };
+        p.add(PathShape::convex_polygon(pts, fill, edge));
     };
-    p.line_segment([at(138.0, 62.0), at(200.0, 62.0)], Stroke::new(7.0 * k, ink));
-    poly(&[(187.0, 37.0), (213.0, 37.0), (200.0, 59.0)], orange, 6.0);
-    poly(&[(63.0, 71.3), (157.0, 125.6), (190.0, 137.0), (96.0, 82.7)], orange, 7.0);
-    poly(&[(123.3, 228.7), (180.1, 195.9), (180.1, 132.4), (151.7, 122.5), (123.3, 165.2)], cream, 7.0);
-    poly(&[(39.9, 180.5), (123.3, 228.7), (123.3, 165.2), (39.9, 117.1)], cream, 7.0);
-    poly(&[(63.0, 71.3), (157.0, 125.6), (124.0, 175.1), (30.0, 120.8)], orange, 7.0);
-    poly(&[(52.2, 187.7), (69.2, 197.5), (69.2, 159.2), (52.2, 149.3)], teal, 6.0);
-    poly(&[(83.5, 187.1), (108.1, 201.3), (108.1, 181.6), (83.5, 167.4)], teal, 6.0);
-    poly(&[(162.1, 187.7), (141.3, 199.7), (141.3, 180.0), (162.1, 167.9)], teal, 6.0);
+    poly(&[(128.0, 220.0), (68.0, 185.4), (68.0, 70.6), (128.0, 105.2)], red, true);
+    poly(&[(128.0, 105.2), (188.0, 70.6), (188.0, 185.4), (128.0, 220.0)], blue, true);
+    poly(&[(68.0, 70.6), (128.0, 36.0), (188.0, 70.6), (128.0, 105.2)], gold, true);
+    poly(&[(136.6, 187.5), (154.6, 177.1), (154.6, 193.2), (136.6, 203.6)], white, false);
+    poly(&[(119.4, 203.6), (101.4, 193.2), (101.4, 177.1), (119.4, 187.5)], white, false);
+    poly(&[(163.1, 172.2), (181.1, 161.8), (181.1, 177.9), (163.1, 188.2)], white, false);
+    poly(&[(92.9, 188.2), (74.9, 177.9), (74.9, 161.8), (92.9, 172.2)], white, false);
+    poly(&[(136.6, 149.3), (154.6, 138.9), (154.6, 154.9), (136.6, 165.3)], white, false);
+    poly(&[(119.4, 165.3), (101.4, 154.9), (101.4, 138.9), (119.4, 149.3)], white, false);
+    poly(&[(163.1, 133.9), (181.1, 123.5), (181.1, 139.6), (163.1, 150.0)], white, false);
+    poly(&[(92.9, 150.0), (74.9, 139.6), (74.9, 123.5), (92.9, 133.9)], white, false);
+    poly(&[(136.6, 111.0), (154.6, 100.6), (154.6, 116.7), (136.6, 127.1)], white, false);
+    poly(&[(119.4, 127.1), (101.4, 116.7), (101.4, 100.6), (119.4, 111.0)], white, false);
+    poly(&[(163.1, 95.7), (181.1, 85.3), (181.1, 101.4), (163.1, 111.7)], white, false);
+    poly(&[(92.9, 111.7), (74.9, 101.4), (74.9, 85.3), (92.9, 95.7)], white, false);
 }
 
 #[cfg(test)]

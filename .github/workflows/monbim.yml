@@ -46,8 +46,16 @@ jobs:
         run: |
           rustup target add wasm32-unknown-unknown
           cargo build --manifest-path crates/plugin/tests/sample-plugin/Cargo.toml --target wasm32-unknown-unknown --release
+      # A private repository's Linux runner has 2 cores, 7 GB and a small disk: the first run lost the runner in the
+      # middle of the tests. Room on the disk, no debug info and two jobs keep the test binaries' links within it.
       - name: Test
-        run: cargo test --workspace
+        env:
+          CARGO_PROFILE_DEV_DEBUG: "0"
+          CARGO_PROFILE_TEST_DEBUG: "0"
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+          cargo test --workspace -j 2
       - name: Packaging script
         run: shellcheck packaging/monbim/*.sh
 

@@ -163,7 +163,7 @@ msgstr "MonBIM төсөл эсвэл IFC файл."
 
 #: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project, an IFC or a Revit file."
-msgstr "MonBIM төсөл, IFC эсвэл Revit файл."
+msgstr "MonBIM, IFC эсвэл Revit файл."
 
 #: crates/ui-egui/src/coordinates.rs:1168
 msgid "A calculator for coordinates: type a point as one system gives it and read it in another. Use it to check a survey point against the model, to give a contractor or a consultant the site coordinates of a point you know in the model, or to find where a GPS reading falls in the building. It only calculates: nothing in the project changes. Lengths are in mm; latitude and longitude in degrees."
