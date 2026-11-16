@@ -1,0 +1,160 @@
+# MonBIM CI: test, build and package. Windows first (installer + portable zip), as MonCad's and Mon3D's do.
+# Runs on pull requests, on pushes to main, by hand, and on version tags (v*), where it attaches the packages to a DRAFT
+# release: a person reviews and publishes it. Upstream BIMCraft's own workflows are parked in packaging/upstream-ci/.
+name: MonBIM
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  # CI launches of the app must not register installs at monhydro.com or read the live news feed.
+  MON_ACCOUNT: "0"
+  MON_NEWS: "0"
+
+jobs:
+  # What CLAUDE.md asks before anything is finished, on Linux: format, the catalogs, clippy and the tests.
+  test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libxkbcommon-dev libwayland-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev
+      - name: Rust
+        run: rustup update stable && rustup default stable && rustup component add rustfmt clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      - name: Format
+        run: cargo fmt --check
+      - name: Translation catalogs (mn.po included)
+        run: cargo i18n check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      # As upstream's CI: the plugin tests load the guest SDK's sample module, which is not in the repository.
+      - name: Sample plugin
+        run: |
+          rustup target add wasm32-unknown-unknown
+          cargo build --manifest-path crates/plugin/tests/sample-plugin/Cargo.toml --target wasm32-unknown-unknown --release
+      - name: Test
+        run: cargo test --workspace
+      - name: Packaging script
+        run: shellcheck packaging/monbim/*.sh
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust
+        run: rustup update stable && rustup default stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      # The C runtime linked in, as upstream's release does, so the exes run on a Windows without the Visual C++
+      # redistributable. Scoped to the target, so build scripts and proc macros are left as they are.
+      - name: Build monbim.exe and monbim-cli.exe
+        env:
+          CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_RUSTFLAGS: -C target-feature=+crt-static
+        run: cargo build --release --locked --target x86_64-pc-windows-msvc -p bimcraft -p bimcraft-cli
+      - name: Smoke test (CLI, MCP session)
+        shell: pwsh
+        run: |
+          $bin = "target/x86_64-pc-windows-msvc/release"
+          $version = (Select-String -Path Cargo.toml -Pattern '^version = "(.*)"').Matches[0].Groups[1].Value
+          $said = & "$bin/monbim-cli.exe" --version
+          if ($said -ne "monbim-cli $version") { throw "expected 'monbim-cli $version', got '$said'" }
+          $requests = @(
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}',
+            '{"jsonrpc":"2.0","method":"notifications/initialized"}',
+            '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"execute","arguments":{"command":"wall","params":{"points":[[0,0],[6000,0],[6000,4000],[0,4000]],"closed":true}}}}',
+            '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"query_elements","arguments":{"category":"wall"}}}'
+          ) -join "`n"
+          $out = ($requests | & "$bin/monbim-cli.exe" mcp) -join "`n"
+          $out
+          if (-not ($out -match '"name":"monbim"')) { throw "MCP serverInfo is not MonBIM" }
+          if (([regex]::Matches($out, '"guid')).Count -lt 4) { throw "MCP did not build the four walls" }
+      - name: Launch the app for a few seconds
+        # A runner may have no graphics the window can use; the build and the installer are what this job is for.
+        continue-on-error: true
+        timeout-minutes: 3
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath "target/x86_64-pc-windows-msvc/release/monbim.exe" -ArgumentList "--control","7676" -PassThru
+          Start-Sleep -Seconds 15
+          if ($p.HasExited) { throw "monbim.exe exited early with code $($p.ExitCode)" }
+          Stop-Process -Id $p.Id
+      - name: Installer (NSIS) and portable zip
+        shell: pwsh
+        run: |
+          $version = (Select-String -Path Cargo.toml -Pattern '^version = "(.*)"').Matches[0].Groups[1].Value
+          $year = (Select-String -Path crates\ui-egui\src\brand.rs -Pattern '^pub const YEAR: &str = "(.*)";').Matches[0].Groups[1].Value
+          $bin = "$PWD\target\x86_64-pc-windows-msvc\release"
+          New-Item -ItemType Directory -Force dist | Out-Null
+          $makensis = "C:\Program Files (x86)\NSIS\makensis.exe"
+          if (-not (Test-Path $makensis)) { choco install nsis -y --no-progress; if ($LASTEXITCODE -ne 0) { throw "NSIS install failed" } }
+          & $makensis -V2 "-DROOT=$PWD" "-DVERSION=$version" "-DYEAR=$year" "-DBINDIR=$bin" "-DOUTFILE=$PWD\dist\monbim-$year-$version-windows-x64-setup.exe" packaging\monbim\windows\monbim.nsi
+          if ($LASTEXITCODE -ne 0) { throw "makensis failed" }
+          $stage = "target\monbim-$year-$version-windows-x64-portable"
+          New-Item -ItemType Directory -Force "$stage\fonts\ibm-plex-sans", "$stage\fonts\ibm-plex-mono" | Out-Null
+          Copy-Item "$bin\monbim.exe", "$bin\monbim-cli.exe", LICENSE-APACHE, LICENSE-MIT, NOTICE, README.md $stage
+          # The fonts' licence, where NOTICE says it is: fonts\ibm-plex-sans\OFL.txt and fonts\ibm-plex-mono\OFL.txt.
+          Copy-Item assets\fonts\ibm-plex-sans\OFL.txt "$stage\fonts\ibm-plex-sans\OFL.txt"
+          Copy-Item assets\fonts\ibm-plex-mono\OFL.txt "$stage\fonts\ibm-plex-mono\OFL.txt"
+          Compress-Archive -Path $stage -DestinationPath "dist\monbim-$year-$version-windows-x64-portable.zip"
+          # Hash first, then write: Out-File would otherwise open the sums file while it is being hashed.
+          $sums = Get-ChildItem dist\*.exe, dist\*.zip | Get-FileHash -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" }
+          $sums | Out-File -Encoding ascii dist\SHA256SUMS-windows.txt
+          $sums
+      - name: Silent install and uninstall
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem dist\*-setup.exe | Select-Object -First 1
+          Start-Process -FilePath $setup.FullName -ArgumentList "/S", "/DESKTOP=1" -Wait
+          $dir = "$env:LOCALAPPDATA\Programs\MonBIM"
+          foreach ($file in 'monbim.exe', 'monbim-cli.exe', 'NOTICE', 'LICENSE-APACHE', 'LICENSE-MIT', 'README.md', 'AI-connect.txt', 'fonts\ibm-plex-sans\OFL.txt', 'fonts\ibm-plex-mono\OFL.txt') {
+            if (-not (Test-Path "$dir\$file")) { throw "not installed: $file" }
+          }
+          $menu = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\MonBIM"
+          $year = (Select-String -Path crates\ui-egui\src\brand.rs -Pattern '^pub const YEAR: &str = "(.*)";').Matches[0].Groups[1].Value
+          foreach ($link in "MonBIM $year.lnk", "MonBIM $year (AI).lnk") {
+            if (-not (Test-Path "$menu\$link")) { throw "no Start menu entry $link" }
+          }
+          if (-not (Test-Path "HKCU:\Software\Classes\AppUserModelId\MonHydro.MonBIM")) { throw "the notification id is not registered" }
+          & "$dir\monbim-cli.exe" --version
+          Get-Content "$dir\AI-connect.txt"
+          Start-Process -FilePath "$dir\uninstall.exe" -ArgumentList "/S" -Wait
+          for ($i = 0; $i -lt 20 -and (Test-Path "$dir\monbim.exe"); $i++) { Start-Sleep -Seconds 1 }
+          if (Test-Path "$dir\monbim.exe") { throw "the uninstaller left monbim.exe" }
+          if (Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\MonBIM") { throw "the uninstaller left its registry key" }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: monbim-windows-x64
+          path: dist/*
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [test, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: monbim-windows-x64
+          path: dist
+      - name: Draft release (publish by hand after review)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" dist/* --repo "${GITHUB_REPOSITORY}" --draft --title "MonBIM ${GITHUB_REF_NAME}" --notes "MonBIM 2026 ${GITHUB_REF_NAME} for Windows (based on BIMCraft). See README.md."

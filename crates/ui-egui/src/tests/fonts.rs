@@ -57,6 +57,21 @@ fn every_package_ships_the_notice_and_the_licence_of_the_fonts() {
         ),
         ("packaging/windows/portable.ps1", &["$root\\NOTICE", "fonts\\ibm-plex-sans\\OFL.txt", "fonts\\ibm-plex-mono\\OFL.txt"][..]),
         ("packaging/windows/check-install.ps1", &["'NOTICE'", "fonts\\ibm-plex-sans\\OFL.txt", "fonts\\ibm-plex-mono\\OFL.txt"][..]),
+        // MonBIM's Windows installer, its cross-build's portable zip, and the workflow's portable zip and install check.
+        (
+            "packaging/monbim/windows/monbim.nsi",
+            &["\"${ROOT}${SEP}NOTICE\"", "ibm-plex-sans${SEP}OFL.txt", "ibm-plex-mono${SEP}OFL.txt"][..],
+        ),
+        ("packaging/monbim/build-windows.sh", &["NOTICE", "for font in ibm-plex-sans ibm-plex-mono", "assets/fonts/$font/OFL.txt"][..]),
+        (
+            ".github/workflows/monbim.yml",
+            &[
+                "NOTICE",
+                "assets\\fonts\\ibm-plex-sans\\OFL.txt",
+                "assets\\fonts\\ibm-plex-mono\\OFL.txt",
+                "'fonts\\ibm-plex-mono\\OFL.txt'",
+            ][..],
+        ),
     ] {
         let text = read(file);
         for want in wants {
