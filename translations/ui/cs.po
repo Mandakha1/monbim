@@ -156,11 +156,11 @@ msgstr ""
 msgid "A / puts it inside another: Issue/PDF"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project or an IFC file."
 msgstr "Projekt MonBIM nebo soubor IFC."
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project, an IFC or a Revit file."
 msgstr "Projekt MonBIM, soubor IFC nebo soubor aplikace Revit."
 
@@ -208,7 +208,7 @@ msgstr "Dveře nebo okno vyžadují délky s názvy Šířka a Výška; jejich v
 msgid "A door or a window stands in its wall: it can't be work plane-based."
 msgstr "Dveře nebo okno stojí ve své stěně: nemohou být založeny na pracovní rovině."
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "A family file, to edit."
 msgstr "Soubor rodiny k úpravě."
 
@@ -308,7 +308,7 @@ msgstr ""
 msgid "A scan's points where the plan's cut plane cuts it, to trace what was measured"
 msgstr "Body mračna bodů v místě protnutí rovinou řezu půdorysu pro obkreslení naměřených dat"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "A small house to look around in."
 msgstr "Malý dům, ve kterém se můžete rozhlédnout."
 
@@ -369,7 +369,7 @@ msgid "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 msgstr "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 
 #: crates/ui-egui/src/about.rs:40
-#: crates/ui-egui/src/start.rs:471
+#: crates/ui-egui/src/start.rs:475
 msgid "About {}"
 msgstr ""
 
@@ -916,7 +916,7 @@ msgstr "Na tomto projektu může pracovat agent: monbim-cli mcp --connect {}"
 msgid "An archive has its standard's version"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "An empty project to model in."
 msgstr "Prázdný projekt pro modelování."
 
@@ -1357,7 +1357,7 @@ msgstr "Zpět do projektu ({}D)"
 msgid "Back to the type"
 msgstr "Zpět na typ"
 
-#: crates/ui-egui/src/start.rs:333
+#: crates/ui-egui/src/start.rs:337
 msgid "Back to {}"
 msgstr "Zpět na {}"
 
@@ -1614,7 +1614,7 @@ msgid "Building Name"
 msgstr "Název budovy"
 
 #: crates/ui-egui/src/about.rs:47
-#: crates/ui-egui/src/start.rs:308
+#: crates/ui-egui/src/start.rs:310
 msgid "Building information modelling, open and free."
 msgstr "Informační modelování staveb (BIM), otevřené a svobodné."
 
@@ -1998,7 +1998,7 @@ msgstr ""
 msgid "Check for Updates Now"
 msgstr "Zkontrolovat aktualizace nyní"
 
-#: crates/ui-egui/src/start.rs:525
+#: crates/ui-egui/src/start.rs:529
 msgid "Check for updates"
 msgstr "Zkontrolovat aktualizace"
 
@@ -2031,7 +2031,7 @@ msgstr "Kontrola: třída agresivity"
 msgid "Check: fck"
 msgstr "Kontrola: fck"
 
-#: crates/ui-egui/src/start.rs:517
+#: crates/ui-egui/src/start.rs:521
 msgid "Checking for updates…"
 msgstr "Kontrola aktualizací…"
 
@@ -4273,11 +4273,11 @@ msgstr "Svod hromosvodu"
 msgid "Down Conductor (DC): click its start and its end; the same point twice and two heights stand it up a wall"
 msgstr "Svod hromosvodu (DC): klikněte na počátek a konec; kliknutím dvakrát na stejný bod a dvě výšky jej vztyčíte po stěně"
 
-#: crates/ui-egui/src/start.rs:497
+#: crates/ui-egui/src/start.rs:501
 msgid "Download"
 msgstr "Stáhnout"
 
-#: crates/ui-egui/src/start.rs:504
+#: crates/ui-egui/src/start.rs:508
 #: crates/ui-egui/src/updates.rs:113
 msgid "Downloading MonBIM {}…"
 msgstr "Stahování MonBIM {}…"
@@ -4332,7 +4332,7 @@ msgstr "Výkres"
 msgid "Drawing the preview…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:434
+#: crates/ui-egui/src/start.rs:438
 msgid "Drawing…"
 msgstr "Kreslení…"
 
@@ -5005,7 +5005,7 @@ msgstr "Nepodařilo se přečíst soubor: {}"
 #: crates/ui-egui/src/browser.rs:711
 #: crates/ui-egui/src/editor/nested.rs:381
 #: crates/ui-egui/src/parameters.rs:674
-#: crates/ui-egui/src/start.rs:339
+#: crates/ui-egui/src/start.rs:343
 msgid "Families"
 msgstr "Rodiny"
 
@@ -7632,7 +7632,7 @@ msgstr "Model podle plochy"
 msgid "Model: lines drawn are model lines"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:316
+#: crates/ui-egui/src/start.rs:320
 msgid "Models"
 msgstr "Modely"
 
@@ -7870,7 +7870,7 @@ msgstr "Projekt MonBIM nebo IFC"
 msgid "MonBIM project, IFC or Revit"
 msgstr "Projekt MonBIM, IFC nebo Revit"
 
-#: crates/ui-egui/src/start.rs:500
+#: crates/ui-egui/src/start.rs:504
 msgid "MonBIM {} is available"
 msgstr "MonBIM {} je k dispozici"
 
@@ -7878,7 +7878,7 @@ msgstr "MonBIM {} je k dispozici"
 msgid "MonBIM {} is available. You have {}."
 msgstr "MonBIM {} je k dispozici. Máte verzi {}."
 
-#: crates/ui-egui/src/start.rs:510
+#: crates/ui-egui/src/start.rs:514
 msgid "MonBIM {} is ready to install"
 msgstr "MonBIM {} je připraven k instalaci"
 
@@ -7886,7 +7886,7 @@ msgstr "MonBIM {} je připraven k instalaci"
 msgid "MonBIM {} is ready. It will close, update and start again."
 msgstr "MonBIM {} je připraven. Aplikace se ukončí, aktualizuje a znovu spustí."
 
-#: crates/ui-egui/src/start.rs:520
+#: crates/ui-egui/src/start.rs:524
 msgid "MonBIM {} is up to date"
 msgstr "MonBIM {} je aktuální"
 
@@ -8094,7 +8094,7 @@ msgstr "Nová rozvodná soustava"
 
 #: crates/ui-egui/src/editor.rs:760
 #: crates/ui-egui/src/editor.rs:1346
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "New Family"
 msgstr "Nová rodina"
 
@@ -8120,7 +8120,7 @@ msgstr "Nový vzor"
 msgid "New Print Set…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "New Project"
 msgstr "Nový projekt"
 
@@ -8283,7 +8283,7 @@ msgstr ""
 msgid "No project parameters yet: Add Parameter makes one, Import/Export brings them from a file."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:366
+#: crates/ui-egui/src/start.rs:370
 msgid "No recent projects yet"
 msgstr "Dosud žádné nedávné projekty"
 
@@ -8413,7 +8413,7 @@ msgstr ""
 msgid "Not enclosed: the walls around it don't close."
 msgstr "Neuzavřeno: obvodové stěny nejsou uzavřené."
 
-#: crates/ui-egui/src/start.rs:432
+#: crates/ui-egui/src/start.rs:436
 msgid "Not found"
 msgstr "Nenalezeno"
 
@@ -8573,7 +8573,7 @@ msgstr "Styly objektů…"
 msgid "Of"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "Of a category you pick."
 msgstr "Z kategorie, kterou vyberete."
 
@@ -8670,7 +8670,7 @@ msgstr "Neprůhledné"
 
 #: crates/ui-egui/src/lib.rs:3954
 #: crates/ui-egui/src/lib.rs:4325
-#: crates/ui-egui/src/start.rs:382
+#: crates/ui-egui/src/start.rs:386
 msgid "Open"
 msgstr "Otevřít"
 
@@ -8686,7 +8686,7 @@ msgstr "Otevřít pohled kamery"
 msgid "Open Dictionary..."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "Open Family…"
 msgstr "Otevřít rodinu…"
 
@@ -8763,7 +8763,7 @@ msgstr "Otevře řídicí port hned a při každém spuštění aplikace MonBIM:
 msgid "Opens the release page on GitHub. This copy can't update itself."
 msgstr "Otevře stránku vydání na GitHubu. Tato verze se nemůže sama aktualizovat."
 
-#: crates/ui-egui/src/start.rs:324
+#: crates/ui-egui/src/start.rs:328
 msgid "Open…"
 msgstr "Otevřít…"
 
@@ -10421,7 +10421,7 @@ msgstr ""
 msgid "Reads a dimension and never drives one: a length or an angle"
 msgstr "Čte kótu a nikdy ji neřídí: délku nebo úhel"
 
-#: crates/ui-egui/src/start.rs:359
+#: crates/ui-egui/src/start.rs:363
 msgid "Recent"
 msgstr "Nedávné"
 
@@ -10655,7 +10655,7 @@ msgstr "Odebrat čep"
 msgid "Remove Pivot: it stops turning and stays where it is drawn"
 msgstr "Odebrat čep: přestane se otáčet a zůstane tam, kde je nakreslen"
 
-#: crates/ui-egui/src/start.rs:385
+#: crates/ui-egui/src/start.rs:389
 msgid "Remove from List"
 msgstr "Odebrat ze seznamu"
 
@@ -10863,7 +10863,7 @@ msgstr "Obnovit výchozí hodnoty NBR"
 msgid "Resolution"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:507
+#: crates/ui-egui/src/start.rs:511
 msgid "Restart and install"
 msgstr "Restartovat a nainstalovat"
 
@@ -11164,7 +11164,7 @@ msgstr "Stejné jako začátek"
 msgid "Sample"
 msgstr "Vzorek"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "Sample Project"
 msgstr "Ukázkový projekt"
 
@@ -12165,7 +12165,7 @@ msgstr "Řazení/seskupování"
 msgid "Source"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:465
+#: crates/ui-egui/src/start.rs:469
 msgid "Source code on GitHub"
 msgstr "Zdrojový kód na GitHubu"
 
@@ -13225,7 +13225,7 @@ msgstr ""
 msgid "The project has no title blocks of its own; sheets draw the built-in one."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:334
+#: crates/ui-egui/src/start.rs:338
 msgid "The project stays as you left it."
 msgstr "Projekt zůstane ve stavu, v jakém jste jej opustili."
 
@@ -13241,7 +13241,7 @@ msgstr ""
 msgid "The projected coordinate system the shared coordinates are a grid of: a UTM zone, a State Plane zone, a national grid. It shows them in its unit, and takes them to latitude and longitude for the map and the sun."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:367
+#: crates/ui-egui/src/start.rs:371
 msgid "The projects you open or save show here."
 msgstr "Zde se zobrazují projekty, které otevřete nebo uložíte."
 
@@ -13431,7 +13431,7 @@ msgid "This computer is out of memory and is using its disk instead ({} swapped)
 msgstr ""
 
 #: crates/ui-egui/src/settings.rs:671
-#: crates/ui-egui/src/start.rs:486
+#: crates/ui-egui/src/start.rs:490
 msgid "This copy doesn't look for updates."
 msgstr "Tato instalace nevyhledává aktualizace."
 
@@ -14071,7 +14071,7 @@ msgstr "Nahoru, potom vpravo"
 msgid "Update Project"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:494
+#: crates/ui-egui/src/start.rs:498
 msgid "Update now"
 msgstr "Aktualizovat nyní"
 
@@ -14170,7 +14170,7 @@ msgid "Version"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:45
-#: crates/ui-egui/src/start.rs:469
+#: crates/ui-egui/src/start.rs:473
 msgid "Version {}"
 msgstr "Verze {}"
 

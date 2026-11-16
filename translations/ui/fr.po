@@ -157,11 +157,11 @@ msgstr ""
 msgid "A / puts it inside another: Issue/PDF"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project or an IFC file."
 msgstr "Un projet MonBIM ou un fichier IFC."
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project, an IFC or a Revit file."
 msgstr "Un projet MonBIM, un fichier IFC ou un fichier Revit."
 
@@ -209,7 +209,7 @@ msgstr "Une porte ou une fenêtre exige des longueurs nommées Width et Height; 
 msgid "A door or a window stands in its wall: it can't be work plane-based."
 msgstr "Une porte ou une fenêtre se trouve dans son mur: elle ne peut pas être basée sur un plan de travail."
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "A family file, to edit."
 msgstr "Un fichier de famille, à modifier."
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "A scan's points where the plan's cut plane cuts it, to trace what was measured"
 msgstr "Les points d'un scan là où le plan de coupe du plan le recoupe, pour tracer ce qui a été mesuré"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "A small house to look around in."
 msgstr "Une petite maison à visiter."
 
@@ -370,7 +370,7 @@ msgid "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 msgstr "ASME Y14.2 et AIA CAD National CAD Standard (NCS):"
 
 #: crates/ui-egui/src/about.rs:40
-#: crates/ui-egui/src/start.rs:471
+#: crates/ui-egui/src/start.rs:475
 msgid "About {}"
 msgstr ""
 
@@ -917,7 +917,7 @@ msgstr "Un agent peut travailler sur ce projet: monbim-cli mcp --connect {}"
 msgid "An archive has its standard's version"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "An empty project to model in."
 msgstr "Un projet vide pour modéliser."
 
@@ -1358,7 +1358,7 @@ msgstr "Retour au projet ({}D)"
 msgid "Back to the type"
 msgstr "Retour au type"
 
-#: crates/ui-egui/src/start.rs:333
+#: crates/ui-egui/src/start.rs:337
 msgid "Back to {}"
 msgstr "Retour à {}"
 
@@ -1615,7 +1615,7 @@ msgid "Building Name"
 msgstr "Nom du bâtiment"
 
 #: crates/ui-egui/src/about.rs:47
-#: crates/ui-egui/src/start.rs:308
+#: crates/ui-egui/src/start.rs:310
 msgid "Building information modelling, open and free."
 msgstr "Modélisation des informations du bâtiment, ouverte et gratuite."
 
@@ -1999,7 +1999,7 @@ msgstr ""
 msgid "Check for Updates Now"
 msgstr "Rechercher des mises à jour maintenant"
 
-#: crates/ui-egui/src/start.rs:525
+#: crates/ui-egui/src/start.rs:529
 msgid "Check for updates"
 msgstr "Rechercher des mises à jour"
 
@@ -2032,7 +2032,7 @@ msgstr "Vérification : Classe d'agressivité"
 msgid "Check: fck"
 msgstr "Vérification : fck"
 
-#: crates/ui-egui/src/start.rs:517
+#: crates/ui-egui/src/start.rs:521
 msgid "Checking for updates…"
 msgstr "Recherche de mises à jour…"
 
@@ -4274,11 +4274,11 @@ msgstr "Conducteur de descente"
 msgid "Down Conductor (DC): click its start and its end; the same point twice and two heights stand it up a wall"
 msgstr "Conducteur de descente (DC): cliquer sur son début et sa fin; le même point deux fois, avec deux hauteurs, le dresse le long d'un mur"
 
-#: crates/ui-egui/src/start.rs:497
+#: crates/ui-egui/src/start.rs:501
 msgid "Download"
 msgstr "Télécharger"
 
-#: crates/ui-egui/src/start.rs:504
+#: crates/ui-egui/src/start.rs:508
 #: crates/ui-egui/src/updates.rs:113
 msgid "Downloading MonBIM {}…"
 msgstr "Téléchargement de MonBIM {}…"
@@ -4333,7 +4333,7 @@ msgstr "Dessin"
 msgid "Drawing the preview…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:434
+#: crates/ui-egui/src/start.rs:438
 msgid "Drawing…"
 msgstr "Dessin…"
 
@@ -5006,7 +5006,7 @@ msgstr "Échec de lecture du fichier: {}"
 #: crates/ui-egui/src/browser.rs:711
 #: crates/ui-egui/src/editor/nested.rs:381
 #: crates/ui-egui/src/parameters.rs:674
-#: crates/ui-egui/src/start.rs:339
+#: crates/ui-egui/src/start.rs:343
 msgid "Families"
 msgstr "Familles"
 
@@ -7633,7 +7633,7 @@ msgstr "Modèle par face"
 msgid "Model: lines drawn are model lines"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:316
+#: crates/ui-egui/src/start.rs:320
 msgid "Models"
 msgstr "Modèles"
 
@@ -7871,7 +7871,7 @@ msgstr "Projet MonBIM ou IFC"
 msgid "MonBIM project, IFC or Revit"
 msgstr "Projet MonBIM, IFC ou Revit"
 
-#: crates/ui-egui/src/start.rs:500
+#: crates/ui-egui/src/start.rs:504
 msgid "MonBIM {} is available"
 msgstr "MonBIM {} est disponible"
 
@@ -7879,7 +7879,7 @@ msgstr "MonBIM {} est disponible"
 msgid "MonBIM {} is available. You have {}."
 msgstr "MonBIM {} est disponible. Version installée: {}."
 
-#: crates/ui-egui/src/start.rs:510
+#: crates/ui-egui/src/start.rs:514
 msgid "MonBIM {} is ready to install"
 msgstr "MonBIM {} est prêt à être installé"
 
@@ -7887,7 +7887,7 @@ msgstr "MonBIM {} est prêt à être installé"
 msgid "MonBIM {} is ready. It will close, update and start again."
 msgstr "MonBIM {} est prêt. Il va se fermer, se mettre à jour et redémarrer."
 
-#: crates/ui-egui/src/start.rs:520
+#: crates/ui-egui/src/start.rs:524
 msgid "MonBIM {} is up to date"
 msgstr "MonBIM {} est à jour"
 
@@ -8095,7 +8095,7 @@ msgstr "Nouveau système de distribution"
 
 #: crates/ui-egui/src/editor.rs:760
 #: crates/ui-egui/src/editor.rs:1346
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "New Family"
 msgstr "Nouvelle famille"
 
@@ -8121,7 +8121,7 @@ msgstr "Nouveau motif"
 msgid "New Print Set…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "New Project"
 msgstr "Nouveau projet"
 
@@ -8284,7 +8284,7 @@ msgstr ""
 msgid "No project parameters yet: Add Parameter makes one, Import/Export brings them from a file."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:366
+#: crates/ui-egui/src/start.rs:370
 msgid "No recent projects yet"
 msgstr "Aucun projet récent pour l'instant"
 
@@ -8414,7 +8414,7 @@ msgstr ""
 msgid "Not enclosed: the walls around it don't close."
 msgstr "Non délimitée: les murs qui l'entourent ne se ferment pas."
 
-#: crates/ui-egui/src/start.rs:432
+#: crates/ui-egui/src/start.rs:436
 msgid "Not found"
 msgstr "Introuvable"
 
@@ -8574,7 +8574,7 @@ msgstr "Styles d'objet…"
 msgid "Of"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "Of a category you pick."
 msgstr "D'une catégorie de votre choix."
 
@@ -8671,7 +8671,7 @@ msgstr "Opaque"
 
 #: crates/ui-egui/src/lib.rs:3954
 #: crates/ui-egui/src/lib.rs:4325
-#: crates/ui-egui/src/start.rs:382
+#: crates/ui-egui/src/start.rs:386
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -8687,7 +8687,7 @@ msgstr "Ouvrir la vue de caméra"
 msgid "Open Dictionary..."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "Open Family…"
 msgstr "Ouvrir une famille…"
 
@@ -8764,7 +8764,7 @@ msgstr "Ouvre le port de contrôle maintenant et à chaque démarrage de MonBIM:
 msgid "Opens the release page on GitHub. This copy can't update itself."
 msgstr "Ouvre la page de la version sur GitHub. Cette copie ne peut pas se mettre à jour toute seule."
 
-#: crates/ui-egui/src/start.rs:324
+#: crates/ui-egui/src/start.rs:328
 msgid "Open…"
 msgstr "Ouvrir…"
 
@@ -10422,7 +10422,7 @@ msgstr ""
 msgid "Reads a dimension and never drives one: a length or an angle"
 msgstr "Lit une cote et n'en pilote jamais aucune: une longueur ou un angle"
 
-#: crates/ui-egui/src/start.rs:359
+#: crates/ui-egui/src/start.rs:363
 msgid "Recent"
 msgstr "Récents"
 
@@ -10656,7 +10656,7 @@ msgstr "Retirer le pivot"
 msgid "Remove Pivot: it stops turning and stays where it is drawn"
 msgstr "Retirer le pivot: il cesse de tourner et reste là où il est dessiné"
 
-#: crates/ui-egui/src/start.rs:385
+#: crates/ui-egui/src/start.rs:389
 msgid "Remove from List"
 msgstr "Retirer de la liste"
 
@@ -10864,7 +10864,7 @@ msgstr "Rétablir les valeurs NBR"
 msgid "Resolution"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:507
+#: crates/ui-egui/src/start.rs:511
 msgid "Restart and install"
 msgstr "Redémarrer et installer"
 
@@ -11165,7 +11165,7 @@ msgstr "Identique au début"
 msgid "Sample"
 msgstr "Échantillon"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "Sample Project"
 msgstr "Projet d'exemple"
 
@@ -12166,7 +12166,7 @@ msgstr "Tri/Regroupement"
 msgid "Source"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:465
+#: crates/ui-egui/src/start.rs:469
 msgid "Source code on GitHub"
 msgstr "Code source sur GitHub"
 
@@ -13226,7 +13226,7 @@ msgstr ""
 msgid "The project has no title blocks of its own; sheets draw the built-in one."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:334
+#: crates/ui-egui/src/start.rs:338
 msgid "The project stays as you left it."
 msgstr "Le projet reste tel que laissé."
 
@@ -13242,7 +13242,7 @@ msgstr ""
 msgid "The projected coordinate system the shared coordinates are a grid of: a UTM zone, a State Plane zone, a national grid. It shows them in its unit, and takes them to latitude and longitude for the map and the sun."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:367
+#: crates/ui-egui/src/start.rs:371
 msgid "The projects you open or save show here."
 msgstr "Les projets ouverts ou enregistrés s'affichent ici."
 
@@ -13432,7 +13432,7 @@ msgid "This computer is out of memory and is using its disk instead ({} swapped)
 msgstr ""
 
 #: crates/ui-egui/src/settings.rs:671
-#: crates/ui-egui/src/start.rs:486
+#: crates/ui-egui/src/start.rs:490
 msgid "This copy doesn't look for updates."
 msgstr "Cette copie ne recherche pas les mises à jour."
 
@@ -14072,7 +14072,7 @@ msgstr "Haut, puis droite"
 msgid "Update Project"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:494
+#: crates/ui-egui/src/start.rs:498
 msgid "Update now"
 msgstr "Mettre à jour maintenant"
 
@@ -14171,7 +14171,7 @@ msgid "Version"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:45
-#: crates/ui-egui/src/start.rs:469
+#: crates/ui-egui/src/start.rs:473
 msgid "Version {}"
 msgstr "Version {}"
 

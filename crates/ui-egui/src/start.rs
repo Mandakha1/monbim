@@ -305,8 +305,12 @@ impl BimApp {
             ui.vertical(|ui| {
                 ui.add_space(4.0);
                 ui.label(RichText::new(crate::brand::FULL_NAME).font(FontId::proportional(34.0)).strong().color(pal().text));
-                ui.label(RichText::new(t("Building information modelling, open and free.")).size(15.0).color(pal().muted));
-                crate::about::credit(ui);
+                // MonBIM's credit beside the line, not under it: the page's buttons stay where upstream has them.
+                ui.horizontal_wrapped(|ui| {
+                    ui.label(RichText::new(t("Building information modelling, open and free.")).size(15.0).color(pal().muted));
+                    ui.add_space(6.0);
+                    crate::about::credit(ui);
+                });
             });
         });
     }

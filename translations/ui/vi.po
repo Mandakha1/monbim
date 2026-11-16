@@ -157,11 +157,11 @@ msgstr ""
 msgid "A / puts it inside another: Issue/PDF"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project or an IFC file."
 msgstr "Một dự án MonBIM hoặc một tệp IFC."
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project, an IFC or a Revit file."
 msgstr "Một dự án MonBIM, một tệp IFC hoặc Revit."
 
@@ -209,7 +209,7 @@ msgstr "Cửa đi hoặc cửa sổ cần các chiều dài tên là Width và H
 msgid "A door or a window stands in its wall: it can't be work plane-based."
 msgstr "Cửa đi hoặc cửa sổ nằm trong tường của nó: không thể dựa trên mặt phẳng làm việc."
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "A family file, to edit."
 msgstr "Một tệp họ để chỉnh sửa."
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "A scan's points where the plan's cut plane cuts it, to trace what was measured"
 msgstr "Các điểm của bản quét tại nơi mặt cắt ngang của mặt bằng cắt qua, để vẽ lại những gì đã đo"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "A small house to look around in."
 msgstr "Một ngôi nhà nhỏ để xem thử."
 
@@ -370,7 +370,7 @@ msgid "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 msgstr "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 
 #: crates/ui-egui/src/about.rs:40
-#: crates/ui-egui/src/start.rs:471
+#: crates/ui-egui/src/start.rs:475
 msgid "About {}"
 msgstr ""
 
@@ -917,7 +917,7 @@ msgstr "Một tác tử có thể làm việc trên dự án này: monbim-cli mc
 msgid "An archive has its standard's version"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "An empty project to model in."
 msgstr "Một dự án trống để dựng mô hình."
 
@@ -1358,7 +1358,7 @@ msgstr "Quay lại dự án ({}D)"
 msgid "Back to the type"
 msgstr "Trở về kiểu"
 
-#: crates/ui-egui/src/start.rs:333
+#: crates/ui-egui/src/start.rs:337
 msgid "Back to {}"
 msgstr "Quay lại {}"
 
@@ -1615,7 +1615,7 @@ msgid "Building Name"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:47
-#: crates/ui-egui/src/start.rs:308
+#: crates/ui-egui/src/start.rs:310
 msgid "Building information modelling, open and free."
 msgstr "Mô hình hóa thông tin công trình, mở và miễn phí."
 
@@ -1999,7 +1999,7 @@ msgstr ""
 msgid "Check for Updates Now"
 msgstr "Kiểm tra cập nhật ngay"
 
-#: crates/ui-egui/src/start.rs:525
+#: crates/ui-egui/src/start.rs:529
 msgid "Check for updates"
 msgstr "Kiểm tra cập nhật"
 
@@ -2032,7 +2032,7 @@ msgstr "Kiểm tra: cấp độ xâm thực"
 msgid "Check: fck"
 msgstr "Kiểm tra: fck"
 
-#: crates/ui-egui/src/start.rs:517
+#: crates/ui-egui/src/start.rs:521
 msgid "Checking for updates…"
 msgstr "Đang kiểm tra cập nhật…"
 
@@ -4274,11 +4274,11 @@ msgstr "Dây dẫn sét xuống"
 msgid "Down Conductor (DC): click its start and its end; the same point twice and two heights stand it up a wall"
 msgstr "Dây dẫn sét xuống (DC): nhấp điểm đầu và điểm cuối; nhấp cùng một điểm hai lần với hai cao độ sẽ dựng nó đứng dọc theo tường"
 
-#: crates/ui-egui/src/start.rs:497
+#: crates/ui-egui/src/start.rs:501
 msgid "Download"
 msgstr "Tải xuống"
 
-#: crates/ui-egui/src/start.rs:504
+#: crates/ui-egui/src/start.rs:508
 #: crates/ui-egui/src/updates.rs:113
 msgid "Downloading MonBIM {}…"
 msgstr "Đang tải xuống MonBIM {}…"
@@ -4333,7 +4333,7 @@ msgstr "Bản vẽ"
 msgid "Drawing the preview…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:434
+#: crates/ui-egui/src/start.rs:438
 msgid "Drawing…"
 msgstr "Đang vẽ…"
 
@@ -5006,7 +5006,7 @@ msgstr "Không đọc được tệp: {}"
 #: crates/ui-egui/src/browser.rs:711
 #: crates/ui-egui/src/editor/nested.rs:381
 #: crates/ui-egui/src/parameters.rs:674
-#: crates/ui-egui/src/start.rs:339
+#: crates/ui-egui/src/start.rs:343
 msgid "Families"
 msgstr "Họ"
 
@@ -7633,7 +7633,7 @@ msgstr "Mô hình theo mặt"
 msgid "Model: lines drawn are model lines"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:316
+#: crates/ui-egui/src/start.rs:320
 msgid "Models"
 msgstr "Mô hình"
 
@@ -7871,7 +7871,7 @@ msgstr "Dự án MonBIM hoặc IFC"
 msgid "MonBIM project, IFC or Revit"
 msgstr "Dự án MonBIM, IFC hoặc Revit"
 
-#: crates/ui-egui/src/start.rs:500
+#: crates/ui-egui/src/start.rs:504
 msgid "MonBIM {} is available"
 msgstr "Đã có MonBIM {}"
 
@@ -7879,7 +7879,7 @@ msgstr "Đã có MonBIM {}"
 msgid "MonBIM {} is available. You have {}."
 msgstr "Đã có MonBIM {}. Bạn đang dùng {}."
 
-#: crates/ui-egui/src/start.rs:510
+#: crates/ui-egui/src/start.rs:514
 msgid "MonBIM {} is ready to install"
 msgstr "MonBIM {} đã sẵn sàng để cài đặt"
 
@@ -7887,7 +7887,7 @@ msgstr "MonBIM {} đã sẵn sàng để cài đặt"
 msgid "MonBIM {} is ready. It will close, update and start again."
 msgstr "MonBIM {} đã sẵn sàng. Ứng dụng sẽ đóng, cập nhật và khởi động lại."
 
-#: crates/ui-egui/src/start.rs:520
+#: crates/ui-egui/src/start.rs:524
 msgid "MonBIM {} is up to date"
 msgstr "MonBIM {} đã là bản mới nhất"
 
@@ -8095,7 +8095,7 @@ msgstr "Hệ thống phân phối mới"
 
 #: crates/ui-egui/src/editor.rs:760
 #: crates/ui-egui/src/editor.rs:1346
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "New Family"
 msgstr "Họ mới"
 
@@ -8121,7 +8121,7 @@ msgstr "Mẫu mới"
 msgid "New Print Set…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "New Project"
 msgstr "Dự án mới"
 
@@ -8284,7 +8284,7 @@ msgstr ""
 msgid "No project parameters yet: Add Parameter makes one, Import/Export brings them from a file."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:366
+#: crates/ui-egui/src/start.rs:370
 msgid "No recent projects yet"
 msgstr "Chưa có dự án gần đây"
 
@@ -8414,7 +8414,7 @@ msgstr ""
 msgid "Not enclosed: the walls around it don't close."
 msgstr "Không khép kín: các tường bao quanh không khép lại."
 
-#: crates/ui-egui/src/start.rs:432
+#: crates/ui-egui/src/start.rs:436
 msgid "Not found"
 msgstr "Không tìm thấy"
 
@@ -8574,7 +8574,7 @@ msgstr "Kiểu đối tượng…"
 msgid "Of"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "Of a category you pick."
 msgstr "Thuộc danh mục bạn chọn."
 
@@ -8671,7 +8671,7 @@ msgstr "Đục"
 
 #: crates/ui-egui/src/lib.rs:3954
 #: crates/ui-egui/src/lib.rs:4325
-#: crates/ui-egui/src/start.rs:382
+#: crates/ui-egui/src/start.rs:386
 msgid "Open"
 msgstr "Mở"
 
@@ -8687,7 +8687,7 @@ msgstr "Mở khung nhìn camera"
 msgid "Open Dictionary..."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "Open Family…"
 msgstr "Mở họ…"
 
@@ -8764,7 +8764,7 @@ msgstr "Mở cổng điều khiển ngay bây giờ và mỗi khi MonBIM khởi 
 msgid "Opens the release page on GitHub. This copy can't update itself."
 msgstr "Mở trang phát hành trên GitHub. Bản cài đặt này không thể tự cập nhật."
 
-#: crates/ui-egui/src/start.rs:324
+#: crates/ui-egui/src/start.rs:328
 msgid "Open…"
 msgstr "Mở…"
 
@@ -10422,7 +10422,7 @@ msgstr ""
 msgid "Reads a dimension and never drives one: a length or an angle"
 msgstr "Đọc một kích thước và không bao giờ điều khiển nó: một chiều dài hoặc một góc"
 
-#: crates/ui-egui/src/start.rs:359
+#: crates/ui-egui/src/start.rs:363
 msgid "Recent"
 msgstr "Gần đây"
 
@@ -10656,7 +10656,7 @@ msgstr "Gỡ bỏ chốt xoay"
 msgid "Remove Pivot: it stops turning and stays where it is drawn"
 msgstr "Gỡ bỏ chốt xoay: nó ngừng xoay và giữ nguyên vị trí đã vẽ"
 
-#: crates/ui-egui/src/start.rs:385
+#: crates/ui-egui/src/start.rs:389
 msgid "Remove from List"
 msgstr "Gỡ khỏi danh sách"
 
@@ -10864,7 +10864,7 @@ msgstr "Đặt lại về mặc định NBR"
 msgid "Resolution"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:507
+#: crates/ui-egui/src/start.rs:511
 msgid "Restart and install"
 msgstr "Khởi động lại và cài đặt"
 
@@ -11165,7 +11165,7 @@ msgstr "Như điểm đầu"
 msgid "Sample"
 msgstr "Hình mẫu"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "Sample Project"
 msgstr "Dự án mẫu"
 
@@ -12166,7 +12166,7 @@ msgstr "Sắp xếp/Nhóm"
 msgid "Source"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:465
+#: crates/ui-egui/src/start.rs:469
 msgid "Source code on GitHub"
 msgstr "Mã nguồn trên GitHub"
 
@@ -13226,7 +13226,7 @@ msgstr ""
 msgid "The project has no title blocks of its own; sheets draw the built-in one."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:334
+#: crates/ui-egui/src/start.rs:338
 msgid "The project stays as you left it."
 msgstr "Dự án vẫn giữ nguyên như khi bạn rời đi."
 
@@ -13242,7 +13242,7 @@ msgstr ""
 msgid "The projected coordinate system the shared coordinates are a grid of: a UTM zone, a State Plane zone, a national grid. It shows them in its unit, and takes them to latitude and longitude for the map and the sun."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:367
+#: crates/ui-egui/src/start.rs:371
 msgid "The projects you open or save show here."
 msgstr "Các dự án bạn mở hoặc lưu sẽ hiển thị ở đây."
 
@@ -13432,7 +13432,7 @@ msgid "This computer is out of memory and is using its disk instead ({} swapped)
 msgstr ""
 
 #: crates/ui-egui/src/settings.rs:671
-#: crates/ui-egui/src/start.rs:486
+#: crates/ui-egui/src/start.rs:490
 msgid "This copy doesn't look for updates."
 msgstr "Bản cài đặt này không kiểm tra cập nhật."
 
@@ -14072,7 +14072,7 @@ msgstr "Lên, rồi sang phải"
 msgid "Update Project"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:494
+#: crates/ui-egui/src/start.rs:498
 msgid "Update now"
 msgstr "Cập nhật ngay"
 
@@ -14171,7 +14171,7 @@ msgid "Version"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:45
-#: crates/ui-egui/src/start.rs:469
+#: crates/ui-egui/src/start.rs:473
 msgid "Version {}"
 msgstr "Phiên bản {}"
 

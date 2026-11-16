@@ -157,11 +157,11 @@ msgstr ""
 msgid "A / puts it inside another: Issue/PDF"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project or an IFC file."
 msgstr "MonBIM 项目或 IFC 文件。"
 
-#: crates/ui-egui/src/start.rs:323
+#: crates/ui-egui/src/start.rs:327
 msgid "A MonBIM project, an IFC or a Revit file."
 msgstr "MonBIM 项目、IFC 或 Revit 文件。"
 
@@ -209,7 +209,7 @@ msgstr "门或窗需要名为 Width 和 Height 的长度参数；其公式可以
 msgid "A door or a window stands in its wall: it can't be work plane-based."
 msgstr "门或窗位于其所在的墙中：不能基于工作平面。"
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "A family file, to edit."
 msgstr "一个族文件，用于编辑。"
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "A scan's points where the plan's cut plane cuts it, to trace what was measured"
 msgstr "平面的剖切面切过扫描处的点，用于描绘测得的内容"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "A small house to look around in."
 msgstr "一座可以四处查看的小住宅。"
 
@@ -370,7 +370,7 @@ msgid "ASME Y14.2 & AIA CAD National CAD Standard (NCS):"
 msgstr "ASME Y14.2 & AIA CAD 美国国家CAD标准 (NCS):"
 
 #: crates/ui-egui/src/about.rs:40
-#: crates/ui-egui/src/start.rs:471
+#: crates/ui-egui/src/start.rs:475
 msgid "About {}"
 msgstr ""
 
@@ -917,7 +917,7 @@ msgstr "智能体可以在此项目上工作：monbim-cli mcp --connect {}"
 msgid "An archive has its standard's version"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "An empty project to model in."
 msgstr "一个空项目，可在其中建模。"
 
@@ -1358,7 +1358,7 @@ msgstr "返回项目（{}D）"
 msgid "Back to the type"
 msgstr "返回类型"
 
-#: crates/ui-egui/src/start.rs:333
+#: crates/ui-egui/src/start.rs:337
 msgid "Back to {}"
 msgstr "返回 {}"
 
@@ -1615,7 +1615,7 @@ msgid "Building Name"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:47
-#: crates/ui-egui/src/start.rs:308
+#: crates/ui-egui/src/start.rs:310
 msgid "Building information modelling, open and free."
 msgstr "开放、免费的建筑信息模型。"
 
@@ -1999,7 +1999,7 @@ msgstr ""
 msgid "Check for Updates Now"
 msgstr "立即检查更新"
 
-#: crates/ui-egui/src/start.rs:525
+#: crates/ui-egui/src/start.rs:529
 msgid "Check for updates"
 msgstr "检查更新"
 
@@ -2032,7 +2032,7 @@ msgstr "校核：环境侵蚀等级"
 msgid "Check: fck"
 msgstr "校核：fck"
 
-#: crates/ui-egui/src/start.rs:517
+#: crates/ui-egui/src/start.rs:521
 msgid "Checking for updates…"
 msgstr "正在检查更新…"
 
@@ -4274,11 +4274,11 @@ msgstr "引下线"
 msgid "Down Conductor (DC): click its start and its end; the same point twice and two heights stand it up a wall"
 msgstr "引下线 (DC)：单击起点和终点；在同一点单击两次并给出两个高度，可使其沿墙竖立"
 
-#: crates/ui-egui/src/start.rs:497
+#: crates/ui-egui/src/start.rs:501
 msgid "Download"
 msgstr "下载"
 
-#: crates/ui-egui/src/start.rs:504
+#: crates/ui-egui/src/start.rs:508
 #: crates/ui-egui/src/updates.rs:113
 msgid "Downloading MonBIM {}…"
 msgstr "正在下载 MonBIM {}…"
@@ -4333,7 +4333,7 @@ msgstr "图纸"
 msgid "Drawing the preview…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:434
+#: crates/ui-egui/src/start.rs:438
 msgid "Drawing…"
 msgstr "绘制中…"
 
@@ -5006,7 +5006,7 @@ msgstr "读取文件失败：{}"
 #: crates/ui-egui/src/browser.rs:711
 #: crates/ui-egui/src/editor/nested.rs:381
 #: crates/ui-egui/src/parameters.rs:674
-#: crates/ui-egui/src/start.rs:339
+#: crates/ui-egui/src/start.rs:343
 msgid "Families"
 msgstr "族"
 
@@ -7633,7 +7633,7 @@ msgstr "面模型"
 msgid "Model: lines drawn are model lines"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:316
+#: crates/ui-egui/src/start.rs:320
 msgid "Models"
 msgstr "模型"
 
@@ -7871,7 +7871,7 @@ msgstr "MonBIM 项目或 IFC"
 msgid "MonBIM project, IFC or Revit"
 msgstr "MonBIM 项目、IFC 或 Revit"
 
-#: crates/ui-egui/src/start.rs:500
+#: crates/ui-egui/src/start.rs:504
 msgid "MonBIM {} is available"
 msgstr "MonBIM {} 已发布"
 
@@ -7879,7 +7879,7 @@ msgstr "MonBIM {} 已发布"
 msgid "MonBIM {} is available. You have {}."
 msgstr "MonBIM {} 已发布。您当前使用的是 {}。"
 
-#: crates/ui-egui/src/start.rs:510
+#: crates/ui-egui/src/start.rs:514
 msgid "MonBIM {} is ready to install"
 msgstr "MonBIM {} 已可安装"
 
@@ -7887,7 +7887,7 @@ msgstr "MonBIM {} 已可安装"
 msgid "MonBIM {} is ready. It will close, update and start again."
 msgstr "MonBIM {} 已就绪。它将关闭、更新并重新启动。"
 
-#: crates/ui-egui/src/start.rs:520
+#: crates/ui-egui/src/start.rs:524
 msgid "MonBIM {} is up to date"
 msgstr "MonBIM {} 已是最新版本"
 
@@ -8095,7 +8095,7 @@ msgstr "新建配电系统"
 
 #: crates/ui-egui/src/editor.rs:760
 #: crates/ui-egui/src/editor.rs:1346
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "New Family"
 msgstr "新建族"
 
@@ -8121,7 +8121,7 @@ msgstr "新建图案"
 msgid "New Print Set…"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:318
+#: crates/ui-egui/src/start.rs:322
 msgid "New Project"
 msgstr "新建项目"
 
@@ -8284,7 +8284,7 @@ msgstr ""
 msgid "No project parameters yet: Add Parameter makes one, Import/Export brings them from a file."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:366
+#: crates/ui-egui/src/start.rs:370
 msgid "No recent projects yet"
 msgstr "尚无最近的项目"
 
@@ -8414,7 +8414,7 @@ msgstr ""
 msgid "Not enclosed: the walls around it don't close."
 msgstr "未封闭：其周围的墙没有闭合。"
 
-#: crates/ui-egui/src/start.rs:432
+#: crates/ui-egui/src/start.rs:436
 msgid "Not found"
 msgstr "未找到"
 
@@ -8574,7 +8574,7 @@ msgstr "对象样式…"
 msgid "Of"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:341
+#: crates/ui-egui/src/start.rs:345
 msgid "Of a category you pick."
 msgstr "属于所选的类别。"
 
@@ -8671,7 +8671,7 @@ msgstr "不透明"
 
 #: crates/ui-egui/src/lib.rs:3954
 #: crates/ui-egui/src/lib.rs:4325
-#: crates/ui-egui/src/start.rs:382
+#: crates/ui-egui/src/start.rs:386
 msgid "Open"
 msgstr "打开"
 
@@ -8687,7 +8687,7 @@ msgstr "打开相机视图"
 msgid "Open Dictionary..."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:352
+#: crates/ui-egui/src/start.rs:356
 msgid "Open Family…"
 msgstr "打开族…"
 
@@ -8764,7 +8764,7 @@ msgstr "立即打开控制端口，此后每次 MonBIM 启动时也会打开：�
 msgid "Opens the release page on GitHub. This copy can't update itself."
 msgstr "打开 GitHub 上的发布页面。此副本无法自行更新。"
 
-#: crates/ui-egui/src/start.rs:324
+#: crates/ui-egui/src/start.rs:328
 msgid "Open…"
 msgstr "打开…"
 
@@ -10422,7 +10422,7 @@ msgstr ""
 msgid "Reads a dimension and never drives one: a length or an angle"
 msgstr "读取尺寸标注，但从不驱动它：长度或角度"
 
-#: crates/ui-egui/src/start.rs:359
+#: crates/ui-egui/src/start.rs:363
 msgid "Recent"
 msgstr "最近"
 
@@ -10656,7 +10656,7 @@ msgstr "移除枢轴"
 msgid "Remove Pivot: it stops turning and stays where it is drawn"
 msgstr "移除枢轴：它不再旋转，停留在绘制的位置"
 
-#: crates/ui-egui/src/start.rs:385
+#: crates/ui-egui/src/start.rs:389
 msgid "Remove from List"
 msgstr "从列表中移除"
 
@@ -10864,7 +10864,7 @@ msgstr "重置为 NBR 默认值"
 msgid "Resolution"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:507
+#: crates/ui-egui/src/start.rs:511
 msgid "Restart and install"
 msgstr "重启并安装"
 
@@ -11165,7 +11165,7 @@ msgstr "与起点相同"
 msgid "Sample"
 msgstr "示例"
 
-#: crates/ui-egui/src/start.rs:328
+#: crates/ui-egui/src/start.rs:332
 msgid "Sample Project"
 msgstr "示例项目"
 
@@ -12166,7 +12166,7 @@ msgstr "排序/成组"
 msgid "Source"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:465
+#: crates/ui-egui/src/start.rs:469
 msgid "Source code on GitHub"
 msgstr "GitHub 上的源代码"
 
@@ -13226,7 +13226,7 @@ msgstr ""
 msgid "The project has no title blocks of its own; sheets draw the built-in one."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:334
+#: crates/ui-egui/src/start.rs:338
 msgid "The project stays as you left it."
 msgstr "项目保持您离开时的状态。"
 
@@ -13242,7 +13242,7 @@ msgstr ""
 msgid "The projected coordinate system the shared coordinates are a grid of: a UTM zone, a State Plane zone, a national grid. It shows them in its unit, and takes them to latitude and longitude for the map and the sun."
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:367
+#: crates/ui-egui/src/start.rs:371
 msgid "The projects you open or save show here."
 msgstr "您打开或保存的项目会显示在这里。"
 
@@ -13432,7 +13432,7 @@ msgid "This computer is out of memory and is using its disk instead ({} swapped)
 msgstr ""
 
 #: crates/ui-egui/src/settings.rs:671
-#: crates/ui-egui/src/start.rs:486
+#: crates/ui-egui/src/start.rs:490
 msgid "This copy doesn't look for updates."
 msgstr "此副本不检查更新。"
 
@@ -14072,7 +14072,7 @@ msgstr "向上，然后向右"
 msgid "Update Project"
 msgstr ""
 
-#: crates/ui-egui/src/start.rs:494
+#: crates/ui-egui/src/start.rs:498
 msgid "Update now"
 msgstr "立即更新"
 
@@ -14171,7 +14171,7 @@ msgid "Version"
 msgstr ""
 
 #: crates/ui-egui/src/about.rs:45
-#: crates/ui-egui/src/start.rs:469
+#: crates/ui-egui/src/start.rs:473
 msgid "Version {}"
 msgstr "版本 {}"
 
