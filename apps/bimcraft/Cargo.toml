@@ -1,11 +1,17 @@
 [package]
 name = "bimcraft"
-description = "BIMCraft desktop app"
+description = "MonBIM desktop app (based on BIMCraft)"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
 publish = false
+default-run = "monbim"
+
+# MonBIM: the package keeps its upstream name (small merges from BIMCraft); the binary is `monbim`.
+[[bin]]
+name = "monbim"
+path = "src/main.rs"
 
 [lints]
 workspace = true

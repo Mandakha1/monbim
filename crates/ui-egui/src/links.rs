@@ -55,7 +55,7 @@ pub(crate) fn link_extensions() -> Vec<&'static str> {
 impl BimApp {
     /// Link Model (LK): the file the user picks, then its box.
     pub(crate) fn link_model_dialog(&mut self, ctx: &Context) {
-        let dialog = rfd::AsyncFileDialog::new().add_filter(t("BIMCraft project or IFC"), &link_extensions());
+        let dialog = rfd::AsyncFileDialog::new().add_filter(t("MonBIM project or IFC"), &link_extensions());
         self.ask_file(ctx, dialog, false, |app, path| {
             app.link_box = Some(LinkBox { path, by: "manual", location: String::new(), error: None })
         });

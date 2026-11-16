@@ -1,4 +1,4 @@
-//! `bimcraft`: the BIMCraft desktop app.
+//! `monbim` (the package keeps upstream's name, `bimcraft`): the MonBIM desktop app, based on BIMCraft.
 
 // A release build on Windows is a window, not a console program: no console opens behind it.
 #![cfg_attr(all(windows, not(debug_assertions)), windows_subsystem = "windows")]
@@ -18,12 +18,12 @@ use serde_json::json;
 
 mod startup;
 
-const USAGE: &str = "USAGE: bimcraft [FILE] [--sample | --highrise | --tower] [--control PORT] [--bench SCENARIO [--bench-out FILE]]
+const USAGE: &str = "USAGE: monbim [FILE] [--sample | --highrise | --tower] [--control PORT] [--bench SCENARIO [--bench-out FILE]]
   FILE       a .bimc project (or a .bimt or earlier .bimcraft) to open, a .bimf family, or an .ifc or .rvt (Revit) file to import
   --sample   start on the sample house
   --highrise start on the original 20-storey performance sample
   --tower    start on the 100-storey reference tower with its annotation (1.2 million elements)
-  --control  let an agent work on this window's project: `bimcraft-cli mcp --connect PORT` (0: any free port). Only this
+  --control  let an agent work on this window's project: `monbim-cli mcp --connect PORT` (0: any free port). Only this
              machine can reach it, and the port and a token are in bridge.json beside the favorites. File > Settings >
              Agents opens it too, and may let agents only read the project
   --bench    run a scenario on the window and time its frames: steps a user takes, one a line (open, wait, zoom,
@@ -34,8 +34,12 @@ It looks for a newer version when it starts (File > Check for updates at startup
 Set BIMCRAFT_NO_UPDATE_CHECK=1 and it never makes a request.";
 
 /// What the desktop knows the app by: Wayland's app id and X11's window class, which a Linux desktop
-/// matches to the `.desktop` file of that name for the window's icon, and the macOS bundle's identifier.
-const APP_ID: &str = "io.github.ipedrax.bimcraft";
+/// matches to the `.desktop` file of that name for the window's icon, and the macOS bundle's identifier. MonBIM's own, so it
+/// is never taken for an installed BIMCraft (upstream's is `io.github.ipedrax.bimcraft`).
+const APP_ID: &str = "com.monhydro.monbim";
+
+/// eframe's name for the app: the folder its own storage would go in, never upstream's.
+const APP_NAME: &str = "MonBIM";
 
 /// The arguments without `--control PORT`, and the port it names: a number, 0 for one that is free.
 fn control_port(mut args: Vec<String>) -> Result<(Vec<String>, Option<u16>), String> {
@@ -106,7 +110,7 @@ fn main() -> ExitCode {
     let (args, control, bench) = match taken {
         Ok(taken) => taken,
         Err(e) => {
-            eprintln!("bimcraft: {e}\n\n{USAGE}");
+            eprintln!("monbim: {e}\n\n{USAGE}");
             return ExitCode::FAILURE;
         }
     };
@@ -136,7 +140,7 @@ fn main() -> ExitCode {
             "--highrise" => session.execute("highrise", &json!({})).map(|_| ()),
             "--tower" => session.execute("tower", &json!({"annotation": true})).map(|_| ()),
             flag if flag.starts_with('-') => {
-                eprintln!("bimcraft: unknown option `{flag}`\n\n{USAGE}");
+                eprintln!("monbim: unknown option `{flag}`\n\n{USAGE}");
                 return ExitCode::FAILURE;
             }
             // A family opens in its own document, as a Revit file is read, once the window is up.
@@ -197,7 +201,7 @@ fn main() -> ExitCode {
     if let Some(port) = control {
         match Control::start(port, bimcraft_core::bridge::entry_path()) {
             Ok(control) => {
-                eprintln!("bimcraft: an agent can work on this project: bimcraft-cli mcp --connect {}", control.entry.port);
+                eprintln!("monbim: an agent can work on this project: monbim-cli mcp --connect {}", control.entry.port);
                 app.use_control(control);
             }
             Err(e) => problem = Some(format!("couldn't listen on port {port} for an agent: {e}")),
@@ -212,7 +216,7 @@ fn main() -> ExitCode {
     // keeps its own.
     app.own_title_bar = !cfg!(target_os = "macos");
     let mut viewport = eframe::egui::ViewportBuilder::default()
-        .with_title("BIMCraft")
+        .with_title(bimcraft_ui_egui::brand::FULL_NAME)
         .with_decorations(!app.own_title_bar || app.system_title_bar)
         .with_app_id(APP_ID)
         .with_inner_size(window.size.unwrap_or([1440.0, 900.0]))
@@ -242,7 +246,8 @@ fn main() -> ExitCode {
     let (_registration, inbox) = fmv_macos_events::Registration::install();
     // The update check runs on a thread of its own, started once the window exists: it never delays the start.
     let start = move |cc: &eframe::CreationContext| -> Result<Box<dyn eframe::App>, _> {
-        app.enable_autosave(std::env::temp_dir().join("bimcraft-autosave"), &cc.egui_ctx);
+        // MonBIM's own folder of snapshots, never shared with an installed BIMCraft's.
+        app.enable_autosave(std::env::temp_dir().join("monbim-autosave"), &cc.egui_ctx);
         if let Some(project) = failed_project {
             app.inspect_recovery(project);
         }
@@ -274,13 +279,13 @@ fn main() -> ExitCode {
         app.space_mouse = bimcraft_ui_egui::spacemouse::SpaceMouse::start(move || ctx.request_repaint());
         Ok(Box::new(app))
     };
-    match eframe::run_native("BIMCraft", options, Box::new(start)) {
+    match eframe::run_native(APP_NAME, options, Box::new(start)) {
         Ok(()) => {
             startup::closed(files.as_ref(), graphics);
             ExitCode::SUCCESS
         }
         Err(e) => {
-            eprintln!("bimcraft: {e}");
+            eprintln!("monbim: {e}");
             if let Some(files) = &files {
                 startup::note(&files.log, &format!("start failed on {} graphics: {e}", graphics.name()));
             }

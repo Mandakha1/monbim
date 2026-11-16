@@ -52,7 +52,7 @@ fn the_profile_is_picked_in_settings_and_the_settings_file_keeps_it() {
     again.run();
     assert_eq!(again.state().profile, Profile::Rev);
     press(&mut again, "Settings");
-    pick(&mut again, Role::RadioButton, "BIMCraft");
+    pick(&mut again, Role::RadioButton, "MonBIM");
     press(&mut again, "Close");
     assert_eq!(again.state().profile, Profile::BimCraft);
     let kept: Value = serde_json::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap();

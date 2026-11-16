@@ -813,9 +813,9 @@ impl BimApp {
                     }
                 }
                 if placing {
-                    let tip = msg!("Load Family: a family saved as a .bimf file (or an earlier .json), BIMCraft's own");
+                    let tip = msg!("Load Family: a family saved as a .bimf file (or an earlier .json), MonBIM's own");
                     if big_button(ui, Icon::LoadFamily, "Load Family", false, tip).clicked() {
-                        let dialog = rfd::AsyncFileDialog::new().add_filter(t("BIMCraft family"), &bimcraft_core::files::FAMILIES);
+                        let dialog = rfd::AsyncFileDialog::new().add_filter(t("MonBIM family"), &bimcraft_core::files::FAMILIES);
                         // A family the project has otherwise asks first: Family Already Exists.
                         self.ask_file(ui.ctx(), dialog, false, |app, path| app.load_family_file(&path));
                     }

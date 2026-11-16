@@ -11,7 +11,7 @@ pub fn is_revit(path: &str) -> bool {
 }
 
 #[cfg(not(feature = "rvt"))]
-const WITHOUT: &str = "this build of bimcraft-cli was made without Revit support (`--no-default-features`); build with the default `rvt` feature to read Revit files";
+const WITHOUT: &str = "this build of monbim-cli was made without Revit support (`--no-default-features`); build with the default `rvt` feature to read Revit files";
 
 #[cfg(not(feature = "rvt"))]
 pub fn info(path: &str) -> Result<Value, String> {

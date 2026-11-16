@@ -262,9 +262,9 @@ fn a_typed_key_is_written_nowhere_and_a_remembered_one_only_scrambled() {
         assert!(!std::fs::read_to_string(&file).unwrap().contains(KEY), "{profile}: typed, not remembered: nowhere on disk");
 
         // Remember: what the file gets is the key scrambled, and not the key as typed, nor in hex.
-        assert!(h.query_by_label_contains("built into BIMCraft").is_none(), "{profile}: said when it applies");
+        assert!(h.query_by_label_contains("built into MonBIM").is_none(), "{profile}: said when it applies");
         tick_remember(&mut h);
-        h.get_by_label_contains("anyone who has BIMCraft can unscramble it");
+        h.get_by_label_contains("anyone who has MonBIM can unscramble it");
         let text = std::fs::read_to_string(&file).unwrap();
         let sealed = written(&file)["assistant"]["key_sealed"].as_str().unwrap().to_string();
         assert!(bimcraft_assistant::seal::well_formed(&sealed), "{profile}: {sealed}");
@@ -474,11 +474,11 @@ fn the_api_config_has_its_own_tab_in_settings_in_both_profiles() {
         assert_eq!(h.state().assistant.model, "gemini-3.5-flash", "{profile}");
         type_into(&mut h, "API key:", KEY);
         assert_eq!(h.state().assistant.key.0, KEY, "{profile}");
-        assert!(h.query_by_label_contains("built into BIMCraft").is_none(), "{profile}: said only when Remember is ticked");
+        assert!(h.query_by_label_contains("built into MonBIM").is_none(), "{profile}: said only when Remember is ticked");
         h.get_by_role_and_label(Role::CheckBox, "Remember the key").click();
         h.run();
         assert!(h.state().assistant.remember, "{profile}");
-        h.get_by_label_contains("built into BIMCraft");
+        h.get_by_label_contains("built into MonBIM");
     }
 }
 

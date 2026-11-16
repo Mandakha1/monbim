@@ -223,7 +223,7 @@ impl BimApp {
             }
             ui.separator();
             // A family's views keep nothing hidden for good yet.
-            ui.add_enabled(false, egui::Button::new(t("Apply Hide/Isolate to View"))).on_disabled_hover_text(t("Not in BIMCraft yet"));
+            ui.add_enabled(false, egui::Button::new(t("Apply Hide/Isolate to View"))).on_disabled_hover_text(t("Not in MonBIM yet"));
             if ui.add_enabled(hides, egui::Button::new(t("Reset Temporary Hide/Isolate (HR)"))).clicked() {
                 asked = Some(Asked::Reset);
             }

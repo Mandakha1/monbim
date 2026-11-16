@@ -1310,7 +1310,7 @@ impl BimApp {
     /// File > Open > Family… and the start page's Open Family: a family file (BIMCraft's own JSON, as Load Family reads it)
     /// asked for, then opened as its document.
     pub(crate) fn open_family(&mut self, ctx: &Context) {
-        let dialog = rfd::AsyncFileDialog::new().add_filter(t("BIMCraft family"), &bimcraft_core::files::FAMILIES);
+        let dialog = rfd::AsyncFileDialog::new().add_filter(t("MonBIM family"), &bimcraft_core::files::FAMILIES);
         let home = self.home.shown;
         self.ask_file(ctx, dialog, false, move |app, path| {
             app.open_family_file(&path);
@@ -1466,7 +1466,7 @@ impl BimApp {
             }
         }
         if load {
-            let dialog = rfd::AsyncFileDialog::new().add_filter(t("BIMCraft family"), &bimcraft_core::files::FAMILIES);
+            let dialog = rfd::AsyncFileDialog::new().add_filter(t("MonBIM family"), &bimcraft_core::files::FAMILIES);
             // Loaded into this family (T6a), as Revit's Insert > Load Family in a family, though another tab came forward
             // meanwhile; closed meanwhile, nothing to load into.
             self.ask_file(ctx, dialog, false, move |app, path| app.nest_family_file(doc, &path));
@@ -1490,7 +1490,7 @@ impl BimApp {
                         }
                     } else if save {
                         let dialog = rfd::AsyncFileDialog::new()
-                            .add_filter(t("BIMCraft family"), &[bimcraft_core::files::FAMILY])
+                            .add_filter(t("MonBIM family"), &[bimcraft_core::files::FAMILY])
                             .set_file_name(bimcraft_core::files::file_name(&name, bimcraft_core::files::FAMILY));
                         self.ask_file(ctx, dialog, true, move |app, path| {
                             match draft.execute("family", &json!({"name":name,"save":path.to_string_lossy()})) {

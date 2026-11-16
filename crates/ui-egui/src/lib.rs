@@ -1,4 +1,4 @@
-//! BIMCraft's desktop front end, in egui: a thin shell over the core's [`Session`]. Panels read
+//! MonBIM's desktop front end (BIMCraft's, rebranded: [`brand`]), in egui: a thin shell over the core's [`Session`]. Panels read
 //! the session's model and change it only through [`Session::execute`], so the desktop, the CLI,
 //! scripts and agents share one set of commands, rules and undo history. The layout is Revit's:
 //! the Quick Access Toolbar over the ribbon's tabs, a contextual Modify tab for the tool or the
@@ -9,12 +9,14 @@ use crate::popup::Modal;
 
 use bimcraft_i18n::msg;
 
+mod about;
 mod adaptive_editor;
 mod adaptive_place;
 mod adaptive_view;
 mod assistant;
 mod background_grid;
 pub mod bench;
+pub mod brand;
 mod browser;
 mod cad;
 mod camera;
@@ -976,6 +978,8 @@ pub struct BimApp {
     styled: bool,
     /// The updater, which the desktop app attaches: a window starts without one, and so never phones home.
     pub updates: Option<bimcraft_update::Updater>,
+    /// MonBIM's About window (File > Help > About MonBIM, the start page's footer) is open.
+    about: bool,
     /// The Assistant palette's: the user's provider, model and key, and the chat, which the desktop app gives a network (`assistant::State::attach`): a window starts without one.
     pub assistant: assistant::State,
     /// The 3D mouse's reader, which the desktop app attaches: a window starts without one, so a test never opens a device.
@@ -1703,6 +1707,7 @@ impl BimApp {
             title: String::new(),
             styled: false,
             updates: None,
+            about: false,
             assistant: assistant::State::default(),
             space_mouse: None,
             revit: None,
@@ -2009,10 +2014,14 @@ impl BimApp {
         self.watch_window(&ctx);
         let view = self.view_title(self.sheet);
         let title = match self.family_title() {
-            Some(family) => format!("{family} · BIMCraft"),
-            None => {
-                format!("{}{} · {view} · {}BIMCraft", self.session.model.name, if self.dirty() { "*" } else { "" }, self.cowork_title())
-            }
+            Some(family) => format!("{family} · {}", brand::FULL_NAME),
+            None => format!(
+                "{}{} · {view} · {}{}",
+                self.session.model.name,
+                if self.dirty() { "*" } else { "" },
+                self.cowork_title(),
+                brand::FULL_NAME
+            ),
         };
         if title != self.title {
             ctx.send_viewport_cmd(ViewportCommand::Title(title.clone()));
@@ -2155,7 +2164,7 @@ impl BimApp {
             ui.painter().text(
                 bar.left_center() + vec2(14.0, 0.0),
                 Align2::LEFT_CENTER,
-                "BIMCraft",
+                brand::FULL_NAME,
                 FontId::proportional(12.5),
                 pal().app_bar_muted,
             );
@@ -2311,6 +2320,7 @@ impl BimApp {
             || self.ids_of_selection.is_some()
             || self.selection_filter.is_some()
             || self.settings_page.is_some()
+            || self.about
             || self.plugins_dialog
             || self.find.is_some()
             || self.new_schedule.is_some()
@@ -3699,7 +3709,7 @@ impl BimApp {
 
     fn save_as(&mut self, ctx: &Context, then: Option<Pending>) {
         let later = ctx.clone();
-        self.ask_path(ctx, msg!("BIMCraft project"), &files::SAVED, move |app, p| {
+        self.ask_path(ctx, msg!("MonBIM project"), &files::SAVED, move |app, p| {
             if app.save_to(&p)
                 && let Some(then) = then
             {
@@ -3899,7 +3909,7 @@ impl BimApp {
             }
             Pending::Open => {
                 let revit = self.revit.is_some();
-                let name = t(if revit { msg!("BIMCraft project, IFC or Revit") } else { "BIMCraft project or IFC" });
+                let name = t(if revit { msg!("MonBIM project, IFC or Revit") } else { "MonBIM project or IFC" });
                 let dialog = rfd::AsyncFileDialog::new().add_filter(name, &revit::open_extensions(revit));
                 self.ask_file(ctx, dialog, false, |app, path| {
                     app.open_path(&path);
@@ -4346,6 +4356,7 @@ impl BimApp {
         self.report_menu(ui);
         self.update_menu(ui);
         ui.separator();
+        self.help_menu(ui);
         if item(ui, msg!("Settings…"), Some(KeyboardShortcut::new(Modifiers::COMMAND, Key::Comma))) {
             self.settings_page = Some(settings::Page::Interface);
         }
@@ -4870,7 +4881,7 @@ impl BimApp {
     fn insert_tab(&mut self, ui: &mut Ui) {
         panel(ui, msg!("Link"), |ui| {
             let tip = msg!(
-                "Link Model (LK): another project, a BIMCraft file or an IFC, shown in this one as a reference that can't be edited: halftone in the plans, the sections and the 3D view, and snapped to"
+                "Link Model (LK): another project, a MonBIM file or an IFC, shown in this one as a reference that can't be edited: halftone in the plans, the sections and the 3D view, and snapped to"
             );
             if big_button(ui, Icon::Link, "Link Model", false, tip).clicked() {
                 self.link_dialog = true;
@@ -4908,7 +4919,7 @@ impl BimApp {
     fn collaborate_tab(&mut self, ui: &mut Ui) {
         panel(ui, msg!("Work Together"), |ui| {
             let tip =
-                msg!("Co-Work (CW): host this project for others on BIMCraft, or join someone's session, and see each other's edits live");
+                msg!("Co-Work (CW): host this project for others on MonBIM, or join someone's session, and see each other's edits live");
             if big_button(ui, Icon::Cowork, "Co-Work", self.cowork_dialog.is_some(), tip).clicked() {
                 self.open_cowork();
             }
@@ -5041,7 +5052,7 @@ impl BimApp {
         // Revit's Project Location: where the project stands, and what stands with it by shared coordinates.
         // Yielding: Location goes into the panel's list before any other panel gives way, so the tab is no wider than it was.
         ribbon::yielding(ui, msg!("Project Location"), |ui| {
-            let tip = "Link Model (LK): another project, a BIMCraft file or an IFC, shown in this one as a reference that can't be edited: halftone in the plans, the sections and the 3D view, and snapped to";
+            let tip = "Link Model (LK): another project, a MonBIM file or an IFC, shown in this one as a reference that can't be edited: halftone in the plans, the sections and the 3D view, and snapped to";
             if big_button(ui, Icon::Link, "Link Model", false, tip).clicked() {
                 self.link_dialog = true;
             }
@@ -6358,6 +6369,7 @@ impl BimApp {
         self.selection_filter_window(ctx);
         self.shortcuts_window(ctx);
         self.settings_window(ctx);
+        self.about_window(ctx);
         self.plugins_window(ctx);
         self.plugin_report_window(ctx);
         self.background_grid_window(ctx);

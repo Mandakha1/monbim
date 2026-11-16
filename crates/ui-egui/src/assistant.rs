@@ -192,7 +192,7 @@ impl State {
         }
         if !self.protect {
             let said = msg!(
-                "Kept in settings.json scrambled with a key built into BIMCraft: it can't be read at a glance, but anyone who has BIMCraft can unscramble it. A passphrase makes it encryption. Leave Remember off on a computer others use."
+                "Kept in settings.json scrambled with a key built into MonBIM: it can't be read at a glance, but anyone who has MonBIM can unscramble it. A passphrase makes it encryption. Leave Remember off on a computer others use."
             );
             ui.label(RichText::new(t(said)).small().color(pal().muted));
             return;

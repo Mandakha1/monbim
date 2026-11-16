@@ -146,7 +146,7 @@ pub fn tell(language: Lang, what: &str, files: Option<&Files>) {
     if cfg!(windows) {
         rfd::MessageDialog::new()
             .set_level(rfd::MessageLevel::Error)
-            .set_title(word(ui_msg!("BIMCraft couldn't start")))
+            .set_title(word(ui_msg!("MonBIM couldn't start")))
             .set_description(body)
             .show();
     }
@@ -167,7 +167,7 @@ pub fn begin(files: Option<&Files>, language: Lang) -> Mark {
     };
     note(
         &files.log,
-        &format!("bimcraft {} on {} {}; graphics: {graphics}", env!("CARGO_PKG_VERSION"), std::env::consts::OS, std::env::consts::ARCH),
+        &format!("monbim {} on {} {}; graphics: {graphics}", env!("CARGO_PKG_VERSION"), std::env::consts::OS, std::env::consts::ARCH),
     );
     if !user_chose && let Err(e) = mark.write(&files.mark) {
         note(&files.log, &format!("couldn't keep the graphics mark: {e}"));

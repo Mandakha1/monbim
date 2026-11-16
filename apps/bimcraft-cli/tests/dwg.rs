@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::time::Duration;
 
-const EXE: &str = env!("CARGO_BIN_EXE_bimcraft-cli");
+const EXE: &str = env!("CARGO_BIN_EXE_monbim-cli");
 
 fn pairs(list: &[(i32, &str)]) -> String {
     list.iter().map(|(c, v)| format!("{c:>3}\n{v}\n")).collect()

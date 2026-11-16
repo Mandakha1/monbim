@@ -552,7 +552,7 @@ impl BimApp {
         let before = self.profile;
         ui.horizontal(|ui| {
             for (profile, tip) in [
-                (Profile::BimCraft, msg!("BIMCraft's own: the tools in a palette, the Inspector and the Navigator on the right")),
+                (Profile::BimCraft, msg!("MonBIM's own: the tools in a palette, the Inspector and the Navigator on the right")),
                 (Profile::Rev, msg!("The ribbon over the view, Properties and the Project Browser on the left")),
             ] {
                 ui.radio_value(&mut self.profile, profile, profile.name()).on_hover_text(t(tip));
@@ -788,8 +788,7 @@ impl BimApp {
         let muted = |ui: &mut Ui, text: &str| ui.label(RichText::new(text).color(pal().muted));
         heading(ui, msg!("Control port"));
         let mut on = self.control.is_some();
-        let tip =
-            t("Opens the control port now and whenever BIMCraft starts: an agent connects with bimcraft-cli mcp --connect. Only this \
+        let tip = t("Opens the control port now and whenever MonBIM starts: an agent connects with monbim-cli mcp --connect. Only this \
              machine can reach it, and only with the token in bridge.json beside your favorites");
         if ui.checkbox(&mut on, t("Let agents work on this project")).on_hover_text(tip).changed() {
             self.set_agents(on);
@@ -808,7 +807,7 @@ impl BimApp {
         let state = match (&self.control, &self.agents.failed) {
             (Some(c), _) => {
                 let port = c.entry.port.to_string();
-                tf("Listening on 127.0.0.1, port {}: agents connect with bimcraft-cli mcp --connect {}", &[&port, &port])
+                tf("Listening on 127.0.0.1, port {}: agents connect with monbim-cli mcp --connect {}", &[&port, &port])
             }
             (None, Some(why)) => why.clone(),
             (None, None) => t("Off: no agent can reach this window").to_string(),

@@ -1,4 +1,4 @@
-//! `bimcraft-cli`: BIMCraft from the command line. Scripts, conversion, and an MCP server for
+//! `monbim-cli` (the package keeps upstream's name, `bimcraft-cli`): MonBIM from the command line. Scripts, conversion, and an MCP server for
 //! agents, all through the same commands.
 
 mod mcp;
@@ -15,22 +15,22 @@ use bimcraft_plugin::{Level, Plugins};
 use serde_json::{Value, json};
 
 const USAGE: &str = "USAGE:
-  bimcraft-cli run [FILE] [--sample | --highrise] [--cmd 'ID {json}']… [--script FILE]… [--save PATH]…
+  monbim-cli run [FILE] [--sample | --highrise] [--cmd 'ID {json}']… [--script FILE]… [--save PATH]…
       Open FILE (a .bimc project or an earlier .bimcraft, or an .ifc or Revit .rvt file to import) or start empty, then in order: build the sample house, run
       commands and scripts (one `ID {json}` per line), save. --save writes by extension:
       .bimc (the project; .bimt the same), .ifc (IFC4), .glb (the 3D view's scene as glTF), .svg or .png (the lowest level's plan).
       Scripts may name a line `@name = ID {json}`; later values use `@name`, `$last`, `$-2` or a field such as `@walls.ids.0`.
       --highrise builds an original 20-storey performance sample (about 10,000 elements).
-  bimcraft-cli info FILE         levels, element counts, types and warnings of a project or an IFC file; of a Revit .rvt or
+  monbim-cli info FILE           levels, element counts, types and warnings of a project or an IFC file; of a Revit .rvt or
                                  .rfa file, its release, last save, levels and element counts by category
-  bimcraft-cli convert IN OUT    a project, an IFC file or a Revit .rvt file to .ifc, .glb, .svg, .png or .bimc
-  bimcraft-cli commands          every command and its parameters
-  bimcraft-cli mcp [--read-only] [FILE | --connect [PORT]]
+  monbim-cli convert IN OUT      a project, an IFC file or a Revit .rvt file to .ifc, .glb, .svg, .png or .bimc
+  monbim-cli commands            every command and its parameters
+  monbim-cli mcp [--read-only] [FILE | --connect [PORT]]
                                  an MCP server on stdio, for agents: on a headless project of its own (FILE, opened first, or an
                                  empty one), or with --connect on the project open in a window whose control port is open
-                                 (`bimcraft --control PORT` or File > Settings > Agents; without PORT, the last one). With
+                                 (`monbim --control PORT` or File > Settings > Agents; without PORT, the last one). With
                                  --read-only the agent may read the project, never change it or write over its file
-  bimcraft-cli --version         the release";
+  monbim-cli --version           the release";
 
 fn print(out: &mut impl Write, v: &Value) -> Result<(), String> {
     writeln!(out, "{v}").map_err(|e| format!("stdout: {e}"))
@@ -55,7 +55,7 @@ pub(crate) fn load_plugins(session: &mut Session) -> Plugins {
     let plugins = bimcraft_plugin::load();
     plugins.register(session);
     for e in plugins.log() {
-        eprintln!("bimcraft: plugin `{}` {}: {}", e.plugin, level_name(e.level), e.text);
+        eprintln!("monbim: plugin `{}` {}: {}", e.plugin, level_name(e.level), e.text);
     }
     plugins
 }
@@ -64,7 +64,7 @@ pub(crate) fn load_plugins(session: &mut Session) -> Plugins {
 pub(crate) fn note_plugins(plugins: &Plugins, seen: &mut usize) {
     let entries = plugins.log();
     for e in entries.iter().skip(*seen) {
-        eprintln!("bimcraft: plugin `{}` {}: {}", e.plugin, level_name(e.level), e.text);
+        eprintln!("monbim: plugin `{}` {}: {}", e.plugin, level_name(e.level), e.text);
     }
     *seen = entries.len();
 }
@@ -122,7 +122,7 @@ fn cli(args: &[String], out: &mut impl Write) -> Result<(), String> {
             print_pretty(out, &list)
         }
         [flag] if flag == "--version" || flag == "-V" => {
-            writeln!(out, "bimcraft-cli {}", env!("CARGO_PKG_VERSION")).map_err(|e| format!("stdout: {e}"))
+            writeln!(out, "monbim-cli {}", env!("CARGO_PKG_VERSION")).map_err(|e| format!("stdout: {e}"))
         }
         _ => Err(USAGE.into()),
     }
@@ -139,7 +139,7 @@ struct McpArgs {
     file: Option<String>,
 }
 
-const MCP_USAGE: &str = "usage: bimcraft-cli mcp [--read-only] [FILE | --connect [PORT]]";
+const MCP_USAGE: &str = "usage: monbim-cli mcp [--read-only] [FILE | --connect [PORT]]";
 
 fn mcp_args(args: &[String]) -> Result<McpArgs, String> {
     let mut a = McpArgs::default();
@@ -239,14 +239,14 @@ fn main() -> ExitCode {
         let mut server = match mcp_args(&args[1..]).and_then(mcp_server) {
             Ok(server) => server,
             Err(e) => {
-                eprintln!("bimcraft-cli mcp: {e}");
+                eprintln!("monbim-cli mcp: {e}");
                 return ExitCode::FAILURE;
             }
         };
         return match server.serve(std::io::stdin().lock(), std::io::stdout().lock()) {
             Ok(()) => ExitCode::SUCCESS,
             Err(e) => {
-                eprintln!("bimcraft-cli mcp: {e}");
+                eprintln!("monbim-cli mcp: {e}");
                 ExitCode::FAILURE
             }
         };
@@ -377,7 +377,7 @@ modify {"id":"$last","mark":"Entry"}"#,
 
     #[test]
     fn version_names_the_release() {
-        let line = format!("bimcraft-cli {}\n", env!("CARGO_PKG_VERSION"));
+        let line = format!("monbim-cli {}\n", env!("CARGO_PKG_VERSION"));
         assert_eq!(cli_out(&["--version"]).unwrap(), line);
         assert_eq!(cli_out(&["-V"]).unwrap(), line);
         assert!(cli_out(&["--version", "x"]).unwrap_err().contains("USAGE"));

@@ -1,4 +1,4 @@
-//! BIMCraft's MCP server: JSON-RPC 2.0 over stdio, one message per line (MCP's stdio transport).
+//! MonBIM's MCP server (based on BIMCraft's): JSON-RPC 2.0 over stdio, one message per line (MCP's stdio transport).
 //! Its tools run the same commands as the CLI and scripts, on a headless session, or, with `--connect`, on the session of a window
 //! (`window.rs`): the project the user has open. With `--read-only` the agent may only read the project: the headless session is
 //! read-only (`Session::read_only`), and a window is asked to run each request read-only.
@@ -19,7 +19,7 @@ const INVALID_REQUEST: i64 = -32600;
 const METHOD_NOT_FOUND: i64 = -32601;
 const INVALID_PARAMS: i64 = -32602;
 
-const INSTRUCTIONS: &str = "BIMCraft is a BIM modeler, a Revit-class building model. Lengths are millimetres; x east, y north, z up; \
+const INSTRUCTIONS: &str = "MonBIM is a BIM modeler, a Revit-class building model. Lengths are millimetres; x east, y north, z up; \
 the model starts with Level 1 (0) and Level 2 (3000). Model with execute: wall {points: [[0,0],[8000,0],[8000,6000],[0,6000]], \
 closed: true}, door {at: [2000, 0]}, window {at: [8000, 3000]}, room {point: [4000, 3000], name: \"Living\"}, floor {} (open \
 over a loop of walls standing free inside), \
@@ -84,7 +84,7 @@ impl Backend {
         match self {
             Backend::Own(s) => Ok(s),
             Backend::Window(_) => Err("that would replace the project the window has open, which is the user's: an agent never starts \
-                 or opens a project in a window; the user does, with File > New and File > Open (or run `bimcraft-cli mcp` without \
+                 or opens a project in a window; the user does, with File > New and File > Open (or run `monbim-cli mcp` without \
                  --connect for a project of the agent's own)"
                 .into()),
         }
@@ -128,7 +128,7 @@ fn tools() -> Value {
     json!([
         {"name": "desktop_context", "description": "Read the connected desktop's current selection (element IDs, GUIDs and categories) and active view (kind, name, ID and GUID). Empty selection is []; Home has no active view (null). Built-in views without model elements have null IDs/GUIDs. Read-only; requires mcp --connect and never changes selection or navigation.",
          "inputSchema": {"type": "object", "properties": {}, "additionalProperties": false}, "annotations": {"readOnlyHint": true}},
-        {"name": "execute", "description": "Run any BIMCraft command with JSON params, e.g. wall {points: [[0,0],[5000,0]]}, door {at: [2500, 0]}, \
+        {"name": "execute", "description": "Run any MonBIM command with JSON params, e.g. wall {points: [[0,0],[5000,0]]}, door {at: [2500, 0]}, \
             room {point: [x, y], name}, modify {id, …fields}, delete {ids}, undo. list_commands shows them all with their parameters.",
          "inputSchema": {"type": "object", "properties": {"command": {"type": "string"}, "params": {"type": "object"}}, "required": ["command"]}},
         {"name": "script", "description": "Run several commands, one per line: `wall {\"points\": [[0,0],[4000,0]]}`. Stops at the first failing line and names it; the lines before it stay done, each its own undo step. \
@@ -260,7 +260,7 @@ impl Server {
                 Ok(json!({
                     "protocolVersion": version,
                     "capabilities": {"tools": {"listChanged": false}},
-                    "serverInfo": {"name": "bimcraft", "title": "BIMCraft", "version": env!("CARGO_PKG_VERSION")},
+                    "serverInfo": {"name": "monbim", "title": "MonBIM", "version": env!("CARGO_PKG_VERSION")},
                     "instructions": instructions,
                 }))
             }
@@ -421,7 +421,10 @@ mod tests {
     fn lifecycle_and_tool_list() {
         let mut s = Server::new();
         let init = call(&mut s, 1, "initialize", json!({"protocolVersion": "2025-06-18"}));
-        assert_eq!(init["result"]["serverInfo"]["name"], "bimcraft");
+        assert_eq!(
+            (init["result"]["serverInfo"]["name"].as_str(), init["result"]["serverInfo"]["title"].as_str()),
+            (Some("monbim"), Some("MonBIM"))
+        );
         assert_eq!(init["result"]["protocolVersion"], "2025-06-18");
         assert!(s.handle_line(r#"{"jsonrpc":"2.0","method":"notifications/initialized"}"#).is_none());
         let tools = call(&mut s, 2, "tools/list", json!({}));

@@ -40,7 +40,7 @@ impl Window {
     /// [`Window::connect`] with the bridge file at `path`.
     pub(crate) fn connect_with(path: &Path, port: Option<u16>) -> Result<Window, String> {
         let entry = bridge::read_entry(path)
-            .ok_or_else(|| format!("{}: no window has opened a control port (start one with `bimcraft --control 0`)", path.display()))?;
+            .ok_or_else(|| format!("{}: no window has opened a control port (start one with `monbim --control 0`)", path.display()))?;
         if let Some(port) = port.filter(|p| *p != entry.port) {
             return Err(format!(
                 "{} has the token of the window on port {}, not {port}: start that window with `--control {port}` again, or connect without a port",
@@ -51,7 +51,7 @@ impl Window {
         Window::connect_to(&entry)
     }
 
-    /// Connects to the window `entry` names, and checks that it is BIMCraft that answers.
+    /// Connects to the window `entry` names, and checks that it is MonBIM (or BIMCraft: the protocol is theirs) that answers.
     pub fn connect_to(entry: &Entry) -> Result<Window, String> {
         let stream = TcpStream::connect_timeout(&SocketAddr::new(Ipv4Addr::LOCALHOST.into(), entry.port), CONNECT).map_err(|e| {
             format!("no window answers on port {}: {e} (is it still open? the bridge file may be left from one that closed)", entry.port)
@@ -61,7 +61,7 @@ impl Window {
         let mut window = Window { reader, writer: stream, token: entry.token.clone(), read_only: false, window_read_only: false };
         let hello = window.ask(json!({"op": "hello"}))?;
         if hello["app"] != "bimcraft" {
-            return Err(format!("port {} is not a BIMCraft window", entry.port));
+            return Err(format!("port {} is not a MonBIM window", entry.port));
         }
         window.window_read_only = hello["read_only"].as_bool().unwrap_or(false);
         Ok(window)

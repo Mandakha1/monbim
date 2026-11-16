@@ -293,7 +293,7 @@ impl BimApp {
                 });
                 ui.label(
                     RichText::new(t(
-                        "A plugin is a folder with plugin.json and its module; BIMCraft runs its functions in a sandbox, through commands.",
+                        "A plugin is a folder with plugin.json and its module; MonBIM runs its functions in a sandbox, through commands.",
                     ))
                     .color(pal().muted),
                 );

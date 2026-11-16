@@ -45,6 +45,12 @@ pub struct Favorites {
     pub families: BTreeMap<String, FamilyEntry>,
 }
 
+/// The folder the user's own files are kept in (the favorites, and beside them the window's settings, the updater's, the
+/// control port's file and the plugins): MonBIM's, so it never shares them with an installed BIMCraft (`BIMCraft`).
+const FOLDER: &str = "MonBIM";
+/// Its name in a Linux user's configuration folder, in lower case as the others there are (BIMCraft's is `bimcraft`).
+const FOLDER_LINUX: &str = "monbim";
+
 /// Where the user's favorites are kept: where `BIMCRAFT_FAVORITES` says, else in the user's own configuration folder.
 pub fn default_path() -> Option<PathBuf> {
     if let Some(path) = std::env::var_os("BIMCRAFT_FAVORITES").filter(|p| !p.is_empty()) {
@@ -52,15 +58,15 @@ pub fn default_path() -> Option<PathBuf> {
     }
     let home = || std::env::var_os("HOME").filter(|h| !h.is_empty()).map(PathBuf::from);
     let folder = if cfg!(target_os = "windows") {
-        PathBuf::from(std::env::var_os("APPDATA").filter(|p| !p.is_empty())?).join("BIMCraft")
+        PathBuf::from(std::env::var_os("APPDATA").filter(|p| !p.is_empty())?).join(FOLDER)
     } else if cfg!(target_os = "macos") {
-        home()?.join("Library").join("Application Support").join("BIMCraft")
+        home()?.join("Library").join("Application Support").join(FOLDER)
     } else {
         std::env::var_os("XDG_CONFIG_HOME")
             .filter(|p| !p.is_empty())
             .map(PathBuf::from)
             .or_else(|| home().map(|h| h.join(".config")))?
-            .join("bimcraft")
+            .join(FOLDER_LINUX)
     };
     Some(folder.join("favorites.json"))
 }
@@ -167,6 +173,20 @@ mod tests {
 
     fn scratch(name: &str) -> PathBuf {
         std::env::temp_dir().join(format!("bimcraft-fav-{name}-{}", std::process::id()))
+    }
+
+    #[test]
+    fn the_users_files_are_kept_in_monbims_own_folder_never_bimcrafts() {
+        // Tests never set the environment (it would take `unsafe`), so the machine's own says where: unless BIMCRAFT_FAVORITES
+        // points elsewhere, the folder is MonBIM's.
+        if std::env::var_os("BIMCRAFT_FAVORITES").is_some_and(|p| !p.is_empty()) {
+            return;
+        }
+        let Some(path) = default_path() else { return };
+        let folder = path.parent().and_then(Path::file_name).map(|f| f.to_string_lossy().into_owned());
+        let want = if cfg!(any(target_os = "windows", target_os = "macos")) { FOLDER } else { FOLDER_LINUX };
+        assert_eq!(folder.as_deref(), Some(want), "{}", path.display());
+        assert_eq!((FOLDER, FOLDER_LINUX), ("MonBIM", "monbim"));
     }
 
     #[test]

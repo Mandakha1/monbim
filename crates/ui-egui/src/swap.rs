@@ -54,7 +54,7 @@ impl BimApp {
                 ui.label(RichText::new("⚠").color(pal().error).strong());
                 ui.label(
                     RichText::new(tf(
-                        "This computer is out of memory and is using its disk instead ({} swapped): BIMCraft and other programs will be slow until memory is freed. Close other programs or views you don't need.",
+                        "This computer is out of memory and is using its disk instead ({} swapped): MonBIM and other programs will be slow until memory is freed. Close other programs or views you don't need.",
                         &[&memory::bytes(grown)],
                     ))
                     .strong(),

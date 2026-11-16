@@ -1801,7 +1801,7 @@ pub(crate) fn work_planes(d: &bimcraft_core::adaptive::Definition, planes: bimcr
 
 /// A tool Revit's family editor has and BIMCraft does not yet: where Revit has it, greyed.
 fn later(ui: &mut Ui, icon: Icon, label: &str) {
-    ui.add_enabled_ui(false, |ui| big_button(ui, icon, label, false, msg!("Not in BIMCraft yet")));
+    ui.add_enabled_ui(false, |ui| big_button(ui, icon, label, false, msg!("Not in MonBIM yet")));
 }
 
 /// Where a point of the family's axes shows on `pane`, the {3D} picture `size` pixels wide drawn through `cam` and stretched over
@@ -1832,7 +1832,7 @@ fn connectors_panel(ui: &mut Ui, ed: &mut FamilyEditor) {
 
 /// The same, a small button.
 fn later_small(ui: &mut Ui, icon: Icon, label: &str) {
-    ui.add_enabled_ui(false, |ui| crate::small_button(ui, icon, label, false, msg!("Not in BIMCraft yet")));
+    ui.add_enabled_ui(false, |ui| crate::small_button(ui, icon, label, false, msg!("Not in MonBIM yet")));
 }
 
 /// Revit's Draw panel: what a line is (Model, Reference, Plane) over the gallery of what draws, Line and Point Element working.
@@ -1840,10 +1840,8 @@ fn draw_panel(ui: &mut Ui, ed: &mut FamilyEditor) {
     ribbon::panel(ui, msg!("Draw"), |ui| {
         crate::stacked(ui, |ui| {
             crate::stacked_button(ui, Icon::Line, msg!("Model"), true, msg!("Model: lines drawn are model lines"));
-            ui.add_enabled_ui(false, |ui| {
-                crate::stacked_button(ui, Icon::PickLines, msg!("Reference"), false, msg!("Not in BIMCraft yet"))
-            });
-            ui.add_enabled_ui(false, |ui| crate::stacked_button(ui, Icon::Level, msg!("Plane"), false, msg!("Not in BIMCraft yet")));
+            ui.add_enabled_ui(false, |ui| crate::stacked_button(ui, Icon::PickLines, msg!("Reference"), false, msg!("Not in MonBIM yet")));
+            ui.add_enabled_ui(false, |ui| crate::stacked_button(ui, Icon::Level, msg!("Plane"), false, msg!("Not in MonBIM yet")));
         });
         ui.vertical(|ui| {
             ui.horizontal(|ui| {
@@ -1886,7 +1884,7 @@ fn work_plane_panel(ui: &mut Ui, ed: &mut FamilyEditor) {
             if crate::stacked_button(ui, Icon::Visibility, msg!("Show"), ed.modeller.show_work_plane, tip).clicked() {
                 ed.modeller.show_work_plane = !ed.modeller.show_work_plane;
             }
-            ui.add_enabled_ui(false, |ui| crate::stacked_button(ui, Icon::View3D, msg!("Viewer"), false, msg!("Not in BIMCraft yet")));
+            ui.add_enabled_ui(false, |ui| crate::stacked_button(ui, Icon::View3D, msg!("Viewer"), false, msg!("Not in MonBIM yet")));
         });
     });
 }

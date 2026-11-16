@@ -305,7 +305,7 @@ impl BimApp {
     pub fn use_control(&mut self, control: Control) {
         let port = control.entry.port.to_string();
         self.status = crate::Status {
-            text: crate::lang::tf("An agent can work on this project: bimcraft-cli mcp --connect {}", &[&port]),
+            text: crate::lang::tf("An agent can work on this project: monbim-cli mcp --connect {}", &[&port]),
             error: false,
         };
         self.control = Some(control);
@@ -400,7 +400,7 @@ impl BimApp {
             None => pal().muted,
         };
         let tip = msg!(
-            "The control port, through which an agent works on this project (bimcraft-cli mcp --connect): whether it is open, how many \
+            "The control port, through which an agent works on this project (monbim-cli mcp --connect): whether it is open, how many \
              agents are connected, and whether they may only read. Click for File > Settings > Agents"
         );
         let button = egui::Button::new(RichText::new(&state).size(12.0).color(ink)).frame(false).min_size(vec2(0.0, 25.0));

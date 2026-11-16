@@ -390,10 +390,7 @@ impl BimApp {
         let (mut quit, mut stay, mut hand) = (false, false, false);
         let r = Modal::new(UiId::new("cowork-quit"), t("End the Co-Work session?")).width(420.0).show(ctx, |ui| {
             crate::popup::body(ui, |ui| {
-                ui.label(tf(
-                    "{} are in your Co-Work session: closing BIMCraft ends it for them, and they keep a read-only copy.",
-                    &[&names],
-                ));
+                ui.label(tf("{} are in your Co-Work session: closing MonBIM ends it for them, and they keep a read-only copy.", &[&names]));
             });
             crate::popup::footer(ui, |ui| {
                 ui.horizontal(|ui| {
@@ -732,7 +729,7 @@ impl BimApp {
     /// File > Settings > Co-Work: the name the others see, where a host listens, and whether it is visible on the network.
     pub(crate) fn cowork_page(&mut self, ui: &mut Ui) {
         let p = &mut self.cowork_prefs;
-        ui.label(t("Co-Work lets others on BIMCraft work on this project with you, live (Collaborate > Co-Work, CW)."));
+        ui.label(t("Co-Work lets others on MonBIM work on this project with you, live (Collaborate > Co-Work, CW)."));
         ui.add_space(6.0);
         ui.horizontal(|ui| {
             ui.label(t("Your name:"));

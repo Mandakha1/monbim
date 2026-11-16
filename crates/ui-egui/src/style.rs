@@ -416,7 +416,7 @@ impl Profile {
     /// Its name, which is its label too: a name, so never translated.
     pub fn name(self) -> &'static str {
         match self {
-            Profile::BimCraft => "BIMCraft",
+            Profile::BimCraft => "MonBIM",
             Profile::Rev => "Rev",
         }
     }
