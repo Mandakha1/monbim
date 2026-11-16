@@ -41,10 +41,10 @@ const REPO: &str = "Mandakha1/monbim";
 /// GitHub's latest published release: not a draft, not a pre-release.
 pub const LATEST_URL: &str = "https://api.github.com/repos/Mandakha1/monbim/releases/latest";
 
-/// Whether the desktop looks for a newer MonBIM by itself when it starts ([`Updater::desktop`]). Off while MonBIM's repository
-/// is private, where GitHub answers a request without a key with 404: a check by hand (File > Check for Updates Now) still
-/// asks, and says it couldn't. Turn it on once the repository is public and has a published release (docs/monbim/FORK.md).
-pub const AUTOMATIC_CHECKS: bool = false;
+/// Whether the desktop looks for a newer MonBIM by itself when it starts ([`Updater::desktop`]). On since MonBIM's repository
+/// went public with its first release (2026-11-16). Off, a check by hand (File > Check for Updates Now) still asks: the switch
+/// is for a private repository, where GitHub answers a request without a key with 404 (docs/monbim/FORK.md).
+pub const AUTOMATIC_CHECKS: bool = true;
 
 /// The most of a reply to [`LATEST_URL`] that is read: GitHub's is about 7 KB, release notes and all.
 pub const MAX_JSON: u64 = 1 << 20;

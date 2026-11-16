@@ -15,6 +15,6 @@ asset is taken only if it is named exactly for the version and the kind of insta
 - Rename a release asset in `.github/workflows/release.yml` and updates quietly stop installing: keep it as `Target::asset_name` names it.
 - MonBIM: `net::mon_get` is the HTTP GET the desktop hands MonHydro's news and account (`crates/mon-news`, `crates/mon-account`,
   which never reach the network themselves): HTTPS to `raw.githubusercontent.com/Mandakha1/…` and `monhydro.com` only
-  (`net::mon_allowed`), redirects by hand, a 1 MB cap. Releases come from `Mandakha1/monbim`; `AUTOMATIC_CHECKS` is off
-  while that repository is private (docs/monbim/FORK.md).
+  (`net::mon_allowed`), redirects by hand, a 1 MB cap. Releases come from `Mandakha1/monbim` (public since 2026-11-16);
+  `AUTOMATIC_CHECKS` is on, and is for turning the check at startup off while a repository is private (docs/monbim/FORK.md).
 - `cargo test -p bimcraft-update` runs in about five seconds.

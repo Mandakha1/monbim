@@ -14,6 +14,8 @@ DWG/DXF, glTF рүү гаргана. MonBIM бол [BIMCraft](https://github.com
 
 ### Суулгах (Windows)
 
+**[MonBIM 2026 татах (Windows)](https://monhydro.com/downloads/MonBIM-2026-Setup.exe)** · [бүх хувилбар](https://github.com/Mandakha1/monbim/releases)
+
 - `monbim-2026-<хувилбар>-windows-x64-setup.exe` — администраторын эрх шаардлагагүй, `%LOCALAPPDATA%\Programs\MonBIM`
   руу суулгана. Start цэсэнд **MonBIM 2026** ба **MonBIM 2026 (AI)** гарч ирнэ.
 - Чимээгүй суулгах: `monbim-2026-<хувилбар>-windows-x64-setup.exe /S` (ширээний товчлолтой: `/S /DESKTOP=1`).
@@ -22,8 +24,7 @@ DWG/DXF, glTF рүү гаргана. MonBIM бол [BIMCraft](https://github.com
 
 ### Хэл
 
-File › Settings › User Interface › Language › **Монгол**. Монгол орчуулга бэлтгэгдэж байгаа тул орчуулагдаагүй үгс
-англиар харагдана. Зургийн (план, хуудас) бичиг нь кирилл үсэггүй тул шинэ төсөл англи нэртэй (Level 1, Level 2) эхэлнэ.
+File › Settings › User Interface › Language › **Монгол**. Цэс, цонх, товч бүгд монголоор. Зургийн (план, хуудас) бичиг нь кирилл үсэггүй тул шинэ төсөл англи нэртэй (Level 1, Level 2) эхэлнэ.
 
 ### AI-тай холбох (Claude, ChatGPT, Codex)
 
@@ -39,6 +40,8 @@ claude mcp add monbim -- "%LOCALAPPDATA%\Programs\MonBIM\monbim-cli.exe" mcp --c
 
 Програм эхлэхдээ MonHydro-гийн мэдээ, сургалтын жагсаалтыг уншиж (File › Help › Мэдээ, сургалт…), анх удаа Gmail-ээр
 нэг удаа нэвтрэхийг хүснэ (File › Help › Бүртгэл…). `MON_NEWS=0`, `MON_ACCOUNT=0` орчны хувьсагч тэдгээрийг унтраана.
+Юу хадгалдаг, яаж устгуулах: [нууцлал](https://monhydro.com/legal.html#apps). Шинэ хувилбар гарвал програм эхлэхдээ мэдэгдэнэ
+(File › Check for updates at startup унтраана).
 
 ---
 
@@ -55,6 +58,8 @@ What MonBIM changes, and where, is in [docs/monbim/FORK.md](docs/monbim/FORK.md)
 list, the commands and the architecture, is kept in [docs/upstream/BIMCraft-README.md](docs/upstream/BIMCraft-README.md).
 
 ### Install (Windows)
+
+**[Download MonBIM 2026 for Windows](https://monhydro.com/downloads/MonBIM-2026-Setup.exe)** · [all releases](https://github.com/Mandakha1/monbim/releases)
 
 - `monbim-2026-<version>-windows-x64-setup.exe`: a per-user install to `%LOCALAPPDATA%\Programs\MonBIM`, no administrator
   rights; Start menu entries **MonBIM 2026** and **MonBIM 2026 (AI)**. Silent: `/S` (add `/DESKTOP=1` for a desktop shortcut).
@@ -81,8 +86,9 @@ in a window started with `monbim --control PORT` (the "(AI)" shortcut uses 7676)
 ### News and account
 
 When it starts, MonBIM reads MonHydro's news and courses feed (File › Help › News and courses…) and asks for a one-time Gmail
-sign-in at monhydro.com (File › Help › Account…). `MON_NEWS=0` and `MON_ACCOUNT=0` turn them off. Updates are checked only when
-asked (File › Check for Updates Now) until MonBIM's repository is public.
+sign-in at monhydro.com (File › Help › Account…). `MON_NEWS=0` and `MON_ACCOUNT=0` turn them off. What is kept, and how to have it
+deleted: [privacy](https://monhydro.com/legal.html#apps). A new release is announced when MonBIM starts (File › Check for updates
+at startup turns that off).
 
 ### Licence and credits
 

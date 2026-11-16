@@ -30,8 +30,8 @@ const USAGE: &str = "USAGE: monbim [FILE] [--sample | --highrise | --tower] [--c
              pan, view, orbit, idle, screenshot, quit; `bimcraft_ui_egui::bench`), the report as JSON to --bench-out
   --version  the release
 
-It looks for a newer version when asked (File > Check for Updates Now); by itself at startup only once MonBIM's releases are
-public (`bimcraft_update::AUTOMATIC_CHECKS`). Set BIMCRAFT_NO_UPDATE_CHECK=1 and it never asks GitHub.";
+It looks for a newer version when it starts (File > Check for updates at startup turns that off) and when asked (File >
+Check for Updates Now). Set BIMCRAFT_NO_UPDATE_CHECK=1 and it never asks GitHub.";
 
 /// What the desktop knows the app by: Wayland's app id and X11's window class, which a Linux desktop
 /// matches to the `.desktop` file of that name for the window's icon, and the macOS bundle's identifier. MonBIM's own, so it
@@ -266,8 +266,8 @@ fn main() -> ExitCode {
         // The settings sit beside the favorites, in the folder the core finds for the user's own files.
         let prefs = bimcraft_core::favorites::default_path().map(|path| bimcraft_update::prefs::beside(&path));
         app.updates = bimcraft_update::Updater::desktop(prefs, move || ctx.request_repaint());
-        // A benchmark asks nothing of the network. While MonBIM's repository is private the desktop's updater doesn't look by
-        // itself (`bimcraft_update::AUTOMATIC_CHECKS`), and this asks nothing either.
+        // A benchmark asks nothing of the network; nor does this when the desktop's updater doesn't look by itself
+        // (`bimcraft_update::AUTOMATIC_CHECKS`, off only for a private repository).
         if let Some(updates) = app.updates.as_mut()
             && !benching
         {
